@@ -8,24 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		A475D2032655946D002AE450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2022655946D002AE450 /* AppDelegate.swift */; };
-		A475D2052655946D002AE450 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A475D2042655946D002AE450 /* GameScene.sks */; };
-		A475D2072655946D002AE450 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A475D2062655946D002AE450 /* Actions.sks */; };
 		A475D2092655946D002AE450 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2082655946D002AE450 /* GameScene.swift */; };
 		A475D20B2655946D002AE450 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D20A2655946D002AE450 /* GameViewController.swift */; };
-		A475D20E2655946D002AE450 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A475D20C2655946D002AE450 /* Main.storyboard */; };
 		A475D21026559470002AE450 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A475D20F26559470002AE450 /* Assets.xcassets */; };
+		A475D21A26559C9B002AE450 /* BitMaskExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D21926559C9B002AE450 /* BitMaskExtension.swift */; };
+		A475D21E2655A0A7002AE450 /* CGPointExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D21D2655A0A7002AE450 /* CGPointExtension.swift */; };
+		A475D2232655B2E1002AE450 /* Hook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2222655B2E1002AE450 /* Hook.swift */; };
+		A475D2262655B422002AE450 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2252655B422002AE450 /* Player.swift */; };
+		A475D22D2655B5DF002AE450 /* Mineral.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D22C2655B5DF002AE450 /* Mineral.swift */; };
+		A475D2302655C0F6002AE450 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D22F2655C0F6002AE450 /* Constants.swift */; };
+		A475D2332655C4F3002AE450 /* Gold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2322655C4F3002AE450 /* Gold.swift */; };
+		A475D2362655ECC3002AE450 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2352655ECC3002AE450 /* Diamond.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A475D1FF2655946D002AE450 /* GoldMiner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldMiner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475D2022655946D002AE450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A475D2042655946D002AE450 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		A475D2062655946D002AE450 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		A475D2082655946D002AE450 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A475D20A2655946D002AE450 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		A475D20D2655946D002AE450 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A475D20F26559470002AE450 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A475D21126559470002AE450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A475D21926559C9B002AE450 /* BitMaskExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMaskExtension.swift; sourceTree = "<group>"; };
+		A475D21D2655A0A7002AE450 /* CGPointExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPointExtension.swift; sourceTree = "<group>"; };
+		A475D2222655B2E1002AE450 /* Hook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hook.swift; sourceTree = "<group>"; };
+		A475D2252655B422002AE450 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		A475D22C2655B5DF002AE450 /* Mineral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mineral.swift; sourceTree = "<group>"; };
+		A475D22F2655C0F6002AE450 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A475D2322655C4F3002AE450 /* Gold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gold.swift; sourceTree = "<group>"; };
+		A475D2352655ECC3002AE450 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +68,61 @@
 		A475D2012655946D002AE450 /* GoldMiner */ = {
 			isa = PBXGroup;
 			children = (
+				A475D23C2655EE3F002AE450 /* Scene */,
+				A475D23B2655EE30002AE450 /* View Controller */,
+				A475D23A2655EE23002AE450 /* Model */,
+				A475D2392655EE0D002AE450 /* Extension */,
+				A475D2382655EDEC002AE450 /* Node */,
 				A475D2022655946D002AE450 /* AppDelegate.swift */,
-				A475D2042655946D002AE450 /* GameScene.sks */,
-				A475D2062655946D002AE450 /* Actions.sks */,
-				A475D2082655946D002AE450 /* GameScene.swift */,
-				A475D20A2655946D002AE450 /* GameViewController.swift */,
-				A475D20C2655946D002AE450 /* Main.storyboard */,
 				A475D20F26559470002AE450 /* Assets.xcassets */,
 				A475D21126559470002AE450 /* Info.plist */,
 			);
 			path = GoldMiner;
+			sourceTree = "<group>";
+		};
+		A475D2382655EDEC002AE450 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				A475D22C2655B5DF002AE450 /* Mineral.swift */,
+				A475D2322655C4F3002AE450 /* Gold.swift */,
+				A475D2222655B2E1002AE450 /* Hook.swift */,
+				A475D2352655ECC3002AE450 /* Diamond.swift */,
+				A475D2252655B422002AE450 /* Player.swift */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+		A475D2392655EE0D002AE450 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A475D21D2655A0A7002AE450 /* CGPointExtension.swift */,
+				A475D21926559C9B002AE450 /* BitMaskExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A475D23A2655EE23002AE450 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A475D22F2655C0F6002AE450 /* Constants.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A475D23B2655EE30002AE450 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A475D20A2655946D002AE450 /* GameViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		A475D23C2655EE3F002AE450 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				A475D2082655946D002AE450 /* GameScene.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,10 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A475D20E2655946D002AE450 /* Main.storyboard in Resources */,
-				A475D2052655946D002AE450 /* GameScene.sks in Resources */,
 				A475D21026559470002AE450 /* Assets.xcassets in Resources */,
-				A475D2072655946D002AE450 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +193,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A475D22D2655B5DF002AE450 /* Mineral.swift in Sources */,
 				A475D2092655946D002AE450 /* GameScene.swift in Sources */,
+				A475D21A26559C9B002AE450 /* BitMaskExtension.swift in Sources */,
+				A475D21E2655A0A7002AE450 /* CGPointExtension.swift in Sources */,
 				A475D20B2655946D002AE450 /* GameViewController.swift in Sources */,
+				A475D2262655B422002AE450 /* Player.swift in Sources */,
+				A475D2232655B2E1002AE450 /* Hook.swift in Sources */,
+				A475D2332655C4F3002AE450 /* Gold.swift in Sources */,
 				A475D2032655946D002AE450 /* AppDelegate.swift in Sources */,
+				A475D2302655C0F6002AE450 /* Constants.swift in Sources */,
+				A475D2362655ECC3002AE450 /* Diamond.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A475D20C2655946D002AE450 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A475D20D2655946D002AE450 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A475D21226559470002AE450 /* Debug */ = {
