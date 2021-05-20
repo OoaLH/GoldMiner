@@ -7,15 +7,18 @@
 
 import UIKit
 
+let movePauseDuration: Double = 0.2
+let gameDuration: Int = 120
+
 let hookDefaultSpeed: CGFloat = 220.0
 let hookSwingSpeed: CGFloat = 60.0
 let hookShortestLength: CGFloat = 30.0
 let maxHookAngle: CGFloat = -.pi * 7 / 8
 let minHookAngle: CGFloat = -.pi / 8
 
-let fastSpeed: CGFloat = 100
-let mediumSpeed: CGFloat = 45
-let slowSpeed: CGFloat = 20
+var fastSpeed: CGFloat = 100
+var mediumSpeed: CGFloat = 45
+var slowSpeed: CGFloat = 20
 
 let goldBackSpeed: [Int: CGFloat] = [smallGoldMass: fastSpeed, mediumGoldMass: mediumSpeed, largeGoldMass: slowSpeed]
 let smallGoldMass: Int = 50
@@ -28,6 +31,8 @@ let diamondPrice: Int = 800
 
 let mouseMass = smallGoldMass
 let mouseBackSpeed: CGFloat = fastSpeed
+let mouseWalkSpeed: CGFloat = 20
+let mousePauseDuration: Double = 0.5
 let mousePrice: Int = 2
 
 let smallRockMass: Int = mediumGoldMass
