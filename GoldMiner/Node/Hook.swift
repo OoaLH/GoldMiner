@@ -12,6 +12,8 @@ class Hook: SKSpriteNode {
     
     weak var mineral: Mineral?
     
+    var canShoot: Bool = true
+    
     init(player: Player) {
         self.player = player
         
@@ -40,6 +42,7 @@ class Hook: SKSpriteNode {
     
     func shoot() {
         removeAllActions()
+        canShoot = false
         let offset = position - player.position
         let direction = offset.normalized
         let ropeRange = direction * 300
@@ -77,15 +80,19 @@ class Hook: SKSpriteNode {
     }
     
     lazy var swingAction: SKAction = {
+        let readyForShootBlock = SKAction.run {
+            self.canShoot = true
+        }
+        
         let leftPath = UIBezierPath()
-        leftPath.addArc(withCenter: player.position, radius: hookShortestLength, startAngle: 0, endAngle: .pi, clockwise: false)
+        leftPath.addArc(withCenter: player.position, radius: hookShortestLength, startAngle: minHookAngle, endAngle: maxHookAngle, clockwise: false)
         let leftAction = SKAction.follow(leftPath.cgPath, asOffset: false, orientToPath: true, speed: hookSwingSpeed)
         
         let rightPath = UIBezierPath()
-        rightPath.addArc(withCenter: player.position, radius: hookShortestLength, startAngle: .pi, endAngle: 0, clockwise: true)
+        rightPath.addArc(withCenter: player.position, radius: hookShortestLength, startAngle: maxHookAngle, endAngle: minHookAngle, clockwise: true)
         let rightAction = SKAction.follow(rightPath.cgPath, asOffset: false, orientToPath: true, speed: hookSwingSpeed)
         
         let swingAction = SKAction.sequence([leftAction, rightAction])
-        return SKAction.repeatForever(swingAction)
+        return SKAction.sequence([readyForShootBlock, SKAction.repeatForever(swingAction)])
     }()
 }

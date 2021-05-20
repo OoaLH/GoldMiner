@@ -17,6 +17,11 @@ enum PhysicsCategory: UInt32 {
 }
 
 class GameScene: SKScene {
+    var money: Int = 0
+    
+    var player1Score: Int = 0
+    
+    var player2Score: Int = 0
     
     override func sceneDidLoad() {
         configureViews()
@@ -25,8 +30,7 @@ class GameScene: SKScene {
     }
     
     func configureViews() {
-        backgroundColor = .white
-        
+        initBackground()
         initPlayers()
         initGolds()
         initHooks()
@@ -39,6 +43,11 @@ class GameScene: SKScene {
         physicsWorld.contactDelegate = self
     }
     
+    func initBackground() {
+        backgroundColor = .white
+        addChild(landNode)
+    }
+    
     func initPlayers() {
         addPlayer(player: player1, at: CGPoint(x: 200, y: 300))
         player1.hook = hook1
@@ -49,20 +58,20 @@ class GameScene: SKScene {
     
     func initGolds() {
         for _ in 1...3 {
-            let x = Int.random(in: 50..<430)
-            let y = Int.random(in: 50..<250)
+            let x = Int.random(in: 10..<470)
+            let y = Int.random(in: 20..<220)
             addGold(mass: smallGoldMass, at: CGPoint(x: x, y: y))
         }
         
         for _ in 1...3 {
-            let x = Int.random(in: 50..<430)
-            let y = Int.random(in: 50..<250)
+            let x = Int.random(in: 10..<470)
+            let y = Int.random(in: 20..<220)
             addGold(mass: mediumGoldMass, at: CGPoint(x: x, y: y))
         }
         
         for _ in 1...3 {
-            let x = Int.random(in: 50..<430)
-            let y = Int.random(in: 50..<250)
+            let x = Int.random(in: 10..<470)
+            let y = Int.random(in: 20..<220)
             addGold(mass: largeGoldMass, at: CGPoint(x: x, y: y))
         }
     }
@@ -79,6 +88,9 @@ class GameScene: SKScene {
         addChild(scoreLabel1)
         addChild(scoreLabel2)
         addChild(totalScoreLabel)
+        addChild(requiredScoreLabel)
+        addChild(timeLabel)
+        addChild(levelLabel)
     }
     
     func initButtons() {
@@ -86,6 +98,7 @@ class GameScene: SKScene {
         addChild(player2HookButton)
         addChild(player1BombButton)
         addChild(player2BombButton)
+        //addChild(exitButton)
     }
     
     func addPlayer(player: Player, at pos: CGPoint) {
@@ -112,10 +125,10 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             let touchedNode = atPoint(location)
             
-            if touchedNode == player1HookButton {
+            if touchedNode == player1HookButton && hook1.canShoot {
                 hook1.shoot()
             }
-            else if touchedNode == player2HookButton {
+            else if touchedNode == player2HookButton && hook2.canShoot {
                 hook2.shoot()
             }
             else if touchedNode == player1BombButton {
@@ -130,9 +143,15 @@ class GameScene: SKScene {
                     hook2.backAfterBomb()
                 }
             }
+            else if touchedNode == exitButton {
+                let reveal = SKTransition.reveal(with: .down, duration: 1)
+                let newScene = ShopScene(size: CGSize(width: 1024, height: 768))
+                view?.presentScene(newScene, transition: reveal)
+            }
         }
     }
     
+    // MARK: lazy var
     lazy var hook1 = Hook(player: player1)
     
     lazy var hook2 = Hook(player: player2)
@@ -141,34 +160,44 @@ class GameScene: SKScene {
     
     lazy var player2 = Player()
     
+    // MARK: Button
     lazy var player1HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: .brown, size: CGSize(width: 50, height: 50))
+        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50, height: 50))
         node.position = CGPoint(x: 50, y: 50)
         return node
     }()
     
     lazy var player2HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: .brown, size: CGSize(width: 50, height: 50))
+        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50, height: 50))
         node.position = CGPoint(x: 430, y: 50)
         return node
     }()
     
     lazy var player1BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: .brown, size: CGSize(width: 50, height: 50))
+        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50, height: 50))
         node.position = CGPoint(x: 50, y: 110)
         return node
     }()
     
     lazy var player2BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: .brown, size: CGSize(width: 50, height: 50))
+        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50, height: 50))
         node.position = CGPoint(x: 430, y: 110)
         return node
     }()
     
+    lazy var exitButton: SKSpriteNode = {
+        let node = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
+        node.position = CGPoint(x: 430, y: 280)
+        return node
+    }()
+    
+    // MARK: label
     lazy var scoreLabel1: SKLabelNode = {
         let node = SKLabelNode()
         node.text = "player 1: "
         node.position = player1.position - CGPoint(x: 50, y: 0)
+        node.fontSize = 12
+        node.fontName = "PingFangTC-Semibold"
         node.fontColor = .brown
         return node
     }()
@@ -177,14 +206,18 @@ class GameScene: SKScene {
         let node = SKLabelNode()
         node.text = "player 2: "
         node.position = player2.position + CGPoint(x: 50, y: 0)
+        node.fontSize = 12
+        node.fontName = "PingFangTC-Semibold"
         node.fontColor = .brown
         return node
     }()
     
     lazy var totalScoreLabel: SKLabelNode = {
         let node = SKLabelNode()
-        node.text = "money: "
-        node.position = CGPoint(x: 50, y: 270)
+        node.text = "money: 0"
+        node.position = CGPoint(x: 30, y: 300)
+        node.fontSize = 14
+        node.fontName = "PingFangTC-Semibold"
         node.fontColor = .brown
         return node
     }()
@@ -192,6 +225,9 @@ class GameScene: SKScene {
     lazy var requiredScoreLabel: SKLabelNode = {
         let node = SKLabelNode()
         node.text = "goal: "
+        node.position = CGPoint(x: 30, y: 280)
+        node.fontSize = 14
+        node.fontName = "PingFangTC-Semibold"
         node.fontColor = .brown
         return node
     }()
@@ -199,14 +235,27 @@ class GameScene: SKScene {
     lazy var timeLabel: SKLabelNode = {
         let node = SKLabelNode()
         node.text = "time: "
+        node.position = CGPoint(x: 450, y: 300)
+        node.fontSize = 14
+        node.fontName = "PingFangTC-Semibold"
         node.fontColor = .brown
         return node
     }()
     
     lazy var levelLabel: SKLabelNode = {
         let node = SKLabelNode()
-        node.text = "level: "
+        node.text = "level: 1"
+        node.position = CGPoint(x: 450, y: 280)
+        node.fontSize = 14
+        node.fontName = "PingFangTC-Semibold"
         node.fontColor = .brown
+        return node
+    }()
+    
+    //MARK: background
+    lazy var landNode: SKShapeNode = {
+        let node = SKShapeNode(rect: CGRect(x: 0, y: 280, width: 480, height: 2))
+        node.fillColor = .brown
         return node
     }()
 }
@@ -224,36 +273,35 @@ extension GameScene: SKPhysicsContactDelegate {
             secondBody = contact.bodyA
         }
         
-        if firstBody.categoryBitMask.isGold && secondBody.categoryBitMask.isHook {
-            if let gold = firstBody.node as? Gold, let hook = secondBody.node as? Hook, gold.hook == nil {
-                hookHitGold(hook: hook, gold: gold)
+        if firstBody.categoryBitMask.isMineral && secondBody.categoryBitMask.isHook {
+            if let mineral = firstBody.node as? Mineral, let hook = secondBody.node as? Hook, mineral.hook == nil, hook.mineral == nil {
+                hookCaughtMineral(hook: hook, mineral: mineral)
             }
         }
-        else if firstBody.categoryBitMask.isGold && secondBody.categoryBitMask.isPlayer {
-            if let gold = firstBody.node as? Gold, let player = secondBody.node as? Player, gold.hook == player.hook {
-                goldHitPlayer(gold: gold, player: player)
+        else if firstBody.categoryBitMask.isMineral && secondBody.categoryBitMask.isPlayer {
+            if let mineral = firstBody.node as? Mineral, let player = secondBody.node as? Player, mineral.hook == player.hook {
+                mineralArrived(mineral: mineral, at: player)
             }
         }
     }
     
-    func hookHitGold(hook: Hook, gold: Gold) {
-        print("hit")
+    func hookCaughtMineral(hook: Hook, mineral: Mineral) {
+        //print("hit")
         let offset = hook.player.position - hook.position
-        let direction = offset.normalized * 300
-        let length = direction.length
-        let duration = TimeInterval(length / gold.backSpeed)
-        hook.fill(with: gold)
+        let length = offset.length
+        let duration = TimeInterval(length / mineral.backSpeed)
+        hook.fill(with: mineral)
         hook.back(for: duration)
         
         let vector = CGVector(dx: offset.x, dy: offset.y)
-        gold.hook = hook
-        gold.back(vector: vector, duration: duration)
+        mineral.hook = hook
+        mineral.back(vector: vector, duration: duration)
     }
     
-    func goldHitPlayer(gold: Gold, player: Player) {
-        print("arrive")
-        player.gainScore(price: gold.price)
+    func mineralArrived(mineral: Mineral, at player: Player) {
+        //print("arrive")
+        player.gainScore(price: mineral.price)
         player.hook?.empty()
-        gold.removeFromParent()
+        mineral.removeFromParent()
     }
 }

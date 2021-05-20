@@ -19,6 +19,10 @@
 		A475D2302655C0F6002AE450 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D22F2655C0F6002AE450 /* Constants.swift */; };
 		A475D2332655C4F3002AE450 /* Gold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2322655C4F3002AE450 /* Gold.swift */; };
 		A475D2362655ECC3002AE450 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2352655ECC3002AE450 /* Diamond.swift */; };
+		A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D23E2655EEF1002AE450 /* Mouse.swift */; };
+		A475D2432655F00F002AE450 /* RandomBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2422655F00F002AE450 /* RandomBag.swift */; };
+		A475D2472655F2CB002AE450 /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2462655F2CB002AE450 /* ShopScene.swift */; };
+		A475D24A2655F44B002AE450 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2492655F44B002AE450 /* Rock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		A475D22F2655C0F6002AE450 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A475D2322655C4F3002AE450 /* Gold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gold.swift; sourceTree = "<group>"; };
 		A475D2352655ECC3002AE450 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		A475D23E2655EEF1002AE450 /* Mouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mouse.swift; sourceTree = "<group>"; };
+		A475D2422655F00F002AE450 /* RandomBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomBag.swift; sourceTree = "<group>"; };
+		A475D2462655F2CB002AE450 /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
+		A475D2492655F44B002AE450 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +91,8 @@
 		A475D2382655EDEC002AE450 /* Node */ = {
 			isa = PBXGroup;
 			children = (
-				A475D22C2655B5DF002AE450 /* Mineral.swift */,
-				A475D2322655C4F3002AE450 /* Gold.swift */,
+				A475D2412655EFC7002AE450 /* Mineral */,
 				A475D2222655B2E1002AE450 /* Hook.swift */,
-				A475D2352655ECC3002AE450 /* Diamond.swift */,
 				A475D2252655B422002AE450 /* Player.swift */,
 			);
 			path = Node;
@@ -121,8 +127,22 @@
 			isa = PBXGroup;
 			children = (
 				A475D2082655946D002AE450 /* GameScene.swift */,
+				A475D2462655F2CB002AE450 /* ShopScene.swift */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		A475D2412655EFC7002AE450 /* Mineral */ = {
+			isa = PBXGroup;
+			children = (
+				A475D22C2655B5DF002AE450 /* Mineral.swift */,
+				A475D2492655F44B002AE450 /* Rock.swift */,
+				A475D2352655ECC3002AE450 /* Diamond.swift */,
+				A475D2322655C4F3002AE450 /* Gold.swift */,
+				A475D23E2655EEF1002AE450 /* Mouse.swift */,
+				A475D2422655F00F002AE450 /* RandomBag.swift */,
+			);
+			path = Mineral;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,13 +213,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A475D24A2655F44B002AE450 /* Rock.swift in Sources */,
+				A475D2472655F2CB002AE450 /* ShopScene.swift in Sources */,
 				A475D22D2655B5DF002AE450 /* Mineral.swift in Sources */,
 				A475D2092655946D002AE450 /* GameScene.swift in Sources */,
 				A475D21A26559C9B002AE450 /* BitMaskExtension.swift in Sources */,
 				A475D21E2655A0A7002AE450 /* CGPointExtension.swift in Sources */,
 				A475D20B2655946D002AE450 /* GameViewController.swift in Sources */,
 				A475D2262655B422002AE450 /* Player.swift in Sources */,
+				A475D2432655F00F002AE450 /* RandomBag.swift in Sources */,
 				A475D2232655B2E1002AE450 /* Hook.swift in Sources */,
+				A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */,
 				A475D2332655C4F3002AE450 /* Gold.swift in Sources */,
 				A475D2032655946D002AE450 /* AppDelegate.swift in Sources */,
 				A475D2302655C0F6002AE450 /* Constants.swift in Sources */,

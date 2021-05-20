@@ -7,16 +7,14 @@
 
 import SpriteKit
 
-class Diamond: SKSpriteNode, Mineral {
-    var mass: Int = 50
-    
-    var price: Int = 800
-    
-    var backSpeed: CGFloat = diamondBackSpeed
-    
+class Diamond: Mineral {
     init() {
         let diamondTexture = SKTexture(imageNamed: "diamond")
         super.init(texture: diamondTexture, color: .clear, size: diamondTexture.size())
+        
+        self.mass = diamondMass
+        self.price = diamondPrice
+        self.backSpeed = diamondBackSpeed
         
         configurePhysiscs()
     }

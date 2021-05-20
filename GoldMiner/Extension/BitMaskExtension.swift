@@ -8,7 +8,7 @@
 import Foundation
 
 extension UInt32 {
-    var isGold: Bool {
+    var isMineral: Bool {
         return self == 0b1
     }
     
