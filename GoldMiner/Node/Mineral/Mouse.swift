@@ -7,16 +7,18 @@
 
 import SpriteKit
 
-class Mouse: Mineral {    
+class Mouse: Mineral {
+    var walkRange: CGFloat
+    
     init() {
-        let diamondTexture = SKTexture(imageNamed: "mouse")
-        super.init(texture: diamondTexture, color: .clear, size: diamondTexture.size())
+        self.walkRange = CGFloat.random(in: 50...100)
+        
+        let mouseTexture = SKTexture(imageNamed: "player")
+        super.init(texture: mouseTexture, color: .clear, size: mouseTexture.size())
         
         self.mass = mouseMass
         self.price = mousePrice
         self.backSpeed = mouseBackSpeed
-        
-        configurePhysiscs()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,7 +26,12 @@ class Mouse: Mineral {
     }
     
     func walkAround() {
-        
+        let duration = TimeInterval(self.walkRange / mouseWalkSpeed)
+        let leftAction = SKAction.moveBy(x: -self.walkRange, y: 0, duration: duration)
+        let waitAction = SKAction.wait(forDuration: mousePauseDuration)
+        let rightAction = SKAction.moveBy(x: self.walkRange, y: 0, duration: duration)
+        let action = SKAction.sequence([leftAction, waitAction, rightAction, waitAction])
+        run(SKAction.repeatForever(action))
     }
     
     override func back(vector: CGVector, duration: TimeInterval) {

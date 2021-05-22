@@ -20,9 +20,7 @@ class Gold: Mineral {
         
         self.mass = mass
         self.price = mass
-        self.backSpeed = goldBackSpeed[mass] ?? 80.0
-        
-        configurePhysiscs()
+        self.backSpeed = goldBackSpeed[mass] ?? mediumSpeed
     }
     
     required init?(coder aDecoder: NSCoder) {

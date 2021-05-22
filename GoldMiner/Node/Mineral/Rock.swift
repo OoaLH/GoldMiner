@@ -9,14 +9,12 @@ import SpriteKit
 
 class Rock: Mineral {
     init(mass: Int) {
-        let diamondTexture = SKTexture(imageNamed: "random_bag")
-        super.init(texture: diamondTexture, color: .clear, size: diamondTexture.size())
+        let rockTexture = SKTexture(imageNamed: "rock")
+        super.init(texture: rockTexture, color: .clear, size: rockTexture.size())
         
         self.mass = mass
         self.price = rockPrice[mass] ?? smallGoldMass
-        self.backSpeed = goldBackSpeed[mass] ?? 80.0
-        
-        configurePhysiscs()
+        self.backSpeed = goldBackSpeed[mass] ?? mediumSpeed
     }
     
     required init?(coder aDecoder: NSCoder) {

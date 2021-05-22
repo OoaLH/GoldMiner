@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  Tuning.swift
 //  GoldMiner
 //
 //  Created by 张翌璠 on 2021-05-19.
@@ -27,7 +27,7 @@ let largeGoldMass: Int = 500
 
 let diamondMass: Int = smallGoldMass
 let diamondBackSpeed: CGFloat = fastSpeed
-let diamondPrice: Int = 800
+var diamondPrice: Int = 600
 
 let mouseMass = smallGoldMass
 let mouseBackSpeed: CGFloat = fastSpeed
@@ -37,6 +37,10 @@ let mousePrice: Int = 2
 
 let smallRockMass: Int = mediumGoldMass
 let mediumRockMass: Int = largeGoldMass
-let rockPrice: [Int: Int] = [smallRockMass: 20, mediumRockMass: 60]
+var rockPrice: [Int: Int] = [smallRockMass: 20, mediumRockMass: 60]
 
-let joyButtonColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+var randomBagMoneyRate: Int = 1
+var randomBagBombRate: Int = 1
+var randomBagStrengthRate: Int = 1
+var randomBagMoneyRange: ClosedRange = 50...800
+let randomBagMasses: Set = [smallGoldMass, mediumGoldMass, largeGoldMass]

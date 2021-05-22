@@ -1,11 +1,11 @@
 //
-//  Goods.swift
+//  GoodsType.swift
 //  GoldMiner
 //
 //  Created by 张翌璠 on 2021-05-20.
 //
 
-import Foundation
+import SpriteKit
 
 enum GoodsType: CaseIterable {
     case bomb
@@ -18,7 +18,30 @@ enum GoodsType: CaseIterable {
         return GoodsType.allCases.shuffled().suffix(num)
     }
     
-    func takeEffect() {
-        
+    var texture: SKTexture {
+        switch self {
+        case .bomb:
+            return SKTexture(imageNamed: "projectile")
+        case .drink:
+            return SKTexture(imageNamed: "projectile")
+        case .clover:
+            return SKTexture(imageNamed: "projectile")
+        case .book:
+            return SKTexture(imageNamed: "projectile")
+        case .diamondPolish:
+            return SKTexture(imageNamed: "projectile")
+        }
+//        switch self {
+//        case .bomb:
+//            return SKTexture(imageNamed: "bomb")
+//        case .drink:
+//            return SKTexture(imageNamed: "drink")
+//        case .clover:
+//            return SKTexture(imageNamed: "clover")
+//        case .book:
+//            return SKTexture(imageNamed: "book")
+//        case .diamondPolish:
+//            return SKTexture(imageNamed: "diamondPolish")
+//        }
     }
 }

@@ -15,8 +15,6 @@ class Diamond: Mineral {
         self.mass = diamondMass
         self.price = diamondPrice
         self.backSpeed = diamondBackSpeed
-        
-        configurePhysiscs()
     }
     
     required init?(coder aDecoder: NSCoder) {

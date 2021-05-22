@@ -19,9 +19,11 @@ class Mineral: SKSpriteNode {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         self.mass = smallGoldMass
         self.price = smallGoldMass
-        self.backSpeed = 80.0
+        self.backSpeed = mediumSpeed
         
         super.init(texture: texture, color: color, size: size)
+        
+        configurePhysiscs()
     }
     
     required init?(coder aDecoder: NSCoder) {
