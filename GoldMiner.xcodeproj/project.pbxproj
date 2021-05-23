@@ -30,7 +30,6 @@
 		A475D26326571BB0002AE450 /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D26226571BB0002AE450 /* GameSession.swift */; };
 		A475D2662657223E002AE450 /* DiamondMouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2652657223E002AE450 /* DiamondMouse.swift */; };
 		A475D269265722DF002AE450 /* LoseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D268265722DF002AE450 /* LoseScene.swift */; };
-		A475D26C26572312002AE450 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D26B26572312002AE450 /* StartScene.swift */; };
 		A49DC9E7265986BA009B121D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A49DC9E6265986BA009B121D /* Launch Screen.storyboard */; };
 		A49DC9EB26598834009B121D /* DimensionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9EA26598834009B121D /* DimensionExtension.swift */; };
 		A49DC9F02659C787009B121D /* MediumGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9EF2659C787009B121D /* MediumGold.swift */; };
@@ -41,6 +40,13 @@
 		A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DCA052659FF44009B121D /* SKSceneExtension.swift */; };
 		A49DCA1A265A1D96009B121D /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA19265A1D96009B121D /* FireParticle.sks */; };
 		A49DCA1D265A1DD7009B121D /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */; };
+		A4BE8EF3265AC64800B3020B /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */; };
+		A4BE8EF6265AC6F100B3020B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EF5265AC6F000B3020B /* HomeViewController.swift */; };
+		A4BE8EFA265AE16100B3020B /* OnlineGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EF9265AE16100B3020B /* OnlineGameScene.swift */; };
+		A4BE8EFD265AE3C500B3020B /* GameScene+SKPhysicsContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EFC265AE3C500B3020B /* GameScene+SKPhysicsContactDelegate.swift */; };
+		A4BE8F00265AEB4F00B3020B /* OnlineGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EFF265AEB4F00B3020B /* OnlineGameViewController.swift */; };
+		A4BE8F03265AEF0700B3020B /* GameMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8F02265AEF0700B3020B /* GameMessage.swift */; };
+		A4BE8F07265B018500B3020B /* OnlineShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8F06265B018500B3020B /* OnlineShopScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +75,6 @@
 		A475D26226571BB0002AE450 /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
 		A475D2652657223E002AE450 /* DiamondMouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondMouse.swift; sourceTree = "<group>"; };
 		A475D268265722DF002AE450 /* LoseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseScene.swift; sourceTree = "<group>"; };
-		A475D26B26572312002AE450 /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
 		A49DC9E6265986BA009B121D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A49DC9EA26598834009B121D /* DimensionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionExtension.swift; sourceTree = "<group>"; };
 		A49DC9EF2659C787009B121D /* MediumGold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumGold.swift; sourceTree = "<group>"; };
@@ -80,6 +85,13 @@
 		A49DCA052659FF44009B121D /* SKSceneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSceneExtension.swift; sourceTree = "<group>"; };
 		A49DCA19265A1D96009B121D /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
 		A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeParticle.sks; sourceTree = "<group>"; };
+		A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
+		A4BE8EF5265AC6F000B3020B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A4BE8EF9265AE16100B3020B /* OnlineGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGameScene.swift; sourceTree = "<group>"; };
+		A4BE8EFC265AE3C500B3020B /* GameScene+SKPhysicsContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+SKPhysicsContactDelegate.swift"; sourceTree = "<group>"; };
+		A4BE8EFF265AEB4F00B3020B /* OnlineGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGameViewController.swift; sourceTree = "<group>"; };
+		A4BE8F02265AEF0700B3020B /* GameMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMessage.swift; sourceTree = "<group>"; };
+		A4BE8F06265B018500B3020B /* OnlineShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineShopScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +168,8 @@
 				A475D22F2655C0F6002AE450 /* Tuning.swift */,
 				A475D25F26571B09002AE450 /* UIConfig.swift */,
 				A475D26226571BB0002AE450 /* GameSession.swift */,
+				A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */,
+				A4BE8F02265AEF0700B3020B /* GameMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				A475D20A2655946D002AE450 /* GameViewController.swift */,
+				A4BE8EFF265AEB4F00B3020B /* OnlineGameViewController.swift */,
+				A4BE8EF5265AC6F000B3020B /* HomeViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -172,7 +188,9 @@
 			isa = PBXGroup;
 			children = (
 				A475D2082655946D002AE450 /* GameScene.swift */,
-				A475D26B26572312002AE450 /* StartScene.swift */,
+				A4BE8EFC265AE3C500B3020B /* GameScene+SKPhysicsContactDelegate.swift */,
+				A4BE8F06265B018500B3020B /* OnlineShopScene.swift */,
+				A4BE8EF9265AE16100B3020B /* OnlineGameScene.swift */,
 				A475D268265722DF002AE450 /* LoseScene.swift */,
 				A475D2462655F2CB002AE450 /* ShopScene.swift */,
 			);
@@ -325,6 +343,7 @@
 				A475D24A2655F44B002AE450 /* SmallRock.swift in Sources */,
 				A475D2662657223E002AE450 /* DiamondMouse.swift in Sources */,
 				A475D2472655F2CB002AE450 /* ShopScene.swift in Sources */,
+				A4BE8EF6265AC6F100B3020B /* HomeViewController.swift in Sources */,
 				A475D26326571BB0002AE450 /* GameSession.swift in Sources */,
 				A49DC9FE2659D2E2009B121D /* Bucket.swift in Sources */,
 				A475D2582656EF52002AE450 /* GoodsType.swift in Sources */,
@@ -336,10 +355,15 @@
 				A475D20B2655946D002AE450 /* GameViewController.swift in Sources */,
 				A475D2262655B422002AE450 /* Player.swift in Sources */,
 				A475D2432655F00F002AE450 /* RandomBag.swift in Sources */,
+				A4BE8F03265AEF0700B3020B /* GameMessage.swift in Sources */,
+				A4BE8F00265AEB4F00B3020B /* OnlineGameViewController.swift in Sources */,
+				A4BE8F07265B018500B3020B /* OnlineShopScene.swift in Sources */,
 				A49DC9F62659C8DD009B121D /* MediumRock.swift in Sources */,
 				A475D2232655B2E1002AE450 /* Hook.swift in Sources */,
 				A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */,
+				A4BE8EFA265AE16100B3020B /* OnlineGameScene.swift in Sources */,
 				A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */,
+				A4BE8EF3265AC64800B3020B /* GameCenterHelper.swift in Sources */,
 				A475D2332655C4F3002AE450 /* SmallGold.swift in Sources */,
 				A475D2032655946D002AE450 /* AppDelegate.swift in Sources */,
 				A49DC9F02659C787009B121D /* MediumGold.swift in Sources */,
@@ -347,7 +371,7 @@
 				A475D269265722DF002AE450 /* LoseScene.swift in Sources */,
 				A475D2302655C0F6002AE450 /* Tuning.swift in Sources */,
 				A475D2362655ECC3002AE450 /* Diamond.swift in Sources */,
-				A475D26C26572312002AE450 /* StartScene.swift in Sources */,
+				A4BE8EFD265AE3C500B3020B /* GameScene+SKPhysicsContactDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,7 +500,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,7 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

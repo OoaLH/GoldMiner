@@ -51,8 +51,6 @@ class Mineral: SKSpriteNode {
         exploding = true
         if let fireParticles = SKEmitterNode(fileNamed: "FireParticle") {
             fireParticles.position = CGPoint(x: 0, y: 0)
-            print(fireParticles.position)
-            print(position)
             addChild(fireParticles)
         }
         let burn = SKAction.wait(forDuration: 0.5)
