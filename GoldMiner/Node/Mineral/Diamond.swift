@@ -9,7 +9,7 @@ import SpriteKit
 
 class Diamond: Mineral {
     override var backSpeed: CGFloat {
-        return fastSpeed
+        return Tuning.fastSpeed
     }
     
     init() {
@@ -18,7 +18,7 @@ class Diamond: Mineral {
         let size = CGSize(width: textSize.width.height / 8, height: textSize.height.height / 8)
         super.init(texture: diamondTexture, color: .clear, size: size)
         
-        self.price = diamondPrice
+        self.price = Tuning.diamondPrice
     }
     
     required init?(coder aDecoder: NSCoder) {

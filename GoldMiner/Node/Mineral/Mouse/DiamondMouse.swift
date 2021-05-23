@@ -11,7 +11,7 @@ class DiamondMouse: Mouse {
     override init() {
         super.init()
         //self.texture = SKTexture(imageNamed: "diamond_mouse")
-        self.price = mousePrice + diamondPrice
+        self.price = Tuning.mousePrice + Tuning.diamondPrice
         
         addChild(diamond)
     }

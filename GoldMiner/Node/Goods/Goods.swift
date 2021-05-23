@@ -45,25 +45,25 @@ class Goods: SKSpriteNode {
     }
     
     private func increasePower() {
-        fastSpeed = 160.height
-        mediumSpeed = 115.height
-        slowSpeed = 90.height
+        Tuning.fastSpeed = 160.height
+        Tuning.mediumSpeed = 115.height
+        Tuning.slowSpeed = 90.height
     }
     
     // TODO: buy goods
     private func increaseLuck() {
-        randomBagMoneyRate = 1
-        randomBagBombRate = 2
-        randomBagStrengthRate = 2
-        randomBagMoneyRange = 200...800
+        Tuning.randomBagMoneyRate = 1
+        Tuning.randomBagBombRate = 2
+        Tuning.randomBagStrengthRate = 2
+        Tuning.randomBagMoneyRange = 200...800
     }
     
     private func increaseRockPrice() {
-        smallRockPrice = 60
-        mediumRockPrice = 180
+        Tuning.smallRockPrice = 60
+        Tuning.mediumRockPrice = 180
     }
     
     private func increaseDiamondPrice() {
-        diamondPrice = 900
+        Tuning.diamondPrice = 900
     }
 }

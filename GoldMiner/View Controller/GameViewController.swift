@@ -14,7 +14,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let skView = SKView(frame: view.frame.inset(by: safeAreaInsets))
+        let skView = SKView(frame: view.frame.inset(by: UIConfig.safeAreaInsets))
         skView.ignoresSiblingOrder = true
         view = skView
         // print(safeAreaInsets)

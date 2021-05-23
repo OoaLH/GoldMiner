@@ -14,7 +14,7 @@ class SmallRock: Mineral {
         let size = CGSize(width: textSize.width.height / 4, height: textSize.height.height / 4)
         super.init(texture: rockTexture, color: .clear, size: size)
         
-        self.price = smallRockPrice
+        self.price = Tuning.smallRockPrice
     }
     
     required init?(coder aDecoder: NSCoder) {

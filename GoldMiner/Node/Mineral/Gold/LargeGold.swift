@@ -9,7 +9,7 @@ import SpriteKit
 
 class LargeGold: Mineral {
     override var backSpeed: CGFloat {
-        return slowSpeed
+        return Tuning.slowSpeed
     }
     
     init() {
@@ -18,7 +18,7 @@ class LargeGold: Mineral {
         let size = CGSize(width: textSize.width.height / 3, height: textSize.height.height / 3)
         super.init(texture: goldTexture, color: .clear, size: size)
         
-        self.price = largeGoldPrice
+        self.price = Tuning.largeGoldPrice
     }
     
     required init?(coder aDecoder: NSCoder) {

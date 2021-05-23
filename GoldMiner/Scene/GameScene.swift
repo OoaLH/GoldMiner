@@ -29,7 +29,7 @@ class GameScene: SKScene {
         }
     }
     
-    var time: Int = gameDuration {
+    var time: Int = Tuning.gameDuration {
         didSet {
             if time == 0 {
                 removeAction(forKey: "timer")
@@ -68,10 +68,10 @@ class GameScene: SKScene {
     }
     
     func initPlayers() {
-        addPlayer(player: player1, at: player1Position)
+        addPlayer(player: player1, at: UIConfig.player1Position)
         player1.hook = hook1
         
-        addPlayer(player: player2, at: player2Position)
+        addPlayer(player: player2, at: UIConfig.player2Position)
         player2.hook = hook2
     }
     
@@ -246,7 +246,7 @@ class GameScene: SKScene {
         let player = hook.player
         let x = player.position.x
         let y = player.position.y
-        hook.position = CGPoint(x: x, y: y - hookShortestLength)
+        hook.position = CGPoint(x: x, y: y - Tuning.hookShortestLength)
         addChild(hook)
     }
     
@@ -299,7 +299,7 @@ class GameScene: SKScene {
     func canUseBomb(hook: Hook) -> Bool {
         let offset = hook.position - hook.player.position
         let length = offset.length
-        return GameSession.shared.numberOfBomb > 0 && length > hookShortestLength
+        return GameSession.shared.numberOfBomb > 0 && length > Tuning.hookShortestLength
     }
     
     func consumeBomb() {
@@ -373,38 +373,38 @@ class GameScene: SKScene {
     lazy var rope1: SKSpriteNode = {
         let node = SKSpriteNode(color: .black, size: CGSize(width: 1, height: 1))
         node.anchorPoint = CGPoint(x: 0, y: 0)
-        node.position = player1Position
+        node.position = UIConfig.player1Position
         return node
     }()
     
     lazy var rope2: SKSpriteNode = {
         let node = SKSpriteNode(color: .black, size: CGSize(width: 1, height: 1))
         node.anchorPoint = CGPoint(x: 0, y: 0)
-        node.position = player2Position
+        node.position = UIConfig.player2Position
         return node
     }()
     
     // MARK: Button
     lazy var player1HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
         node.position = CGPoint(x: 60.width, y: 50.height)
         return node
     }()
     
     lazy var player2HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
         node.position = CGPoint(x: 740.width, y: 50.height)
         return node
     }()
     
     lazy var player1BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
         node.position = CGPoint(x: 60.width, y: 110.height)
         return node
     }()
     
     lazy var player2BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
         node.position = CGPoint(x: 740.width, y: 110.height)
         return node
     }()
@@ -484,7 +484,7 @@ class GameScene: SKScene {
     
     //MARK: background
     lazy var landNode: SKShapeNode = {
-        let node = SKShapeNode(rect: CGRect(x: 0, y: 320.height, width: defaultWidth.width, height: 2))
+        let node = SKShapeNode(rect: CGRect(x: 0, y: 320.height, width: UIConfig.defaultWidth.width, height: 2))
         node.fillColor = .brown
         return node
     }()

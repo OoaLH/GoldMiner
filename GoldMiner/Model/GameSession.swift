@@ -49,18 +49,18 @@ class GameSession {
     }
     
     func recoverTuning() {
-        fastSpeed = 100.height
-        mediumSpeed = 55.height
-        slowSpeed = 30.height
+        Tuning.fastSpeed = 100.height
+        Tuning.mediumSpeed = 55.height
+        Tuning.slowSpeed = 30.height
         
-        smallRockPrice = 20
-        mediumRockPrice = 60
+        Tuning.smallRockPrice = 20
+        Tuning.mediumRockPrice = 60
         
-        diamondPrice = 600
+        Tuning.diamondPrice = 600
         
-        randomBagMoneyRate = 1
-        randomBagBombRate = 1
-        randomBagStrengthRate = 1
-        randomBagMoneyRange = 50...800
+        Tuning.randomBagMoneyRate = 1
+        Tuning.randomBagBombRate = 1
+        Tuning.randomBagStrengthRate = 1
+        Tuning.randomBagMoneyRange = 50...800
     }
 }

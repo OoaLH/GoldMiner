@@ -38,7 +38,7 @@ class Hook: SKSpriteNode {
     }
     
     func outsideOfScreen() -> Bool {
-        return position.x > realWidth || position.x < 0 || position.y > realHeight || position.y < 0
+        return position.x > UIConfig.realWidth || position.x < 0 || position.y > UIConfig.realHeight || position.y < 0
     }
     
     func swing() {
@@ -54,14 +54,14 @@ class Hook: SKSpriteNode {
         
         let offset = position - player.position
         let direction = offset.normalized
-        let ropeRange = direction * hookLongestLength
+        let ropeRange = direction * Tuning.hookLongestLength
         let length = ropeRange.length
         let realDest = ropeRange + position
-        let shootAction = SKAction.move(to: realDest, duration: TimeInterval(length / hookDefaultSpeed))
+        let shootAction = SKAction.move(to: realDest, duration: TimeInterval(length / Tuning.hookDefaultSpeed))
         let toggleCatch = SKAction.run {
             self.canCatch = false
         }
-        let backAction = SKAction.move(to: position, duration: TimeInterval(length / hookDefaultSpeed))
+        let backAction = SKAction.move(to: position, duration: TimeInterval(length / Tuning.hookDefaultSpeed))
         run(SKAction.sequence([shootAction, toggleCatch, backAction, swingAction]))
     }
     
@@ -85,11 +85,11 @@ class Hook: SKSpriteNode {
         removeAllActions()
         
         let offset = player.position - position
-        let length = offset.length - hookShortestLength
+        let length = offset.length - Tuning.hookShortestLength
         let direction = offset.normalized
         let x = direction.x * length
         let y = direction.y * length
-        let backAction = SKAction.move(by: CGVector(dx: x, dy: y), duration: TimeInterval(length / hookDefaultSpeed))
+        let backAction = SKAction.move(by: CGVector(dx: x, dy: y), duration: TimeInterval(length / Tuning.hookDefaultSpeed))
         run(SKAction.sequence([backAction, swingAction]))
     }
     
@@ -107,14 +107,14 @@ class Hook: SKSpriteNode {
         }
         
         let leftPath = UIBezierPath()
-        leftPath.addArc(withCenter: player.position, radius: hookShortestLength, startAngle: minHookAngle, endAngle: maxHookAngle, clockwise: false)
-        let leftAction = SKAction.follow(leftPath.cgPath, asOffset: false, orientToPath: true, speed: hookSwingSpeed)
+        leftPath.addArc(withCenter: player.position, radius: Tuning.hookShortestLength, startAngle: Tuning.minHookAngle, endAngle: Tuning.maxHookAngle, clockwise: false)
+        let leftAction = SKAction.follow(leftPath.cgPath, asOffset: false, orientToPath: true, speed: Tuning.hookSwingSpeed)
         
-        let waitAction = SKAction.wait(forDuration: movePauseDuration)
+        let waitAction = SKAction.wait(forDuration: Tuning.movePauseDuration)
         
         let rightPath = UIBezierPath()
-        rightPath.addArc(withCenter: player.position, radius: hookShortestLength, startAngle: maxHookAngle, endAngle: minHookAngle, clockwise: true)
-        let rightAction = SKAction.follow(rightPath.cgPath, asOffset: false, orientToPath: true, speed: hookSwingSpeed)
+        rightPath.addArc(withCenter: player.position, radius: Tuning.hookShortestLength, startAngle: Tuning.maxHookAngle, endAngle: Tuning.minHookAngle, clockwise: true)
+        let rightAction = SKAction.follow(rightPath.cgPath, asOffset: false, orientToPath: true, speed: Tuning.hookSwingSpeed)
         
         let swingAction = SKAction.sequence([leftAction, waitAction, rightAction, waitAction])
         return SKAction.sequence([readyForShootBlock, SKAction.repeatForever(swingAction)])

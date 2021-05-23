@@ -13,7 +13,7 @@ class Mouse: Mineral {
     var walkFrames: [SKTexture] = []
     
     override var backSpeed: CGFloat {
-        return fastSpeed
+        return Tuning.fastSpeed
     }
     
     init() {
@@ -28,7 +28,7 @@ class Mouse: Mineral {
         }
         
         super.init(texture: walkFrames[0], color: .clear, size: CGSize(width: 30, height: 20))
-        self.price = mousePrice
+        self.price = Tuning.mousePrice
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,12 +36,12 @@ class Mouse: Mineral {
     }
     
     func walkAround() {
-        let duration = TimeInterval(self.walkRange / mouseWalkSpeed)
+        let duration = TimeInterval(self.walkRange / Tuning.mouseWalkSpeed)
         let mirror = SKAction.run {
             self.xScale = -self.xScale
         }
         let leftAction = SKAction.moveBy(x: -self.walkRange, y: 0, duration: duration)
-        let waitAction = SKAction.wait(forDuration: mousePauseDuration)
+        let waitAction = SKAction.wait(forDuration: Tuning.mousePauseDuration)
         let rightAction = SKAction.moveBy(x: self.walkRange, y: 0, duration: duration)
         let action = SKAction.sequence([leftAction, mirror, waitAction, rightAction, mirror, waitAction])
         run(SKAction.repeatForever(action))

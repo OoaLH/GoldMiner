@@ -13,13 +13,13 @@ enum RandomBagContent: Equatable {
     case strength
     
     static func choose() -> RandomBagContent {
-        let total = randomBagMoneyRate + randomBagBombRate + randomBagStrengthRate
+        let total = Tuning.randomBagMoneyRate + Tuning.randomBagBombRate + Tuning.randomBagStrengthRate
         let num = Int.random(in: 0..<total)
-        if num < randomBagMoneyRate {
-            let price = Int.random(in: randomBagMoneyRange)
+        if num < Tuning.randomBagMoneyRate {
+            let price = Int.random(in: Tuning.randomBagMoneyRange)
             return .money(price)
         }
-        if num < randomBagMoneyRate + randomBagBombRate {
+        if num < Tuning.randomBagMoneyRate + Tuning.randomBagBombRate {
             return .bomb
         }
         return .strength
@@ -30,8 +30,8 @@ class RandomBag: Mineral {
     var content: RandomBagContent
     
     override var backSpeed: CGFloat {
-        let speeds: Set = [fastSpeed, mediumSpeed, slowSpeed]
-        return speeds.randomElement() ?? mediumSpeed
+        let speeds: Set = [Tuning.fastSpeed, Tuning.mediumSpeed, Tuning.slowSpeed]
+        return speeds.randomElement() ?? Tuning.mediumSpeed
     }
     
     init() {
@@ -74,9 +74,9 @@ class RandomBag: Mineral {
     }
     
     func getStrength() {
-        fastSpeed = hookDefaultSpeed
-        mediumSpeed = hookDefaultSpeed
-        slowSpeed = hookDefaultSpeed
+        Tuning.fastSpeed = Tuning.hookDefaultSpeed
+        Tuning.mediumSpeed = Tuning.hookDefaultSpeed
+        Tuning.slowSpeed = Tuning.hookDefaultSpeed
         scene?.alertPopup(text: "strength up")
     }
 }

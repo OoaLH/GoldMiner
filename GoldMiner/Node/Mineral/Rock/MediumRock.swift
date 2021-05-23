@@ -9,7 +9,7 @@ import SpriteKit
 
 class MediumRock: Mineral {
     override var backSpeed: CGFloat {
-        return slowSpeed
+        return Tuning.slowSpeed
     }
     
     init() {
@@ -18,7 +18,7 @@ class MediumRock: Mineral {
         let size = CGSize(width: textSize.width.height / 4, height: textSize.height.height / 4)
         super.init(texture: rockTexture, color: .clear, size: size)
         
-        self.price = mediumRockPrice
+        self.price = Tuning.mediumRockPrice
     }
     
     required init?(coder aDecoder: NSCoder) {

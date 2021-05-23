@@ -12,7 +12,9 @@ class Bucket: SKSpriteNode {
     
     init() {
         let texture = SKTexture(imageNamed: "bucket")
-        super.init(texture: texture, color: .clear, size: CGSize(width: 50, height: 50))
+        let textSize = texture.size()
+        let size = CGSize(width: textSize.width.height / 3, height: textSize.height.height / 3)
+        super.init(texture: texture, color: .clear, size: size)
         
         configurePhysics()
     }

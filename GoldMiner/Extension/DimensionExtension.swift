@@ -14,30 +14,30 @@ protocol Dimension {
 
 extension CGFloat: Dimension {
     var height: CGFloat {
-        return self * realHeight / defaultHeight
+        return self * UIConfig.realHeight / UIConfig.defaultHeight
     }
     
     var width: CGFloat {
-        return self * realWidth / defaultWidth
+        return self * UIConfig.realWidth / UIConfig.defaultWidth
     }
 }
 
 extension Double: Dimension {
     var height: CGFloat {
-        return CGFloat(self) * realHeight / defaultHeight
+        return CGFloat(self) * UIConfig.realHeight / UIConfig.defaultHeight
     }
     
     var width: CGFloat {
-        return CGFloat(self) * realWidth / defaultWidth
+        return CGFloat(self) * UIConfig.realWidth / UIConfig.defaultWidth
     }
 }
 
 extension Int: Dimension {
     var height: CGFloat {
-        return CGFloat(self) * realHeight / defaultHeight
+        return CGFloat(self) * UIConfig.realHeight / UIConfig.defaultHeight
     }
     
     var width: CGFloat {
-        return CGFloat(self) * realWidth / defaultWidth
+        return CGFloat(self) * UIConfig.realWidth / UIConfig.defaultWidth
     }
 }

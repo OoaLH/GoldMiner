@@ -14,7 +14,7 @@ class MediumGold: Mineral {
         let size = CGSize(width: textSize.width.height / 3, height: textSize.height.height / 3)
         super.init(texture: goldTexture, color: .clear, size: size)
         
-        self.price = mediumGoldPrice
+        self.price = Tuning.mediumGoldPrice
     }
     
     required init?(coder aDecoder: NSCoder) {

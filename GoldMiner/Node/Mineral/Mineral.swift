@@ -11,7 +11,7 @@ class Mineral: SKSpriteNode {
     var price: Int
     
     var backSpeed: CGFloat {
-        return mediumSpeed
+        return Tuning.mediumSpeed
     }
     
     var exploding: Bool = false
@@ -19,7 +19,7 @@ class Mineral: SKSpriteNode {
     weak var hook: Hook?
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        self.price = smallGoldPrice
+        self.price = Tuning.smallGoldPrice
         
         super.init(texture: texture, color: color, size: size)
         
