@@ -17,12 +17,12 @@
 		A475D2262655B422002AE450 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2252655B422002AE450 /* Player.swift */; };
 		A475D22D2655B5DF002AE450 /* Mineral.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D22C2655B5DF002AE450 /* Mineral.swift */; };
 		A475D2302655C0F6002AE450 /* Tuning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D22F2655C0F6002AE450 /* Tuning.swift */; };
-		A475D2332655C4F3002AE450 /* Gold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2322655C4F3002AE450 /* Gold.swift */; };
+		A475D2332655C4F3002AE450 /* SmallGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2322655C4F3002AE450 /* SmallGold.swift */; };
 		A475D2362655ECC3002AE450 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2352655ECC3002AE450 /* Diamond.swift */; };
 		A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D23E2655EEF1002AE450 /* Mouse.swift */; };
 		A475D2432655F00F002AE450 /* RandomBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2422655F00F002AE450 /* RandomBag.swift */; };
 		A475D2472655F2CB002AE450 /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2462655F2CB002AE450 /* ShopScene.swift */; };
-		A475D24A2655F44B002AE450 /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2492655F44B002AE450 /* Rock.swift */; };
+		A475D24A2655F44B002AE450 /* SmallRock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2492655F44B002AE450 /* SmallRock.swift */; };
 		A475D24F2656C14A002AE450 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A475D24E2656C14A002AE450 /* GameKit.framework */; };
 		A475D2582656EF52002AE450 /* GoodsType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2572656EF52002AE450 /* GoodsType.swift */; };
 		A475D25D2656F949002AE450 /* Goods.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D25C2656F949002AE450 /* Goods.swift */; };
@@ -31,6 +31,16 @@
 		A475D2662657223E002AE450 /* DiamondMouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2652657223E002AE450 /* DiamondMouse.swift */; };
 		A475D269265722DF002AE450 /* LoseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D268265722DF002AE450 /* LoseScene.swift */; };
 		A475D26C26572312002AE450 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D26B26572312002AE450 /* StartScene.swift */; };
+		A49DC9E7265986BA009B121D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A49DC9E6265986BA009B121D /* Launch Screen.storyboard */; };
+		A49DC9EB26598834009B121D /* DimensionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9EA26598834009B121D /* DimensionExtension.swift */; };
+		A49DC9F02659C787009B121D /* MediumGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9EF2659C787009B121D /* MediumGold.swift */; };
+		A49DC9F32659C7B8009B121D /* LargeGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9F22659C7B8009B121D /* LargeGold.swift */; };
+		A49DC9F62659C8DD009B121D /* MediumRock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9F52659C8DD009B121D /* MediumRock.swift */; };
+		A49DC9FE2659D2E2009B121D /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9FD2659D2E2009B121D /* Bucket.swift */; };
+		A49DCA022659EC6A009B121D /* BearImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA012659EC6A009B121D /* BearImages.atlas */; };
+		A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DCA052659FF44009B121D /* SKSceneExtension.swift */; };
+		A49DCA1A265A1D96009B121D /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA19265A1D96009B121D /* FireParticle.sks */; };
+		A49DCA1D265A1DD7009B121D /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,12 +56,12 @@
 		A475D2252655B422002AE450 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		A475D22C2655B5DF002AE450 /* Mineral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mineral.swift; sourceTree = "<group>"; };
 		A475D22F2655C0F6002AE450 /* Tuning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuning.swift; sourceTree = "<group>"; };
-		A475D2322655C4F3002AE450 /* Gold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gold.swift; sourceTree = "<group>"; };
+		A475D2322655C4F3002AE450 /* SmallGold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallGold.swift; sourceTree = "<group>"; };
 		A475D2352655ECC3002AE450 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
 		A475D23E2655EEF1002AE450 /* Mouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mouse.swift; sourceTree = "<group>"; };
 		A475D2422655F00F002AE450 /* RandomBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomBag.swift; sourceTree = "<group>"; };
 		A475D2462655F2CB002AE450 /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
-		A475D2492655F44B002AE450 /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
+		A475D2492655F44B002AE450 /* SmallRock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallRock.swift; sourceTree = "<group>"; };
 		A475D24E2656C14A002AE450 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		A475D2572656EF52002AE450 /* GoodsType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsType.swift; sourceTree = "<group>"; };
 		A475D25C2656F949002AE450 /* Goods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goods.swift; sourceTree = "<group>"; };
@@ -60,6 +70,16 @@
 		A475D2652657223E002AE450 /* DiamondMouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondMouse.swift; sourceTree = "<group>"; };
 		A475D268265722DF002AE450 /* LoseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseScene.swift; sourceTree = "<group>"; };
 		A475D26B26572312002AE450 /* StartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
+		A49DC9E6265986BA009B121D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		A49DC9EA26598834009B121D /* DimensionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionExtension.swift; sourceTree = "<group>"; };
+		A49DC9EF2659C787009B121D /* MediumGold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumGold.swift; sourceTree = "<group>"; };
+		A49DC9F22659C7B8009B121D /* LargeGold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeGold.swift; sourceTree = "<group>"; };
+		A49DC9F52659C8DD009B121D /* MediumRock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumRock.swift; sourceTree = "<group>"; };
+		A49DC9FD2659D2E2009B121D /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
+		A49DCA012659EC6A009B121D /* BearImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = BearImages.atlas; path = GoldMiner/Resouces/BearImages.atlas; sourceTree = SOURCE_ROOT; };
+		A49DCA052659FF44009B121D /* SKSceneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSceneExtension.swift; sourceTree = "<group>"; };
+		A49DCA19265A1D96009B121D /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
+		A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,14 +114,15 @@
 		A475D2012655946D002AE450 /* GoldMiner */ = {
 			isa = PBXGroup;
 			children = (
+				A475D2022655946D002AE450 /* AppDelegate.swift */,
+				A475D2392655EE0D002AE450 /* Extension */,
+				A475D21126559470002AE450 /* Info.plist */,
+				A49DC9E6265986BA009B121D /* Launch Screen.storyboard */,
+				A475D23A2655EE23002AE450 /* Model */,
+				A475D2382655EDEC002AE450 /* Node */,
+				A49DCA18265A1D64009B121D /* Resouces */,
 				A475D23C2655EE3F002AE450 /* Scene */,
 				A475D23B2655EE30002AE450 /* View Controller */,
-				A475D23A2655EE23002AE450 /* Model */,
-				A475D2392655EE0D002AE450 /* Extension */,
-				A475D2382655EDEC002AE450 /* Node */,
-				A475D2022655946D002AE450 /* AppDelegate.swift */,
-				A475D20F26559470002AE450 /* Assets.xcassets */,
-				A475D21126559470002AE450 /* Info.plist */,
 			);
 			path = GoldMiner;
 			sourceTree = "<group>";
@@ -113,6 +134,7 @@
 				A475D2412655EFC7002AE450 /* Mineral */,
 				A475D2222655B2E1002AE450 /* Hook.swift */,
 				A475D2252655B422002AE450 /* Player.swift */,
+				A49DC9FD2659D2E2009B121D /* Bucket.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -122,6 +144,8 @@
 			children = (
 				A475D21D2655A0A7002AE450 /* CGPointExtension.swift */,
 				A475D21926559C9B002AE450 /* BitMaskExtension.swift */,
+				A49DC9EA26598834009B121D /* DimensionExtension.swift */,
+				A49DCA052659FF44009B121D /* SKSceneExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -158,13 +182,12 @@
 		A475D2412655EFC7002AE450 /* Mineral */ = {
 			isa = PBXGroup;
 			children = (
+				A49DC9FB2659C9B5009B121D /* Mouse */,
+				A49DC9FA2659C9A4009B121D /* Gold */,
 				A475D22C2655B5DF002AE450 /* Mineral.swift */,
-				A475D2492655F44B002AE450 /* Rock.swift */,
+				A49DC9F92659C998009B121D /* Rock */,
 				A475D2352655ECC3002AE450 /* Diamond.swift */,
-				A475D2322655C4F3002AE450 /* Gold.swift */,
-				A475D23E2655EEF1002AE450 /* Mouse.swift */,
 				A475D2422655F00F002AE450 /* RandomBag.swift */,
-				A475D2652657223E002AE450 /* DiamondMouse.swift */,
 			);
 			path = Mineral;
 			sourceTree = "<group>";
@@ -184,6 +207,45 @@
 				A475D25C2656F949002AE450 /* Goods.swift */,
 			);
 			path = Goods;
+			sourceTree = "<group>";
+		};
+		A49DC9F92659C998009B121D /* Rock */ = {
+			isa = PBXGroup;
+			children = (
+				A475D2492655F44B002AE450 /* SmallRock.swift */,
+				A49DC9F52659C8DD009B121D /* MediumRock.swift */,
+			);
+			path = Rock;
+			sourceTree = "<group>";
+		};
+		A49DC9FA2659C9A4009B121D /* Gold */ = {
+			isa = PBXGroup;
+			children = (
+				A49DC9F22659C7B8009B121D /* LargeGold.swift */,
+				A49DC9EF2659C787009B121D /* MediumGold.swift */,
+				A475D2322655C4F3002AE450 /* SmallGold.swift */,
+			);
+			path = Gold;
+			sourceTree = "<group>";
+		};
+		A49DC9FB2659C9B5009B121D /* Mouse */ = {
+			isa = PBXGroup;
+			children = (
+				A475D23E2655EEF1002AE450 /* Mouse.swift */,
+				A475D2652657223E002AE450 /* DiamondMouse.swift */,
+			);
+			path = Mouse;
+			sourceTree = "<group>";
+		};
+		A49DCA18265A1D64009B121D /* Resouces */ = {
+			isa = PBXGroup;
+			children = (
+				A475D20F26559470002AE450 /* Assets.xcassets */,
+				A49DCA012659EC6A009B121D /* BearImages.atlas */,
+				A49DCA19265A1D96009B121D /* FireParticle.sks */,
+				A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */,
+			);
+			path = Resouces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +305,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A49DC9E7265986BA009B121D /* Launch Screen.storyboard in Resources */,
+				A49DCA1A265A1D96009B121D /* FireParticle.sks in Resources */,
+				A49DCA1D265A1DD7009B121D /* SmokeParticle.sks in Resources */,
 				A475D21026559470002AE450 /* Assets.xcassets in Resources */,
+				A49DCA022659EC6A009B121D /* BearImages.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,22 +321,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				A475D25D2656F949002AE450 /* Goods.swift in Sources */,
-				A475D24A2655F44B002AE450 /* Rock.swift in Sources */,
+				A49DC9F32659C7B8009B121D /* LargeGold.swift in Sources */,
+				A475D24A2655F44B002AE450 /* SmallRock.swift in Sources */,
 				A475D2662657223E002AE450 /* DiamondMouse.swift in Sources */,
 				A475D2472655F2CB002AE450 /* ShopScene.swift in Sources */,
 				A475D26326571BB0002AE450 /* GameSession.swift in Sources */,
+				A49DC9FE2659D2E2009B121D /* Bucket.swift in Sources */,
 				A475D2582656EF52002AE450 /* GoodsType.swift in Sources */,
 				A475D22D2655B5DF002AE450 /* Mineral.swift in Sources */,
 				A475D2092655946D002AE450 /* GameScene.swift in Sources */,
+				A49DC9EB26598834009B121D /* DimensionExtension.swift in Sources */,
 				A475D21A26559C9B002AE450 /* BitMaskExtension.swift in Sources */,
 				A475D21E2655A0A7002AE450 /* CGPointExtension.swift in Sources */,
 				A475D20B2655946D002AE450 /* GameViewController.swift in Sources */,
 				A475D2262655B422002AE450 /* Player.swift in Sources */,
 				A475D2432655F00F002AE450 /* RandomBag.swift in Sources */,
+				A49DC9F62659C8DD009B121D /* MediumRock.swift in Sources */,
 				A475D2232655B2E1002AE450 /* Hook.swift in Sources */,
+				A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */,
 				A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */,
-				A475D2332655C4F3002AE450 /* Gold.swift in Sources */,
+				A475D2332655C4F3002AE450 /* SmallGold.swift in Sources */,
 				A475D2032655946D002AE450 /* AppDelegate.swift in Sources */,
+				A49DC9F02659C787009B121D /* MediumGold.swift in Sources */,
 				A475D26026571B09002AE450 /* UIConfig.swift in Sources */,
 				A475D269265722DF002AE450 /* LoseScene.swift in Sources */,
 				A475D2302655C0F6002AE450 /* Tuning.swift in Sources */,
@@ -404,6 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -423,6 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-enum RandomBagContent {
+enum RandomBagContent: Equatable {
     case money(Int)
     case bomb
     case strength
@@ -29,15 +29,20 @@ enum RandomBagContent {
 class RandomBag: Mineral {
     var content: RandomBagContent
     
+    override var backSpeed: CGFloat {
+        let speeds: Set = [fastSpeed, mediumSpeed, slowSpeed]
+        return speeds.randomElement() ?? mediumSpeed
+    }
+    
     init() {
         self.content = RandomBagContent.choose()
         
-        let diamondTexture = SKTexture(imageNamed: "random_bag")
-        super.init(texture: diamondTexture, color: .clear, size: diamondTexture.size())
+        let bagTexture = SKTexture(imageNamed: "random_bag")
+        let textSize = bagTexture.size()
+        let size = CGSize(width: textSize.width.height / 6, height: textSize.height.height / 6)
+        super.init(texture: bagTexture, color: .clear, size: size)
         
-        self.mass = randomBagMasses.randomElement() ?? mediumGoldMass
         self.price = 0
-        self.backSpeed = goldBackSpeed[self.mass] ?? mediumSpeed
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,13 +52,31 @@ class RandomBag: Mineral {
     func takeEffect() {
         switch content {
         case .money(let num):
-            self.price = num
+            getMoney(num: num)
         case .bomb:
-            GameSession.shared.numberOfBomb += 1
+            getBomb()
         case .strength:
-            fastSpeed = 170
-            mediumSpeed = 115
-            slowSpeed = 90
+            getStrength()
         }
+    }
+    
+    func getMoney(num: Int) {
+        price = num
+    }
+    
+    func getBomb() {
+        GameSession.shared.numberOfBomb += 1
+        
+        if let scene = scene as? GameScene {
+            let pos = scene.bombs.last?.position ?? scene.player1.position + CGPoint(x: 20, y: 0)
+            scene.addBomb(at: pos)
+        }
+    }
+    
+    func getStrength() {
+        fastSpeed = hookDefaultSpeed
+        mediumSpeed = hookDefaultSpeed
+        slowSpeed = hookDefaultSpeed
+        scene?.alertPopup(text: "strength up")
     }
 }

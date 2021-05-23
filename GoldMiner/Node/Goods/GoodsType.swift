@@ -19,29 +19,29 @@ enum GoodsType: CaseIterable {
     }
     
     var texture: SKTexture {
-        switch self {
-        case .bomb:
-            return SKTexture(imageNamed: "projectile")
-        case .drink:
-            return SKTexture(imageNamed: "projectile")
-        case .clover:
-            return SKTexture(imageNamed: "projectile")
-        case .book:
-            return SKTexture(imageNamed: "projectile")
-        case .diamondPolish:
-            return SKTexture(imageNamed: "projectile")
-        }
 //        switch self {
 //        case .bomb:
-//            return SKTexture(imageNamed: "bomb")
+//            return SKTexture(imageNamed: "projectile")
 //        case .drink:
-//            return SKTexture(imageNamed: "drink")
+//            return SKTexture(imageNamed: "projectile")
 //        case .clover:
-//            return SKTexture(imageNamed: "clover")
+//            return SKTexture(imageNamed: "projectile")
 //        case .book:
-//            return SKTexture(imageNamed: "book")
+//            return SKTexture(imageNamed: "projectile")
 //        case .diamondPolish:
-//            return SKTexture(imageNamed: "diamondPolish")
+//            return SKTexture(imageNamed: "projectile")
 //        }
+        switch self {
+        case .bomb:
+            return SKTexture(imageNamed: "bomb")
+        case .drink:
+            return SKTexture(imageNamed: "drink")
+        case .clover:
+            return SKTexture(imageNamed: "clover")
+        case .book:
+            return SKTexture(imageNamed: "book")
+        case .diamondPolish:
+            return SKTexture(imageNamed: "diamond_polish")
+        }
     }
 }

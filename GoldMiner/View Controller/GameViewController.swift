@@ -10,14 +10,16 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let scene = GameScene(size: view.bounds.size)
-        scene.scaleMode = .resizeFill
-        let skView = SKView()
-        self.view = skView
+        let skView = SKView(frame: view.frame.inset(by: safeAreaInsets))
+        skView.ignoresSiblingOrder = true
+        view = skView
+        // print(safeAreaInsets)
+        let scene = GameScene(size: skView.bounds.size)
+        scene.scaleMode = .aspectFill
         skView.presentScene(scene)
     }
 

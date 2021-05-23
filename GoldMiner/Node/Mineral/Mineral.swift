@@ -8,18 +8,18 @@
 import SpriteKit
 
 class Mineral: SKSpriteNode {
-    var mass: Int
-    
     var price: Int
     
-    var backSpeed: CGFloat
+    var backSpeed: CGFloat {
+        return mediumSpeed
+    }
+    
+    var exploding: Bool = false
     
     weak var hook: Hook?
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        self.mass = smallGoldMass
-        self.price = smallGoldMass
-        self.backSpeed = mediumSpeed
+        self.price = smallGoldPrice
         
         super.init(texture: texture, color: color, size: size)
         
@@ -31,7 +31,9 @@ class Mineral: SKSpriteNode {
     }
     
     func configurePhysiscs() {
-        physicsBody = SKPhysicsBody(rectangleOf: size)
+        if let texture = texture {
+            physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.1, size: size)
+        }
         physicsBody?.categoryBitMask = PhysicsCategory.mineral.rawValue
         physicsBody?.contactTestBitMask = PhysicsCategory.player.rawValue
         physicsBody?.collisionBitMask = PhysicsCategory.none.rawValue
@@ -43,6 +45,19 @@ class Mineral: SKSpriteNode {
     }
     
     func getBombed() {
-        removeFromParent()
+        if exploding {
+            return
+        }
+        exploding = true
+        if let fireParticles = SKEmitterNode(fileNamed: "FireParticle") {
+            fireParticles.position = CGPoint(x: 0, y: 0)
+            print(fireParticles.position)
+            print(position)
+            addChild(fireParticles)
+        }
+        let burn = SKAction.wait(forDuration: 0.5)
+        run(burn) {
+            self.removeFromParent()
+        }
     }
 }

@@ -37,6 +37,10 @@ class Hook: SKSpriteNode {
         physicsBody?.usesPreciseCollisionDetection = true
     }
     
+    func outsideOfScreen() -> Bool {
+        return position.x > realWidth || position.x < 0 || position.y > realHeight || position.y < 0
+    }
+    
     func swing() {
         removeAllActions()
         run(swingAction)
@@ -50,7 +54,7 @@ class Hook: SKSpriteNode {
         
         let offset = position - player.position
         let direction = offset.normalized
-        let ropeRange = direction * 300
+        let ropeRange = direction * hookLongestLength
         let length = ropeRange.length
         let realDest = ropeRange + position
         let shootAction = SKAction.move(to: realDest, duration: TimeInterval(length / hookDefaultSpeed))
@@ -61,7 +65,13 @@ class Hook: SKSpriteNode {
         run(SKAction.sequence([shootAction, toggleCatch, backAction, swingAction]))
     }
     
+    func back() {
+        backAfterBomb()
+    }
+    
     func back(for duration: TimeInterval) {
+        canCatch = false
+        
         removeAllActions()
         
         let backAction = SKAction.move(to: player.position, duration: duration)
@@ -69,7 +79,8 @@ class Hook: SKSpriteNode {
     }
     
     func backAfterBomb() {
-        self.mineral = nil
+        empty()
+        canCatch = false
         
         removeAllActions()
         
@@ -79,10 +90,7 @@ class Hook: SKSpriteNode {
         let x = direction.x * length
         let y = direction.y * length
         let backAction = SKAction.move(by: CGVector(dx: x, dy: y), duration: TimeInterval(length / hookDefaultSpeed))
-        let empty = SKAction.run {
-            self.empty()
-        }
-        run(SKAction.sequence([backAction, empty, swingAction]))
+        run(SKAction.sequence([backAction, swingAction]))
     }
     
     func fill(with mineral: Mineral) {
@@ -90,7 +98,7 @@ class Hook: SKSpriteNode {
     }
     
     func empty() {
-        self.mineral = nil
+        mineral = nil
     }
     
     lazy var swingAction: SKAction = {

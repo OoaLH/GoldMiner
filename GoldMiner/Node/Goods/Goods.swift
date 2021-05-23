@@ -12,11 +12,13 @@ class Goods: SKSpriteNode {
     
     var price: Int
     
+    var priceLabel: SKLabelNode?
+    
     init(type: GoodsType) {
         self.price = Int.random(in: 10...500)
         self.type = type
         let texture = type.texture
-        super.init(texture: texture, color: .clear, size: texture.size())
+        super.init(texture: texture, color: .clear, size: CGSize(width: 100.width, height: 100.width))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,9 +45,9 @@ class Goods: SKSpriteNode {
     }
     
     private func increasePower() {
-        fastSpeed = 150
-        mediumSpeed = 95
-        slowSpeed = 70
+        fastSpeed = 160.height
+        mediumSpeed = 115.height
+        slowSpeed = 90.height
     }
     
     // TODO: buy goods
@@ -57,7 +59,8 @@ class Goods: SKSpriteNode {
     }
     
     private func increaseRockPrice() {
-        rockPrice = [smallRockMass: 60, mediumRockMass: 180]
+        smallRockPrice = 60
+        mediumRockPrice = 180
     }
     
     private func increaseDiamondPrice() {

@@ -12,9 +12,13 @@ class GameSession {
     
     private init() {}
     
-    var numberOfBomb: Int = 3
+    var numberOfBomb: Int = 0
     
     var money: Int = 0
+    
+    var player1Score: Int = 0
+    
+    var player2Score: Int = 0
     
     var level: Int = 1
     
@@ -35,6 +39,8 @@ class GameSession {
     func newSession() {
         numberOfBomb = 0
         money = 0
+        player1Score = 0
+        player2Score = 0
         level = 1
         goal = 650
         goalIncrement = 650
@@ -43,11 +49,12 @@ class GameSession {
     }
     
     func recoverTuning() {
-        fastSpeed = 100
-        mediumSpeed = 45
-        slowSpeed = 20
+        fastSpeed = 100.height
+        mediumSpeed = 55.height
+        slowSpeed = 30.height
         
-        rockPrice = [smallRockMass: 20, mediumRockMass: 60]
+        smallRockPrice = 20
+        mediumRockPrice = 60
         
         diamondPrice = 600
         

@@ -8,13 +8,17 @@
 import SpriteKit
 
 class Diamond: Mineral {
+    override var backSpeed: CGFloat {
+        return fastSpeed
+    }
+    
     init() {
         let diamondTexture = SKTexture(imageNamed: "diamond")
-        super.init(texture: diamondTexture, color: .clear, size: diamondTexture.size())
+        let textSize = diamondTexture.size()
+        let size = CGSize(width: textSize.width.height / 8, height: textSize.height.height / 8)
+        super.init(texture: diamondTexture, color: .clear, size: size)
         
-        self.mass = diamondMass
         self.price = diamondPrice
-        self.backSpeed = diamondBackSpeed
     }
     
     required init?(coder aDecoder: NSCoder) {
