@@ -10,6 +10,8 @@ import UIKit
 protocol Dimension {
     var height: CGFloat { get }
     var width: CGFloat { get }
+    var realHeight: CGFloat { get }
+    var realWidth: CGFloat { get }
 }
 
 extension CGFloat: Dimension {
@@ -19,6 +21,14 @@ extension CGFloat: Dimension {
     
     var width: CGFloat {
         return self * UIConfig.realWidth / UIConfig.defaultWidth
+    }
+    
+    var realHeight: CGFloat {
+        return self * UIConfig.defaultHeight / UIConfig.realHeight
+    }
+    
+    var realWidth: CGFloat {
+        return self * UIConfig.defaultWidth / UIConfig.realWidth
     }
 }
 
@@ -30,6 +40,14 @@ extension Double: Dimension {
     var width: CGFloat {
         return CGFloat(self) * UIConfig.realWidth / UIConfig.defaultWidth
     }
+    
+    var realHeight: CGFloat {
+        return CGFloat(self) * UIConfig.defaultHeight / UIConfig.realHeight
+    }
+    
+    var realWidth: CGFloat {
+        return CGFloat(self) * UIConfig.defaultWidth / UIConfig.realWidth
+    }
 }
 
 extension Int: Dimension {
@@ -39,5 +57,13 @@ extension Int: Dimension {
     
     var width: CGFloat {
         return CGFloat(self) * UIConfig.realWidth / UIConfig.defaultWidth
+    }
+    
+    var realHeight: CGFloat {
+        return CGFloat(self) * UIConfig.defaultHeight / UIConfig.realHeight
+    }
+    
+    var realWidth: CGFloat {
+        return CGFloat(self) * UIConfig.defaultWidth / UIConfig.realWidth
     }
 }

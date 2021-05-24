@@ -14,7 +14,7 @@ class OnlineGameScene: GameScene {
     
     var role: UInt32 = Role.player1
     
-    var teamMate: GKPlayer!
+    var teamMate: GKPlayer
     
     var hook: Hook!
     
@@ -22,24 +22,19 @@ class OnlineGameScene: GameScene {
     
     var shootButton: SKSpriteNode!
     
+    var player: Player!
+    
+    var otherPlayer: Player!
+    
     init(size: CGSize, match: GKMatch) {
         self.match = match
-        let id = GKLocalPlayer.local.gamePlayerID
+        self.teamMate = match.players.first!
+        let name = GKLocalPlayer.local.displayName
+        if self.teamMate.displayName < name {
+            self.role = Role.player2
+        }
         
         super.init(size: size)
-        
-        _ = match.players.map({ player in
-            if player.gamePlayerID == id {
-                return
-            }
-            teamMate = player
-            if player.gamePlayerID > id {
-                role = Role.player2
-            }
-        })
-        hook = role == Role.player1 ? hook1 : hook2
-        bombButton = role == Role.player1 ? player1BombButton : player2BombButton
-        shootButton = role == Role.player1 ? player1HookButton : player2HookButton
         match.delegate = self
     }
     
@@ -48,14 +43,13 @@ class OnlineGameScene: GameScene {
     }
     
     override func initButtons() {
-        if role == Role.player1 {
-            addChild(player1HookButton)
-            addChild(player1BombButton)
-        }
-        else {
-            addChild(player2HookButton)
-            addChild(player2BombButton)
-        }
+        player = role == Role.player1 ? player1 : player2
+        otherPlayer = role == Role.player1 ? player2 : player1
+        hook = role == Role.player1 ? hook1 : hook2
+        bombButton = role == Role.player1 ? player1BombButton : player2BombButton
+        shootButton = role == Role.player1 ? player1HookButton : player2HookButton
+        addChild(bombButton)
+        addChild(shootButton)
     }
     
     override func win() {
@@ -72,7 +66,7 @@ class OnlineGameScene: GameScene {
             let touchedNode = atPoint(location)
             
             if touchedNode == shootButton && hook.canShoot {
-                sendShootData()
+                sendShootData(hook: hook)
                 hook.shoot()
             }
             else if touchedNode == bombButton && canUseBomb(hook: hook) {
@@ -101,12 +95,17 @@ class OnlineGameScene: GameScene {
         super.hookCaughtTNT(hook: hook, bucket: bucket)
     }
     
-    func sendShootData() {
-        
+    func sendShootData(hook: Hook) {
+        let offset = hook.position
+        var message = Message(type: .shot, x: Float(offset.x.realWidth), y: Float(offset.y.realHeight))
+        let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
+        sendData(data: data)
     }
     
     func sendBombData() {
-        
+        var message = Message(type: .bombed, x: 0, y: 0)
+        let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
+        sendData(data: data)
     }
     
     func sendCaughtData() {
@@ -121,9 +120,9 @@ class OnlineGameScene: GameScene {
         
     }
     
-    func sendData(data: Data) {
+    func sendData(data: NSData) {
         do {
-            try match.sendData(toAllPlayers: data, with: .reliable)
+            try match.sendData(toAllPlayers: data as Data, with: .reliable)
         }
         catch {
             print("error")
@@ -133,10 +132,41 @@ class OnlineGameScene: GameScene {
 
 extension OnlineGameScene: GKMatchDelegate {
     func match(_ match: GKMatch, didReceive data: Data, fromRemotePlayer player: GKPlayer) {
-        
+        let pointer = UnsafeMutablePointer<Message>.allocate(capacity: MemoryLayout<Message>.stride)
+        let nsData = NSData(data: data)
+        nsData.getBytes(pointer, length: MemoryLayout<Message>.stride)
+        let message = pointer.move()
+        print(123)
+        print(message)
+        switch message.type {
+        case .shot:
+            receiveShot(x: CGFloat(message.x), y: CGFloat(message.y))
+        case .bombed:
+            receiveBombed()
+        default:
+            break
+        }
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
         
+    }
+    
+    func match(_ match: GKMatch, didFailWithError error: Error?) {
+        
+    }
+    
+    func receiveShot(x: CGFloat, y: CGFloat) {
+        print(123)
+        print(x)
+        print(y)
+        otherPlayer.hook?.position = CGPoint(x: x.width, y: y.height)
+        otherPlayer.hook?.shoot()
+    }
+    
+    func receiveBombed() {
+        consumeBomb()
+        otherPlayer.hook?.mineral?.getBombed()
+        otherPlayer.hook?.backAfterBomb()
     }
 }

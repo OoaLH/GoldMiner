@@ -26,6 +26,7 @@ class OnlineShopScene: ShopScene {
         self.match = match
         
         super.init(size: size)
+        match.delegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,7 +46,7 @@ class OnlineShopScene: ShopScene {
     }
     
     override func buy(good: Goods) {
-        sendBuyData()
+        sendBuyData(good: good)
         super.buy(good: good)
     }
     
@@ -55,8 +56,16 @@ class OnlineShopScene: ShopScene {
         view?.presentScene(newScene, transition: reveal)
     }
     
-    func sendBuyData() {
+    func sendBuyData(good: Goods) {
+        var message = Message(type: .bought, x: Float(good.position.x.realWidth), y: Float(good.position.y.realHeight))
+        let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
         
+        do {
+            try match.sendData(toAllPlayers: data as Data, with: .reliable)
+        }
+        catch {
+            print("error")
+        }
     }
     
     func initTimer() {
@@ -78,4 +87,32 @@ class OnlineShopScene: ShopScene {
         node.fontColor = .brown
         return node
     }()
+}
+
+extension OnlineShopScene: GKMatchDelegate {
+    func match(_ match: GKMatch, didReceive data: Data, fromRemotePlayer player: GKPlayer) {
+        let pointer = UnsafeMutablePointer<Message>.allocate(capacity: MemoryLayout<Message>.stride)
+        let nsData = NSData(data: data)
+        nsData.getBytes(pointer, length: MemoryLayout<Message>.stride)
+        let message = pointer.move()
+        print(123)
+        print(message)
+        if message.type == .bought {
+            receiveBought(x: CGFloat(message.x), y: CGFloat(message.y))
+        }
+    }
+    
+    func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
+        
+    }
+    
+    func match(_ match: GKMatch, didFailWithError error: Error?) {
+        
+    }
+    
+    func receiveBought(x: CGFloat, y: CGFloat) {
+        if let node = atPoint(CGPoint(x: x.width, y: y.height)) as? Goods {
+            super.buy(good: node)
+        }
+    }
 }

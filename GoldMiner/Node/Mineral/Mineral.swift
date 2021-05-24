@@ -48,6 +48,7 @@ class Mineral: SKSpriteNode {
         if exploding {
             return
         }
+        removeAllActions()
         exploding = true
         if let fireParticles = SKEmitterNode(fileNamed: "FireParticle") {
             fireParticles.position = CGPoint(x: 0, y: 0)

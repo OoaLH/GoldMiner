@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         view = skView
         let scene = GameScene(size: skView.bounds.size)
+        debugPrint(skView.bounds.size)
         scene.scaleMode = .aspectFill
         skView.presentScene(scene)
     }

@@ -7,14 +7,16 @@
 
 import Foundation
 
-enum MessageType {
-    case randomNumber(UInt32)
-    case bombed
+enum MessageType: Int {
+    case bombed = 0
     case caught
     case shot
     case bucket
+    case bought
 }
 
 struct Message {
     var type: MessageType
+    var x: Float
+    var y: Float
 }

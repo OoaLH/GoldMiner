@@ -76,17 +76,21 @@ class GameScene: SKScene {
     }
     
     func initMinerals() {
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<790)
-            let y = Int.random(in: 20..<300)
-            addSmallGold(at: CGPoint(x: x, y: y))
-        }
-        
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<790)
-            let y = Int.random(in: 20..<300)
-            addMouse(at: CGPoint(x: x, y: y))
-        }
+        addLargeGold(at: CGPoint(x: 100.width, y: 100.height))
+        addLargeGold(at: CGPoint(x: 300.width, y: 100.height))
+        addLargeGold(at: CGPoint(x: 200.width, y: 100.height))
+        addBucket(at: CGPoint(x: 500.width, y: 200.height))
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<790)
+//            let y = Int.random(in: 20..<300)
+//            addSmallGold(at: CGPoint(x: x, y: y))
+//        }
+//
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<790)
+//            let y = Int.random(in: 20..<300)
+//            addMouse(at: CGPoint(x: x, y: y))
+//        }
         
 //        for _ in 1...3 {
 //            let x = Int.random(in: 10..<790)
@@ -94,47 +98,47 @@ class GameScene: SKScene {
 //            addDiamondMouse(at: CGPoint(x: x, y: y))
 //        }
         
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<470)
-            let y = Int.random(in: 20..<220)
-            addMediumGold(at: CGPoint(x: x, y: y))
-        }
-
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<470)
-            let y = Int.random(in: 20..<220)
-            addLargeGold(at: CGPoint(x: x, y: y))
-        }
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<470)
+//            let y = Int.random(in: 20..<220)
+//            addMediumGold(at: CGPoint(x: x, y: y))
+//        }
+//
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<470)
+//            let y = Int.random(in: 20..<220)
+//            addLargeGold(at: CGPoint(x: x, y: y))
+//        }
         
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<470)
-            let y = Int.random(in: 20..<220)
-            addDiamond(at: CGPoint(x: x, y: y))
-        }
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<470)
+//            let y = Int.random(in: 20..<220)
+//            addDiamond(at: CGPoint(x: x, y: y))
+//        }
+//
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<470)
+//            let y = Int.random(in: 20..<220)
+//            addRandomBag(at: CGPoint(x: x, y: y))
+//        }
+//
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<470)
+//            let y = Int.random(in: 20..<220)
+//            addSmallRock(at: CGPoint(x: x, y: y))
+//        }
+//
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<470)
+//            let y = Int.random(in: 20..<220)
+//            addMediumRock(at: CGPoint(x: x, y: y))
+//        }
         
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<470)
-            let y = Int.random(in: 20..<220)
-            addRandomBag(at: CGPoint(x: x, y: y))
-        }
-        
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<470)
-            let y = Int.random(in: 20..<220)
-            addSmallRock(at: CGPoint(x: x, y: y))
-        }
-        
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<470)
-            let y = Int.random(in: 20..<220)
-            addMediumRock(at: CGPoint(x: x, y: y))
-        }
-        
-        for _ in 1...3 {
-            let x = Int.random(in: 10..<470)
-            let y = Int.random(in: 20..<220)
-            addBucket(at: CGPoint(x: x, y: y))
-        }
+//        for _ in 1...3 {
+//            let x = Int.random(in: 10..<470)
+//            let y = Int.random(in: 20..<220)
+//            addBucket(at: CGPoint(x: x, y: y))
+//        }
     }
     
     func initHooks() {
@@ -277,8 +281,8 @@ class GameScene: SKScene {
             win()
         }
         else {
-            win()
-            //lose()
+            //win()
+            lose()
         }
     }
     
