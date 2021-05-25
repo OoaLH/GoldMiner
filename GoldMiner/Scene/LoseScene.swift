@@ -9,5 +9,32 @@ import SpriteKit
 import GameplayKit
 
 class LoseScene: SKScene {
+    override func sceneDidLoad() {
+        addChild(loseLabel)
+        addChild(returnButton)
+    }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            
+            if touchedNode == returnButton {
+                view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    lazy var loseLabel: SKLabelNode = {
+        let node = SKLabelNode()
+        node.text = "you lose"
+        node.position = CGPoint(x: 400.width, y: 100.height)
+        return node
+    }()
+    
+    lazy var returnButton: SKSpriteNode = {
+        let node = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
+        node.position = CGPoint(x: 680.width, y: 350.height)
+        return node
+    }()
 }

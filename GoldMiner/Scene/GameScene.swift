@@ -76,69 +76,48 @@ class GameScene: SKScene {
     }
     
     func initMinerals() {
-        addLargeGold(at: CGPoint(x: 100.width, y: 100.height))
-        addLargeGold(at: CGPoint(x: 300.width, y: 100.height))
-        addLargeGold(at: CGPoint(x: 200.width, y: 100.height))
-        addBucket(at: CGPoint(x: 500.width, y: 200.height))
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<790)
-//            let y = Int.random(in: 20..<300)
-//            addSmallGold(at: CGPoint(x: x, y: y))
-//        }
-//
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<790)
-//            let y = Int.random(in: 20..<300)
-//            addMouse(at: CGPoint(x: x, y: y))
-//        }
+        let level = GameSession.shared.level - 1
+        for i in LevelData()[level].largeGolds {
+            addLargeGold(at: i)
+        }
         
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<790)
-//            let y = Int.random(in: 20..<300)
-//            addDiamondMouse(at: CGPoint(x: x, y: y))
-//        }
+        for i in LevelData()[level].smallRocks {
+            addSmallRock(at: i)
+        }
         
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<470)
-//            let y = Int.random(in: 20..<220)
-//            addMediumGold(at: CGPoint(x: x, y: y))
-//        }
-//
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<470)
-//            let y = Int.random(in: 20..<220)
-//            addLargeGold(at: CGPoint(x: x, y: y))
-//        }
+        for i in LevelData()[level].mediumRocks {
+            addMediumRock(at: i)
+        }
         
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<470)
-//            let y = Int.random(in: 20..<220)
-//            addDiamond(at: CGPoint(x: x, y: y))
-//        }
-//
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<470)
-//            let y = Int.random(in: 20..<220)
-//            addRandomBag(at: CGPoint(x: x, y: y))
-//        }
-//
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<470)
-//            let y = Int.random(in: 20..<220)
-//            addSmallRock(at: CGPoint(x: x, y: y))
-//        }
-//
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<470)
-//            let y = Int.random(in: 20..<220)
-//            addMediumRock(at: CGPoint(x: x, y: y))
-//        }
+        for i in LevelData()[level].randomBags {
+            addRandomBag(at: i)
+        }
         
-//        for _ in 1...3 {
-//            let x = Int.random(in: 10..<470)
-//            let y = Int.random(in: 20..<220)
-//            addBucket(at: CGPoint(x: x, y: y))
-//        }
+        for i in LevelData()[level].diamonds {
+            addDiamond(at: i)
+        }
+        
+        for i in LevelData()[level].buckets {
+            addBucket(at: i)
+        }
+        
+        for i in LevelData()[level].diamondMice {
+            addDiamondMouse(at: i)
+        }
+        
+        var rand = Int.random(in: 3...7)
+        for _ in 1...rand {
+            let x = Int.random(in: 40..<760)
+            let y = Int.random(in: 40..<280)
+            addSmallGold(at: CGPoint(x: x.width, y: y.height))
+        }
+        
+        rand = Int.random(in: 0...7)
+        for _ in 1...rand {
+            let x = Int.random(in: 40..<760)
+            let y = Int.random(in: 40..<280)
+            addMouse(at: CGPoint(x: x.width, y: y.height))
+        }
     }
     
     func initHooks() {
@@ -281,7 +260,6 @@ class GameScene: SKScene {
             win()
         }
         else {
-            //win()
             lose()
         }
     }
@@ -390,26 +368,26 @@ class GameScene: SKScene {
     
     // MARK: Button
     lazy var player1HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
-        node.position = CGPoint(x: 60.width, y: 50.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
+        node.position = CGPoint(x: 80.width, y: 70.height)
         return node
     }()
     
     lazy var player2HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
-        node.position = CGPoint(x: 740.width, y: 50.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
+        node.position = CGPoint(x: 720.width, y: 70.height)
         return node
     }()
     
     lazy var player1BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
-        node.position = CGPoint(x: 60.width, y: 110.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
+        node.position = CGPoint(x: 80.width, y: 160.height)
         return node
     }()
     
     lazy var player2BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 50.width, height: 50.height))
-        node.position = CGPoint(x: 740.width, y: 110.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
+        node.position = CGPoint(x: 720.width, y: 160.height)
         return node
     }()
     

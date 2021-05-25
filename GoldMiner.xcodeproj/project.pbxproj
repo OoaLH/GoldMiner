@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A40DAB17265CA2C7000CE9BE /* LevelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40DAB16265CA2C7000CE9BE /* LevelData.swift */; };
 		A475D2032655946D002AE450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2022655946D002AE450 /* AppDelegate.swift */; };
 		A475D2092655946D002AE450 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2082655946D002AE450 /* GameScene.swift */; };
 		A475D20B2655946D002AE450 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D20A2655946D002AE450 /* GameViewController.swift */; };
@@ -50,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A40DAB13265C7F5F000CE9BE /* GoldMiner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoldMiner.entitlements; sourceTree = "<group>"; };
+		A40DAB16265CA2C7000CE9BE /* LevelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelData.swift; sourceTree = "<group>"; };
 		A475D1FF2655946D002AE450 /* GoldMiner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldMiner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475D2022655946D002AE450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A475D2082655946D002AE450 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		A475D2012655946D002AE450 /* GoldMiner */ = {
 			isa = PBXGroup;
 			children = (
+				A40DAB13265C7F5F000CE9BE /* GoldMiner.entitlements */,
 				A475D2022655946D002AE450 /* AppDelegate.swift */,
 				A475D2392655EE0D002AE450 /* Extension */,
 				A475D21126559470002AE450 /* Info.plist */,
@@ -170,6 +174,7 @@
 				A475D26226571BB0002AE450 /* GameSession.swift */,
 				A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */,
 				A4BE8F02265AEF0700B3020B /* GameMessage.swift */,
+				A40DAB16265CA2C7000CE9BE /* LevelData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,6 +365,7 @@
 				A4BE8F07265B018500B3020B /* OnlineShopScene.swift in Sources */,
 				A49DC9F62659C8DD009B121D /* MediumRock.swift in Sources */,
 				A475D2232655B2E1002AE450 /* Hook.swift in Sources */,
+				A40DAB17265CA2C7000CE9BE /* LevelData.swift in Sources */,
 				A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */,
 				A4BE8EFA265AE16100B3020B /* OnlineGameScene.swift in Sources */,
 				A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */,
@@ -499,8 +505,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -519,8 +526,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

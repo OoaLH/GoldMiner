@@ -10,7 +10,6 @@ import SpriteKit
 class DiamondMouse: Mouse {
     override init() {
         super.init()
-        //self.texture = SKTexture(imageNamed: "diamond_mouse")
         self.price = Tuning.mousePrice + Tuning.diamondPrice
         
         addChild(diamond)
@@ -22,7 +21,7 @@ class DiamondMouse: Mouse {
     
     lazy var diamond: Diamond = {
         let node = Diamond()
-        node.position = CGPoint(x: 10, y: 10)
+        node.position = CGPoint(x: 0, y: 0)
         return node
     }()
 }

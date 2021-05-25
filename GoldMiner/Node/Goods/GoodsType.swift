@@ -7,8 +7,8 @@
 
 import SpriteKit
 
-enum GoodsType: CaseIterable {
-    case bomb
+enum GoodsType: Int, CaseIterable {
+    case bomb = 1
     case drink
     case clover
     case book
@@ -19,18 +19,6 @@ enum GoodsType: CaseIterable {
     }
     
     var texture: SKTexture {
-//        switch self {
-//        case .bomb:
-//            return SKTexture(imageNamed: "projectile")
-//        case .drink:
-//            return SKTexture(imageNamed: "projectile")
-//        case .clover:
-//            return SKTexture(imageNamed: "projectile")
-//        case .book:
-//            return SKTexture(imageNamed: "projectile")
-//        case .diamondPolish:
-//            return SKTexture(imageNamed: "projectile")
-//        }
         switch self {
         case .bomb:
             return SKTexture(imageNamed: "bomb")

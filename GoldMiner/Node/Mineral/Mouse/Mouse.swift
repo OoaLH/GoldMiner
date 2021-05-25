@@ -17,7 +17,7 @@ class Mouse: Mineral {
     }
     
     init() {
-        self.walkRange = CGFloat.random(in: 50...100)
+        self.walkRange = CGFloat.random(in: 50...100).width
         
         //let mouseTexture = SKTexture(imageNamed: "mouse")
         let bearAnimatedAtlas = SKTextureAtlas(named: "BearImages")

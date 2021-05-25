@@ -29,8 +29,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func onlineGaming() {
-        GameCenterHelper.helper.viewController = self
         if GKLocalPlayer.local.isAuthenticated {
+            GameCenterHelper.helper.viewController = self
             GameCenterHelper.helper.presentMatchmaker()
         }
         else {
@@ -42,6 +42,7 @@ class HomeViewController: UIViewController {
                 if error != nil {
                     return
                 }
+                GameCenterHelper.helper.viewController = self
                 GameCenterHelper.helper.presentMatchmaker()
             }
         }

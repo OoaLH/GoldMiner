@@ -56,7 +56,7 @@ class OnlineGameScene: GameScene {
         GameSession.shared.nextLevel()
         
         let reveal = SKTransition.moveIn(with: .up, duration: 1)
-        let newScene = OnlineShopScene(match: match, size: size)
+        let newScene = OnlineShopScene(match: match, size: size, role: role)
         view?.presentScene(newScene, transition: reveal)
     }
     
@@ -80,21 +80,6 @@ class OnlineGameScene: GameScene {
         }
     }
     
-    override func hookCaughtMineral(hook: Hook, mineral: Mineral) {
-        sendCaughtData()
-        super.hookCaughtMineral(hook: hook, mineral: mineral)
-    }
-    
-    override func mineralArrived(mineral: Mineral, at player: Player) {
-        sendArrivedData()
-        super.mineralArrived(mineral: mineral, at: player)
-    }
-    
-    override func hookCaughtTNT(hook: Hook, bucket: Bucket) {
-        sendBucketData()
-        super.hookCaughtTNT(hook: hook, bucket: bucket)
-    }
-    
     func sendShootData(hook: Hook) {
         let offset = hook.position
         var message = Message(type: .shot, x: Float(offset.x.realWidth), y: Float(offset.y.realHeight))
@@ -106,18 +91,6 @@ class OnlineGameScene: GameScene {
         var message = Message(type: .bombed, x: 0, y: 0)
         let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
         sendData(data: data)
-    }
-    
-    func sendCaughtData() {
-        
-    }
-    
-    func sendArrivedData() {
-        
-    }
-    
-    func sendBucketData() {
-        
     }
     
     func sendData(data: NSData) {
@@ -136,8 +109,6 @@ extension OnlineGameScene: GKMatchDelegate {
         let nsData = NSData(data: data)
         nsData.getBytes(pointer, length: MemoryLayout<Message>.stride)
         let message = pointer.move()
-        print(123)
-        print(message)
         switch message.type {
         case .shot:
             receiveShot(x: CGFloat(message.x), y: CGFloat(message.y))
@@ -149,17 +120,14 @@ extension OnlineGameScene: GKMatchDelegate {
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
-        
+        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
-        
+        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     
     func receiveShot(x: CGFloat, y: CGFloat) {
-        print(123)
-        print(x)
-        print(y)
         otherPlayer.hook?.position = CGPoint(x: x.width, y: y.height)
         otherPlayer.hook?.shoot()
     }

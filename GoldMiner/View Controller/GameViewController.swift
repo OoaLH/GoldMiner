@@ -18,9 +18,9 @@ class GameViewController: UIViewController {
         
         let skView = SKView(frame: view.frame.inset(by: UIConfig.safeAreaInsets))
         skView.ignoresSiblingOrder = true
+        skView.isMultipleTouchEnabled = true
         view = skView
         let scene = GameScene(size: skView.bounds.size)
-        debugPrint(skView.bounds.size)
         scene.scaleMode = .aspectFill
         skView.presentScene(scene)
     }

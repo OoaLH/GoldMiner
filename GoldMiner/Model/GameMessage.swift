@@ -9,10 +9,10 @@ import Foundation
 
 enum MessageType: Int {
     case bombed = 0
-    case caught
     case shot
-    case bucket
     case bought
+    case goods
+    case money
 }
 
 struct Message {
