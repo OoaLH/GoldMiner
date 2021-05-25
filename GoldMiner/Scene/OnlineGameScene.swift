@@ -10,11 +10,43 @@ import GameplayKit
 import GameKit
 
 class OnlineGameScene: GameScene {
-    var match: GKMatch
+    var match: GKMatch? {
+        didSet {
+            guard let match = match else {
+                return
+            }
+            teamMate = match.players.first
+            match.delegate = self
+        }
+    }
     
-    var role: UInt32 = Role.player1
+    var role: UInt32 = Role.player1 {
+        didSet {
+            player = role == Role.player1 ? player1 : player2
+            otherPlayer = role == Role.player1 ? player2 : player1
+            hook = role == Role.player1 ? hook1 : hook2
+            bombButton = role == Role.player1 ? player1BombButton : player2BombButton
+            shootButton = role == Role.player1 ? player1HookButton : player2HookButton
+            addChild(bombButton)
+            addChild(shootButton)
+        }
+    }
     
-    var teamMate: GKPlayer
+    var teamMate: GKPlayer? {
+        didSet {
+            guard let teamMate = teamMate else {
+                exitToHome()
+                return
+            }
+            let name = GKLocalPlayer.local.displayName
+            if teamMate.displayName < name {
+                role = Role.player2
+            }
+            else {
+                role = Role.player1
+            }
+        }
+    }
     
     var hook: Hook!
     
@@ -26,33 +58,12 @@ class OnlineGameScene: GameScene {
     
     var otherPlayer: Player!
     
-    init(size: CGSize, match: GKMatch) {
-        self.match = match
-        self.teamMate = match.players.first!
-        let name = GKLocalPlayer.local.displayName
-        if self.teamMate.displayName < name {
-            self.role = Role.player2
-        }
-        
-        super.init(size: size)
-        match.delegate = self
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func initButtons() {
-        player = role == Role.player1 ? player1 : player2
-        otherPlayer = role == Role.player1 ? player2 : player1
-        hook = role == Role.player1 ? hook1 : hook2
-        bombButton = role == Role.player1 ? player1BombButton : player2BombButton
-        shootButton = role == Role.player1 ? player1HookButton : player2HookButton
-        addChild(bombButton)
-        addChild(shootButton)
-    }
+    override func initButtons() {}
     
     override func win() {
+        guard let match = match else {
+            return
+        }
         GameSession.shared.nextLevel()
         
         let reveal = SKTransition.moveIn(with: .up, duration: 1)
@@ -95,7 +106,7 @@ class OnlineGameScene: GameScene {
     
     func sendData(data: NSData) {
         do {
-            try match.sendData(toAllPlayers: data as Data, with: .reliable)
+            try match?.sendData(toAllPlayers: data as Data, with: .reliable)
         }
         catch {
             print("error")
@@ -120,11 +131,11 @@ extension OnlineGameScene: GKMatchDelegate {
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
-        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        exitToHome()
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
-        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        exitToHome()
     }
     
     func receiveShot(x: CGFloat, y: CGFloat) {

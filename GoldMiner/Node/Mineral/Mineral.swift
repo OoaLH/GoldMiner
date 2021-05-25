@@ -27,7 +27,8 @@ class Mineral: SKSpriteNode {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.price = Tuning.smallGoldPrice
+        super.init(coder: aDecoder)
     }
     
     func configurePhysiscs() {

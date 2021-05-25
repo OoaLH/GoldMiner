@@ -31,7 +31,9 @@ class OnlineGameViewController: UIViewController {
         let skView = SKView(frame: view.frame.inset(by: UIConfig.safeAreaInsets))
         skView.ignoresSiblingOrder = true
         view = skView
-        let scene = OnlineGameScene(size: skView.bounds.size, match: match)
+        guard let scene = OnlineGameScene(fileNamed: "level1") else { return }
+        scene.match = match
+        scene.size = skView.bounds.size
         scene.scaleMode = .aspectFill
         skView.presentScene(scene)
     }

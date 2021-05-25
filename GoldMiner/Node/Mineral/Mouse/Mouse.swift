@@ -19,7 +19,6 @@ class Mouse: Mineral {
     init() {
         self.walkRange = CGFloat.random(in: 50...100).width
         
-        //let mouseTexture = SKTexture(imageNamed: "mouse")
         let bearAnimatedAtlas = SKTextureAtlas(named: "BearImages")
         let numImages = bearAnimatedAtlas.textureNames.count
         for i in 1...numImages {
@@ -32,7 +31,9 @@ class Mouse: Mineral {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.walkRange = CGFloat.random(in: 50...100).width
+        super.init(coder: aDecoder)
+        self.price = Tuning.mousePrice
     }
     
     func walkAround() {

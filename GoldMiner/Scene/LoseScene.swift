@@ -20,7 +20,7 @@ class LoseScene: SKScene {
             let touchedNode = atPoint(location)
             
             if touchedNode == returnButton {
-                view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                exitToHome()
             }
         }
     }

@@ -83,8 +83,14 @@ class OnlineShopScene: ShopScene {
     
     override func goToNextLevel() {
         let reveal = SKTransition.crossFade(withDuration: 1)
-        let newScene = OnlineGameScene(size: size, match: match)
-        view?.presentScene(newScene, transition: reveal)
+        let level = GameSession.shared.level > 10 ? GameSession.shared.level % 7 : GameSession.shared.level
+        guard let scene = OnlineGameScene(fileNamed: "level\(level)") else {
+            return
+        }
+        scene.match = match
+        scene.size = size
+        scene.scaleMode = .aspectFill
+        view?.presentScene(scene, transition: reveal)
     }
     
     func sendMoneyData() {
@@ -158,11 +164,11 @@ extension OnlineShopScene: GKMatchDelegate {
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
-        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        exitToHome()
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
-        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        exitToHome()
     }
     
     func receiveBought(x: Int) {

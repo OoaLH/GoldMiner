@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A40DAB17265CA2C7000CE9BE /* LevelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40DAB16265CA2C7000CE9BE /* LevelData.swift */; };
+		A40DAB1A265CB59A000CE9BE /* level1.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB19265CB59A000CE9BE /* level1.sks */; };
+		A40DAB20265CC848000CE9BE /* level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB1F265CC848000CE9BE /* level2.sks */; };
+		A40DAB23265CCD60000CE9BE /* level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB22265CCD60000CE9BE /* level3.sks */; };
+		A40DAB26265CCD74000CE9BE /* level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB25265CCD74000CE9BE /* level4.sks */; };
+		A40DAB29265CCD81000CE9BE /* level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB28265CCD81000CE9BE /* level5.sks */; };
+		A40DAB2C265CCD91000CE9BE /* level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB2B265CCD90000CE9BE /* level6.sks */; };
+		A40DAB2F265CCD9B000CE9BE /* level7.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB2E265CCD9B000CE9BE /* level7.sks */; };
+		A40DAB32265CCDA4000CE9BE /* level8.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB31265CCDA4000CE9BE /* level8.sks */; };
+		A40DAB35265CCDAC000CE9BE /* level9.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB34265CCDAC000CE9BE /* level9.sks */; };
+		A40DAB38265CCDB6000CE9BE /* level10.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB37265CCDB6000CE9BE /* level10.sks */; };
 		A475D2032655946D002AE450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2022655946D002AE450 /* AppDelegate.swift */; };
 		A475D2092655946D002AE450 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2082655946D002AE450 /* GameScene.swift */; };
 		A475D20B2655946D002AE450 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D20A2655946D002AE450 /* GameViewController.swift */; };
@@ -52,7 +61,16 @@
 
 /* Begin PBXFileReference section */
 		A40DAB13265C7F5F000CE9BE /* GoldMiner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoldMiner.entitlements; sourceTree = "<group>"; };
-		A40DAB16265CA2C7000CE9BE /* LevelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelData.swift; sourceTree = "<group>"; };
+		A40DAB19265CB59A000CE9BE /* level1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level1.sks; sourceTree = "<group>"; };
+		A40DAB1F265CC848000CE9BE /* level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level2.sks; sourceTree = "<group>"; };
+		A40DAB22265CCD60000CE9BE /* level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level3.sks; sourceTree = "<group>"; };
+		A40DAB25265CCD74000CE9BE /* level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level4.sks; sourceTree = "<group>"; };
+		A40DAB28265CCD81000CE9BE /* level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level5.sks; sourceTree = "<group>"; };
+		A40DAB2B265CCD90000CE9BE /* level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level6.sks; sourceTree = "<group>"; };
+		A40DAB2E265CCD9B000CE9BE /* level7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level7.sks; sourceTree = "<group>"; };
+		A40DAB31265CCDA4000CE9BE /* level8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level8.sks; sourceTree = "<group>"; };
+		A40DAB34265CCDAC000CE9BE /* level9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level9.sks; sourceTree = "<group>"; };
+		A40DAB37265CCDB6000CE9BE /* level10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level10.sks; sourceTree = "<group>"; };
 		A475D1FF2655946D002AE450 /* GoldMiner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldMiner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475D2022655946D002AE450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A475D2082655946D002AE450 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -129,9 +147,9 @@
 		A475D2012655946D002AE450 /* GoldMiner */ = {
 			isa = PBXGroup;
 			children = (
-				A40DAB13265C7F5F000CE9BE /* GoldMiner.entitlements */,
 				A475D2022655946D002AE450 /* AppDelegate.swift */,
 				A475D2392655EE0D002AE450 /* Extension */,
+				A40DAB13265C7F5F000CE9BE /* GoldMiner.entitlements */,
 				A475D21126559470002AE450 /* Info.plist */,
 				A49DC9E6265986BA009B121D /* Launch Screen.storyboard */,
 				A475D23A2655EE23002AE450 /* Model */,
@@ -174,7 +192,6 @@
 				A475D26226571BB0002AE450 /* GameSession.swift */,
 				A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */,
 				A4BE8F02265AEF0700B3020B /* GameMessage.swift */,
-				A40DAB16265CA2C7000CE9BE /* LevelData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,6 +283,16 @@
 				A475D20F26559470002AE450 /* Assets.xcassets */,
 				A49DCA012659EC6A009B121D /* BearImages.atlas */,
 				A49DCA19265A1D96009B121D /* FireParticle.sks */,
+				A40DAB19265CB59A000CE9BE /* level1.sks */,
+				A40DAB1F265CC848000CE9BE /* level2.sks */,
+				A40DAB22265CCD60000CE9BE /* level3.sks */,
+				A40DAB25265CCD74000CE9BE /* level4.sks */,
+				A40DAB28265CCD81000CE9BE /* level5.sks */,
+				A40DAB2B265CCD90000CE9BE /* level6.sks */,
+				A40DAB2E265CCD9B000CE9BE /* level7.sks */,
+				A40DAB31265CCDA4000CE9BE /* level8.sks */,
+				A40DAB34265CCDAC000CE9BE /* level9.sks */,
+				A40DAB37265CCDB6000CE9BE /* level10.sks */,
 				A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */,
 			);
 			path = Resouces;
@@ -328,10 +355,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40DAB2C265CCD91000CE9BE /* level6.sks in Resources */,
+				A40DAB29265CCD81000CE9BE /* level5.sks in Resources */,
 				A49DC9E7265986BA009B121D /* Launch Screen.storyboard in Resources */,
+				A40DAB26265CCD74000CE9BE /* level4.sks in Resources */,
+				A40DAB38265CCDB6000CE9BE /* level10.sks in Resources */,
+				A40DAB32265CCDA4000CE9BE /* level8.sks in Resources */,
+				A40DAB2F265CCD9B000CE9BE /* level7.sks in Resources */,
+				A40DAB20265CC848000CE9BE /* level2.sks in Resources */,
 				A49DCA1A265A1D96009B121D /* FireParticle.sks in Resources */,
+				A40DAB35265CCDAC000CE9BE /* level9.sks in Resources */,
 				A49DCA1D265A1DD7009B121D /* SmokeParticle.sks in Resources */,
+				A40DAB23265CCD60000CE9BE /* level3.sks in Resources */,
 				A475D21026559470002AE450 /* Assets.xcassets in Resources */,
+				A40DAB1A265CB59A000CE9BE /* level1.sks in Resources */,
 				A49DCA022659EC6A009B121D /* BearImages.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,7 +402,6 @@
 				A4BE8F07265B018500B3020B /* OnlineShopScene.swift in Sources */,
 				A49DC9F62659C8DD009B121D /* MediumRock.swift in Sources */,
 				A475D2232655B2E1002AE450 /* Hook.swift in Sources */,
-				A40DAB17265CA2C7000CE9BE /* LevelData.swift in Sources */,
 				A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */,
 				A4BE8EFA265AE16100B3020B /* OnlineGameScene.swift in Sources */,
 				A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */,

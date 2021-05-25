@@ -23,4 +23,8 @@ extension SKScene {
             node.removeFromParent()
         }
     }
+    
+    func exitToHome() {
+        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+    }
 }

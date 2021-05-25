@@ -16,7 +16,10 @@ class DiamondMouse: Mouse {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        self.price = Tuning.mousePrice + Tuning.diamondPrice
+        
+        addChild(diamond)
     }
     
     lazy var diamond: Diamond = {

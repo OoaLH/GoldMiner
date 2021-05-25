@@ -69,8 +69,14 @@ class ShopScene: SKScene {
     
     func goToNextLevel() {
         let reveal = SKTransition.crossFade(withDuration: 1)
-        let newScene = GameScene(size: size)
-        view?.presentScene(newScene, transition: reveal)
+        let level = GameSession.shared.level > 10 ? GameSession.shared.level % 7 : GameSession.shared.level
+        guard let scene = GameScene(fileNamed: "level\(level)") else {
+            return
+        }
+        scene.size = size
+        scene.scaleMode = .aspectFill
+        print(scene.size)
+        view?.presentScene(scene, transition: reveal)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

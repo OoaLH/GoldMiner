@@ -8,15 +8,6 @@
 import SpriteKit
 import GameplayKit
 
-enum PhysicsCategory: UInt32 {
-    case none = 0
-    case mineral = 0b1
-    case hook = 0b10
-    case player = 0b11
-    case wave = 0b100
-    case all = 0xffffffff
-}
-
 class GameScene: SKScene {
     var money: Int = GameSession.shared.money {
         didSet {
@@ -33,7 +24,7 @@ class GameScene: SKScene {
         didSet {
             if time == 0 {
                 removeAction(forKey: "timer")
-                exit()
+                exitLevel()
             }
             timeLabel.text = "time: \(time)"
         }
@@ -49,7 +40,6 @@ class GameScene: SKScene {
     func configureViews() {
         initBackground()
         initPlayers()
-        initMinerals()
         initHooks()
         initLabels()
         initButtons()
@@ -73,51 +63,6 @@ class GameScene: SKScene {
         
         addPlayer(player: player2, at: UIConfig.player2Position)
         player2.hook = hook2
-    }
-    
-    func initMinerals() {
-        let level = GameSession.shared.level - 1
-        for i in LevelData()[level].largeGolds {
-            addLargeGold(at: i)
-        }
-        
-        for i in LevelData()[level].smallRocks {
-            addSmallRock(at: i)
-        }
-        
-        for i in LevelData()[level].mediumRocks {
-            addMediumRock(at: i)
-        }
-        
-        for i in LevelData()[level].randomBags {
-            addRandomBag(at: i)
-        }
-        
-        for i in LevelData()[level].diamonds {
-            addDiamond(at: i)
-        }
-        
-        for i in LevelData()[level].buckets {
-            addBucket(at: i)
-        }
-        
-        for i in LevelData()[level].diamondMice {
-            addDiamondMouse(at: i)
-        }
-        
-        var rand = Int.random(in: 3...7)
-        for _ in 1...rand {
-            let x = Int.random(in: 40..<760)
-            let y = Int.random(in: 40..<280)
-            addSmallGold(at: CGPoint(x: x.width, y: y.height))
-        }
-        
-        rand = Int.random(in: 0...7)
-        for _ in 1...rand {
-            let x = Int.random(in: 40..<760)
-            let y = Int.random(in: 40..<280)
-            addMouse(at: CGPoint(x: x.width, y: y.height))
-        }
     }
     
     func initHooks() {
@@ -255,7 +200,7 @@ class GameScene: SKScene {
         rope.zRotation = angle
     }
     
-    func exit() {
+    func exitLevel() {
         if money >= GameSession.shared.goal {
             win()
         }
@@ -330,7 +275,7 @@ class GameScene: SKScene {
             }
             else if touchedNode == exitButton {
                 removeAction(forKey: "timer")
-                exit()
+                exitLevel()
             }
         }
     }

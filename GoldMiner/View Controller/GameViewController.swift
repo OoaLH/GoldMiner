@@ -20,7 +20,8 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = true
         skView.isMultipleTouchEnabled = true
         view = skView
-        let scene = GameScene(size: skView.bounds.size)
+        guard let scene = GameScene(fileNamed: "level1") else { return }
+        scene.size = skView.bounds.size
         scene.scaleMode = .aspectFill
         skView.presentScene(scene)
     }

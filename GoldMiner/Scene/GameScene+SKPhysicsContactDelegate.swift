@@ -8,6 +8,15 @@
 import SpriteKit
 import GameplayKit
 
+enum PhysicsCategory: UInt32 {
+    case none = 0
+    case mineral = 0b1
+    case hook = 0b10
+    case player = 0b11
+    case wave = 0b100
+    case all = 0xffffffff
+}
+
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
