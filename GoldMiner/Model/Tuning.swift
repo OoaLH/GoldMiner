@@ -35,7 +35,7 @@ struct Tuning {
     static var smallRockPrice: Int = 20
     static var mediumRockPrice: Int = 60
 
-    static var randomBagMoneyRate: Int = 1
+    static var randomBagMoneyRate: Int = 3
     static var randomBagBombRate: Int = 1
     static var randomBagStrengthRate: Int = 1
     static var randomBagMoneyRange: ClosedRange = 50...800

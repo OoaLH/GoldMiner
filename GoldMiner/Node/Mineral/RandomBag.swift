@@ -15,14 +15,17 @@ enum RandomBagContent: Equatable {
     static func choose() -> RandomBagContent {
         let total = Tuning.randomBagMoneyRate + Tuning.randomBagBombRate + Tuning.randomBagStrengthRate
         var num: Int
+        var price: Int
         switch GameSession.shared.mode {
         case .local:
             num = Int.random(in: 0..<total)
+            price = Int.random(in: Tuning.randomBagMoneyRange)
         case .online:
             num = (GameSession.shared.level + GameSession.shared.money) % total
+            let range = Int((Tuning.randomBagMoneyRange.upperBound - Tuning.randomBagMoneyRange.lowerBound) / 2)
+            price = Tuning.randomBagMoneyRange.lowerBound + GameSession.shared.player1Score % range + GameSession.shared.player2Score % range
         }
         if num < Tuning.randomBagMoneyRate {
-            let price = Int.random(in: Tuning.randomBagMoneyRange)
             return .money(price)
         }
         if num < Tuning.randomBagMoneyRate + Tuning.randomBagBombRate {

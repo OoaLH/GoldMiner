@@ -66,7 +66,7 @@ class GameSession {
         
         Tuning.diamondPrice = 600
         
-        Tuning.randomBagMoneyRate = 1
+        Tuning.randomBagMoneyRate = 3
         Tuning.randomBagBombRate = 1
         Tuning.randomBagStrengthRate = 1
         Tuning.randomBagMoneyRange = 50...800

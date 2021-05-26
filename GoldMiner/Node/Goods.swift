@@ -52,8 +52,8 @@ class Goods: SKSpriteNode {
     
     private func increaseLuck() {
         Tuning.randomBagMoneyRate = 1
-        Tuning.randomBagBombRate = 2
-        Tuning.randomBagStrengthRate = 2
+        Tuning.randomBagBombRate = 1
+        Tuning.randomBagStrengthRate = 1
         Tuning.randomBagMoneyRange = 200...800
     }
     
