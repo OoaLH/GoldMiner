@@ -15,14 +15,14 @@ class SmallGold: Mineral {
     init() {
         let goldTexture = SKTexture(imageNamed: "small_gold")
         let textSize = goldTexture.size()
-        let size = CGSize(width: textSize.width.height / 3, height: textSize.height.height / 3)
+        let size = CGSize(width: textSize.width / 5, height: textSize.height / 5)
         super.init(texture: goldTexture, color: .clear, size: size)
         
-        self.price = Tuning.smallGoldPrice
+        price = Tuning.smallGoldPrice
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.price = Tuning.smallGoldPrice
+        price = Tuning.smallGoldPrice
     }
 }

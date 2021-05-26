@@ -8,15 +8,6 @@
 import SpriteKit
 import GameplayKit
 
-enum PhysicsCategory: UInt32 {
-    case none = 0
-    case mineral = 0b1
-    case hook = 0b10
-    case player = 0b11
-    case wave = 0b100
-    case all = 0xffffffff
-}
-
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
@@ -29,7 +20,6 @@ extension GameScene: SKPhysicsContactDelegate {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-        
         if firstBody.categoryBitMask.isMineral && secondBody.categoryBitMask.isHook {
             if let mineral = firstBody.node as? Mineral, let hook = secondBody.node as? Hook, canCatch(hook: hook, mineral: mineral) {
                 hookCaughtMineral(hook: hook, mineral: mineral)
@@ -38,8 +28,8 @@ extension GameScene: SKPhysicsContactDelegate {
                 hookCaughtTNT(hook: hook, bucket: bucket)
             }
         }
-        else if firstBody.categoryBitMask.isMineral && secondBody.categoryBitMask.isPlayer {
-            if let mineral = firstBody.node as? Mineral, let player = secondBody.node as? Player, mineral.hook == player.hook {
+        else if firstBody.categoryBitMask.isHook && secondBody.categoryBitMask.isPlayer {
+            if let hook = firstBody.node as? Hook, let player = secondBody.node as? Player, let mineral = hook.mineral, hook == player.hook {
                 mineralArrived(mineral: mineral, at: player)
             }
         }
@@ -69,7 +59,7 @@ extension GameScene: SKPhysicsContactDelegate {
         mineral.back(vector: vector, duration: duration)
     }
     
-    @objc func hookCaughtTNT(hook: Hook, bucket: Bucket) {
+    func hookCaughtTNT(hook: Hook, bucket: Bucket) {
         hook.back()
         bucket.explode()
     }
@@ -82,6 +72,9 @@ extension GameScene: SKPhysicsContactDelegate {
         money += mineral.price
         player.hook?.empty()
         player.hook?.swing()
+        if mineral.price != 0 {
+            alertPopup(text: "+$\(mineral.price)", at: player.position - CGPoint(x: 40, y: 40))
+        }
         mineral.removeFromParent()
     }
 }

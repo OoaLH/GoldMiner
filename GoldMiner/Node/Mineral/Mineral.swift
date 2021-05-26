@@ -19,7 +19,7 @@ class Mineral: SKSpriteNode {
     weak var hook: Hook?
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        self.price = Tuning.smallGoldPrice
+        price = Tuning.smallGoldPrice
         
         super.init(texture: texture, color: color, size: size)
         
@@ -27,7 +27,7 @@ class Mineral: SKSpriteNode {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.price = Tuning.smallGoldPrice
+        price = Tuning.smallGoldPrice
         super.init(coder: aDecoder)
     }
     
@@ -36,7 +36,7 @@ class Mineral: SKSpriteNode {
             physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.1, size: size)
         }
         physicsBody?.categoryBitMask = PhysicsCategory.mineral.rawValue
-        physicsBody?.contactTestBitMask = PhysicsCategory.player.rawValue
+        physicsBody?.contactTestBitMask = PhysicsCategory.hook.rawValue
         physicsBody?.collisionBitMask = PhysicsCategory.none.rawValue
     }
     

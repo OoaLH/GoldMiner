@@ -23,11 +23,11 @@ class ShopScene: SKScene {
     func initGoods() {
         let num = Int.random(in: 1...5)
         let types = GoodsType.choose(num: num)
-        var x = 100.width
+        var x = 100
         for good in types {
-            let pos = CGPoint(x: x, y: 100.height)
+            let pos = CGPoint(x: x, y: 100)
             addGood(type: good, at: pos)
-            x += 100.width
+            x += 100
         }
     }
     
@@ -53,7 +53,7 @@ class ShopScene: SKScene {
         node.position = good.position - CGPoint(x: 0, y: 20)
         node.text = "$\(good.price)"
         node.fontColor = .systemGreen
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontSize = 12
         addChild(node)
         good.priceLabel = node
@@ -74,8 +74,7 @@ class ShopScene: SKScene {
             return
         }
         scene.size = size
-        scene.scaleMode = .aspectFill
-        print(scene.size)
+        scene.scaleMode = .aspectFit
         view?.presentScene(scene, transition: reveal)
     }
     
@@ -87,6 +86,7 @@ class ShopScene: SKScene {
             if let good = touchedNode as? Goods {
                 if good.price <= GameSession.shared.money {
                     buy(good: good)
+                    alertPopup(text: "-$\(good.price)")
                 }
                 else {
                     alertPopup(text: "not enough money")
@@ -100,7 +100,7 @@ class ShopScene: SKScene {
     
     lazy var nextLevelButton: SKSpriteNode = {
         let node = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
-        node.position = CGPoint(x: 680.width, y: 350.height)
+        node.position = CGPoint(x: 680, y: 350)
         return node
     }()
     
@@ -108,9 +108,9 @@ class ShopScene: SKScene {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .left
         node.text = "money: \(GameSession.shared.money)"
-        node.position = CGPoint(x: 30.width, y: 360.height)
+        node.position = CGPoint(x: 30, y: 360)
         node.fontSize = 14
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
         return node
     }()

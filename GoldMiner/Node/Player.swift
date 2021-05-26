@@ -24,9 +24,11 @@ class Player: SKSpriteNode {
     }
     
     func configurePhysics() {
-        physicsBody = SKPhysicsBody(rectangleOf: size)
+        if let texture = texture {
+            physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.1, size: size)
+        }
         physicsBody?.categoryBitMask = PhysicsCategory.player.rawValue
-        physicsBody?.contactTestBitMask = PhysicsCategory.mineral.rawValue
+        physicsBody?.contactTestBitMask = PhysicsCategory.hook.rawValue
         physicsBody?.collisionBitMask = PhysicsCategory.none.rawValue
     }
     

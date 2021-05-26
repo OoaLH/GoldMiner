@@ -14,7 +14,13 @@ enum RandomBagContent: Equatable {
     
     static func choose() -> RandomBagContent {
         let total = Tuning.randomBagMoneyRate + Tuning.randomBagBombRate + Tuning.randomBagStrengthRate
-        let num = Int.random(in: 0..<total)
+        var num: Int
+        switch GameSession.shared.mode {
+        case .local:
+            num = Int.random(in: 0..<total)
+        case .online:
+            num = (GameSession.shared.level + GameSession.shared.money) % total
+        }
         if num < Tuning.randomBagMoneyRate {
             let price = Int.random(in: Tuning.randomBagMoneyRange)
             return .money(price)
@@ -30,25 +36,31 @@ class RandomBag: Mineral {
     var content: RandomBagContent
     
     override var backSpeed: CGFloat {
-        let speeds: Set = [Tuning.fastSpeed, Tuning.mediumSpeed, Tuning.slowSpeed]
-        return speeds.randomElement() ?? Tuning.mediumSpeed
+        let speeds = [Tuning.fastSpeed, Tuning.mediumSpeed, Tuning.slowSpeed]
+        switch GameSession.shared.mode {
+        case .local:
+            return speeds.randomElement() ?? Tuning.mediumSpeed
+        case .online:
+            let index = (GameSession.shared.level + GameSession.shared.money) % 3
+            return speeds[index]
+        }
     }
     
     init() {
-        self.content = RandomBagContent.choose()
+        content = RandomBagContent.choose()
         
         let bagTexture = SKTexture(imageNamed: "random_bag")
         let textSize = bagTexture.size()
-        let size = CGSize(width: textSize.width.height / 6, height: textSize.height.height / 6)
+        let size = CGSize(width: textSize.width / 6, height: textSize.height / 6)
         super.init(texture: bagTexture, color: .clear, size: size)
         
-        self.price = 0
+        price = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.content = RandomBagContent.choose()
+        content = RandomBagContent.choose()
         super.init(coder: aDecoder)
-        self.price = 0
+        price = 0
     }
     
     func takeEffect() {
@@ -80,5 +92,9 @@ class RandomBag: Mineral {
         Tuning.mediumSpeed = Tuning.hookDefaultSpeed
         Tuning.slowSpeed = Tuning.hookDefaultSpeed
         scene?.alertPopup(text: "strength up")
+    }
+    
+    func getOnlineModeContent() {
+        content = RandomBagContent.choose()
     }
 }

@@ -38,23 +38,21 @@ class GameScene: SKScene {
     }
     
     func configureViews() {
-        initBackground()
+        backgroundColor = .white
         initPlayers()
         initHooks()
+        initMinerals()
         initLabels()
         initButtons()
         initTimer()
         initBombs()
+        
+        NotificationCenter.default.post(name: .startWalk, object: nil)
     }
     
     func configurePhysics() {
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
-    }
-    
-    func initBackground() {
-        backgroundColor = .white
-        addChild(landNode)
     }
     
     func initPlayers() {
@@ -73,6 +71,15 @@ class GameScene: SKScene {
         addHook(hook: hook2)
         addChild(rope2)
         hook2.swing()
+    }
+    
+    func initMinerals() {
+        let rand = Int.random(in: 3...7)
+        for _ in 0..<rand {
+            let x = CGFloat.random(in: 40...760)
+            let y = CGFloat.random(in: 40...280)
+            addSmallGold(at: CGPoint(x: x, y: y))
+        }
     }
     
     func initLabels() {
@@ -192,12 +199,14 @@ class GameScene: SKScene {
         addChild(node)
     }
     
-    func stretchRope(rope: SKSpriteNode, to pos: CGPoint) {
+    func stretchRope(rope: SKSpriteNode, to hook: Hook) {
+        let pos = hook.position
         let offset = pos - rope.position
         let length = offset.length
         let angle = atan2(offset.y, offset.x)
         rope.scale(to: CGSize(width: length, height: 1))
         rope.zRotation = angle
+        hook.zRotation = angle + .pi/2
     }
     
     func exitLevel() {
@@ -214,12 +223,14 @@ class GameScene: SKScene {
         
         let reveal = SKTransition.moveIn(with: .up, duration: 1)
         let newScene = ShopScene(size: size)
+        newScene.scaleMode = .aspectFit
         view?.presentScene(newScene, transition: reveal)
     }
     
     func lose() {
         let reveal = SKTransition.moveIn(with: .down, duration: 1)
         let newScene = LoseScene(size: size)
+        newScene.scaleMode = .aspectFit
         view?.presentScene(newScene, transition: reveal)
     }
     
@@ -231,15 +242,14 @@ class GameScene: SKScene {
     
     func consumeBomb() {
         GameSession.shared.numberOfBomb -= 1
-        // TODO: draw bombs
         let node = bombs.last
         node?.removeFromParent()
         bombs.removeLast()
     }
     
     override func update(_ currentTime: TimeInterval) {
-        stretchRope(rope: rope1, to: hook1.position)
-        stretchRope(rope: rope2, to: hook2.position)
+        stretchRope(rope: rope1, to: hook1)
+        stretchRope(rope: rope2, to: hook2)
         if hook1.outsideOfScreen() && hook1.canCatch {
             hook1.back()
         }
@@ -313,33 +323,33 @@ class GameScene: SKScene {
     
     // MARK: Button
     lazy var player1HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
-        node.position = CGPoint(x: 80.width, y: 70.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        node.position = CGPoint(x: 80, y: 70)
         return node
     }()
     
     lazy var player2HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
-        node.position = CGPoint(x: 720.width, y: 70.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        node.position = CGPoint(x: 720, y: 70)
         return node
     }()
     
     lazy var player1BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
-        node.position = CGPoint(x: 80.width, y: 160.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        node.position = CGPoint(x: 80, y: 160)
         return node
     }()
     
     lazy var player2BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70.width, height: 70.height))
-        node.position = CGPoint(x: 720.width, y: 160.height)
+        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        node.position = CGPoint(x: 720, y: 160)
         return node
     }()
     
     lazy var exitButton: SKSpriteNode = {
         let texture = SKTexture(image: UIImage(systemName: "arrow.right.to.line")!)
-        let node = SKSpriteNode(texture: texture, color: .clear, size: CGSize(width: 20.width, height: 20.height))
-        node.position = CGPoint(x: 680.width, y: 350.height)
+        let node = SKSpriteNode(texture: texture, color: .clear, size: CGSize(width: 20, height: 20))
+        node.position = CGPoint(x: 680, y: 350)
         return node
     }()
     
@@ -350,7 +360,7 @@ class GameScene: SKScene {
         node.text = "player1: \(player1.score)"
         node.position = player1.position - CGPoint(x: 20, y: 0)
         node.fontSize = 12
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
         return node
     }()
@@ -361,7 +371,7 @@ class GameScene: SKScene {
         node.text = "player2: \(player2.score)"
         node.position = player2.position + CGPoint(x: 20, y: 0)
         node.fontSize = 12
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
         return node
     }()
@@ -370,9 +380,9 @@ class GameScene: SKScene {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .left
         node.text = "money: \(money)"
-        node.position = CGPoint(x: 30.width, y: 360.height)
+        node.position = CGPoint(x: 30, y: 360)
         node.fontSize = 14
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
         return node
     }()
@@ -383,7 +393,7 @@ class GameScene: SKScene {
         node.text = "goal: \(GameSession.shared.goal)"
         node.position = totalScoreLabel.position - CGPoint(x: 0, y: 20)
         node.fontSize = 14
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
         return node
     }()
@@ -392,9 +402,9 @@ class GameScene: SKScene {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .left
         node.text = "time: \(time)"
-        node.position = CGPoint(x: 720.width, y: 360.height)
+        node.position = CGPoint(x: 720, y: 360)
         node.fontSize = 14
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
         return node
     }()
@@ -405,15 +415,8 @@ class GameScene: SKScene {
         node.text = "level: \(GameSession.shared.level)"
         node.position = timeLabel.position - CGPoint(x: 0, y: 20)
         node.fontSize = 14
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
-        return node
-    }()
-    
-    //MARK: background
-    lazy var landNode: SKShapeNode = {
-        let node = SKShapeNode(rect: CGRect(x: 0, y: 320.height, width: UIConfig.defaultWidth.width, height: 2))
-        node.fillColor = .brown
         return node
     }()
 }

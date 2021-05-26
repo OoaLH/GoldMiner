@@ -15,14 +15,14 @@ class Diamond: Mineral {
     init() {
         let diamondTexture = SKTexture(imageNamed: "diamond")
         let textSize = diamondTexture.size()
-        let size = CGSize(width: textSize.width.height / 8, height: textSize.height.height / 8)
+        let size = CGSize(width: textSize.width / 8, height: textSize.height / 8)
         super.init(texture: diamondTexture, color: .clear, size: size)
         
-        self.price = Tuning.diamondPrice
+        price = Tuning.diamondPrice
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.price = Tuning.diamondPrice
+        price = Tuning.diamondPrice
     }
 }

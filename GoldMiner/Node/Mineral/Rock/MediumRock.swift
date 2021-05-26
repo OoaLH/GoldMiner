@@ -15,14 +15,14 @@ class MediumRock: Mineral {
     init() {
         let rockTexture = SKTexture(imageNamed: "medium_rock")
         let textSize = rockTexture.size()
-        let size = CGSize(width: textSize.width.height / 4, height: textSize.height.height / 4)
+        let size = CGSize(width: textSize.width / 4, height: textSize.height / 4)
         super.init(texture: rockTexture, color: .clear, size: size)
         
-        self.price = Tuning.mediumRockPrice
+        price = Tuning.mediumRockPrice
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.price = Tuning.mediumRockPrice
+        price = Tuning.mediumRockPrice
     }
 }

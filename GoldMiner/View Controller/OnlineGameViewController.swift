@@ -26,15 +26,14 @@ class OnlineGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GameSession.shared.newSession()
+        GameSession.shared.newSession(mode: .online)
         
         let skView = SKView(frame: view.frame.inset(by: UIConfig.safeAreaInsets))
         skView.ignoresSiblingOrder = true
         view = skView
         guard let scene = OnlineGameScene(fileNamed: "level1") else { return }
         scene.match = match
-        scene.size = skView.bounds.size
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .aspectFit
         skView.presentScene(scene)
     }
 

@@ -11,14 +11,14 @@ class SmallRock: Mineral {
     init() {
         let rockTexture = SKTexture(imageNamed: "small_rock")
         let textSize = rockTexture.size()
-        let size = CGSize(width: textSize.width.height / 4, height: textSize.height.height / 4)
+        let size = CGSize(width: textSize.width / 4, height: textSize.height / 4)
         super.init(texture: rockTexture, color: .clear, size: size)
         
-        self.price = Tuning.smallRockPrice
+        price = Tuning.smallRockPrice
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.price = Tuning.smallRockPrice
+        price = Tuning.smallRockPrice
     }
 }

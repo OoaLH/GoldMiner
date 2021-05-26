@@ -21,8 +21,7 @@ class GameViewController: UIViewController {
         skView.isMultipleTouchEnabled = true
         view = skView
         guard let scene = GameScene(fileNamed: "level1") else { return }
-        scene.size = skView.bounds.size
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .aspectFit
         skView.presentScene(scene)
     }
 

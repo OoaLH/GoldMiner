@@ -19,8 +19,8 @@ class Hook: SKSpriteNode {
     init(player: Player) {
         self.player = player
         
-        let texture = SKTexture(imageNamed: "projectile")
-        super.init(texture: texture, color: .clear, size: texture.size())
+        let texture = SKTexture(imageNamed: "hook")
+        super.init(texture: texture, color: .clear, size: CGSize(width: 19.8, height: 18.8))
         
         configurePhysics()
     }
@@ -30,7 +30,9 @@ class Hook: SKSpriteNode {
     }
     
     func configurePhysics() {
-        physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
+        if let texture = texture {
+            physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.1, size: size)
+        }
         physicsBody?.categoryBitMask = PhysicsCategory.hook.rawValue
         physicsBody?.contactTestBitMask = PhysicsCategory.mineral.rawValue
         physicsBody?.collisionBitMask = PhysicsCategory.none.rawValue
@@ -38,7 +40,7 @@ class Hook: SKSpriteNode {
     }
     
     func outsideOfScreen() -> Bool {
-        return position.x > UIConfig.realWidth || position.x < 0 || position.y > UIConfig.realHeight || position.y < 0
+        return position.x > UIConfig.defaultWidth || position.x < 0 || position.y > UIConfig.defaultHeight || position.y < 0
     }
     
     func swing() {
@@ -108,13 +110,13 @@ class Hook: SKSpriteNode {
         
         let leftPath = UIBezierPath()
         leftPath.addArc(withCenter: player.position, radius: Tuning.hookShortestLength, startAngle: Tuning.minHookAngle, endAngle: Tuning.maxHookAngle, clockwise: false)
-        let leftAction = SKAction.follow(leftPath.cgPath, asOffset: false, orientToPath: true, speed: Tuning.hookSwingSpeed)
+        let leftAction = SKAction.follow(leftPath.cgPath, asOffset: false, orientToPath: false, speed: Tuning.hookSwingSpeed)
         
         let waitAction = SKAction.wait(forDuration: Tuning.movePauseDuration)
         
         let rightPath = UIBezierPath()
         rightPath.addArc(withCenter: player.position, radius: Tuning.hookShortestLength, startAngle: Tuning.maxHookAngle, endAngle: Tuning.minHookAngle, clockwise: true)
-        let rightAction = SKAction.follow(rightPath.cgPath, asOffset: false, orientToPath: true, speed: Tuning.hookSwingSpeed)
+        let rightAction = SKAction.follow(rightPath.cgPath, asOffset: false, orientToPath: false, speed: Tuning.hookSwingSpeed)
         
         let swingAction = SKAction.sequence([leftAction, waitAction, rightAction, waitAction])
         return SKAction.sequence([readyForShootBlock, SKAction.repeatForever(swingAction)])

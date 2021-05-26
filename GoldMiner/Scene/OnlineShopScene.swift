@@ -43,21 +43,21 @@ class OnlineShopScene: ShopScene {
     
     override func configureViews() {
         backgroundColor = .white
+        isUserInteractionEnabled = false
         if role == Role.player1 {
             initGoods()
         }
         initLabels()
-        initTimer()
     }
     
     override func initGoods() {
         let num = Int.random(in: 1...5)
         let types = GoodsType.choose(num: num)
-        var x = 100.width
+        var x = 100
         for good in types {
-            let pos = CGPoint(x: x, y: 100.height)
+            let pos = CGPoint(x: x, y: 100)
             addGood(type: good, at: pos)
-            x += 100.width
+            x += 100
         }
         sendGoodsData(types: types)
     }
@@ -74,6 +74,7 @@ class OnlineShopScene: ShopScene {
     override func initLabels() {
         super.initLabels()
         addChild(timeLabel)
+        addChild(loadingLabel)
     }
     
     override func buy(good: Goods) {
@@ -89,7 +90,7 @@ class OnlineShopScene: ShopScene {
         }
         scene.match = match
         scene.size = size
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .aspectFit
         view?.presentScene(scene, transition: reveal)
     }
     
@@ -109,8 +110,14 @@ class OnlineShopScene: ShopScene {
         sendData(data: data)
     }
     
+    func sendGoodsReply() {
+        var message = Message(type: .goodsReply, x: 0, y: 0)
+        let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
+        sendData(data: data)
+    }
+    
     func sendBuyData(good: Goods) {
-        var message = Message(type: .bought, x: Float(good.position.x.realWidth/100), y: 0)
+        var message = Message(type: .bought, x: Float(good.position.x/100), y: 0)
         let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
         sendData(data: data)
     }
@@ -137,10 +144,21 @@ class OnlineShopScene: ShopScene {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .left
         node.text = "time: \(time)"
-        node.position = CGPoint(x: 720.width, y: 360.height)
+        node.position = CGPoint(x: 720, y: 360)
         node.fontSize = 14
-        node.fontName = "PingFangTC-Semibold"
+        node.fontName = "Chalkduster"
         node.fontColor = .brown
+        return node
+    }()
+    
+    lazy var loadingLabel: SKLabelNode = {
+        let node = SKLabelNode()
+        node.horizontalAlignmentMode = .center
+        node.text = "Loading..."
+        node.fontSize = 20
+        node.fontName = "Chalkduster"
+        node.fontColor = .red
+        node.position = CGPoint(x: 400, y: 186)
         return node
     }()
 }
@@ -156,6 +174,8 @@ extension OnlineShopScene: GKMatchDelegate {
             receiveBought(x: Int(message.x))
         case .goods:
             receiveGoods(types: String(Int(message.x)))
+        case .goodsReply:
+            start()
         case .money:
             receiveMoneyData(score1: Int(message.x), score2: Int(message.y))
         default:
@@ -177,13 +197,21 @@ extension OnlineShopScene: GKMatchDelegate {
     }
     
     func receiveGoods(types: String) {
-        var x = 100.width
+        var x = 100
         for char in types {
-            let pos = CGPoint(x: x, y: 100.height)
+            let pos = CGPoint(x: x, y: 100)
             let type = GoodsType(rawValue: char.wholeNumberValue ?? 1) ?? .bomb
             addGood(type: type, at: pos)
-            x += 100.width
+            x += 100
         }
+        sendGoodsReply()
+        start()
+    }
+    
+    func start() {
+        loadingLabel.removeFromParent()
+        initTimer()
+        isUserInteractionEnabled = true
     }
     
     func receiveMoneyData(score1: Int, score2: Int) {

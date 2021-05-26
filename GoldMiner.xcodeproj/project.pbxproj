@@ -17,6 +17,9 @@
 		A40DAB32265CCDA4000CE9BE /* level8.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB31265CCDA4000CE9BE /* level8.sks */; };
 		A40DAB35265CCDAC000CE9BE /* level9.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB34265CCDAC000CE9BE /* level9.sks */; };
 		A40DAB38265CCDB6000CE9BE /* level10.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB37265CCDB6000CE9BE /* level10.sks */; };
+		A413863A265DC41600EDA30C /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A4138639265DC41600EDA30C /* FireParticle.sks */; };
+		A45BA25B265EC92F00EFB92D /* BitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45BA25A265EC92F00EFB92D /* BitMask.swift */; };
+		A47550AD265E1D7300FE29B3 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47550AC265E1D7300FE29B3 /* NotificationExtension.swift */; };
 		A475D2032655946D002AE450 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2022655946D002AE450 /* AppDelegate.swift */; };
 		A475D2092655946D002AE450 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D2082655946D002AE450 /* GameScene.swift */; };
 		A475D20B2655946D002AE450 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A475D20A2655946D002AE450 /* GameViewController.swift */; };
@@ -46,10 +49,7 @@
 		A49DC9F32659C7B8009B121D /* LargeGold.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9F22659C7B8009B121D /* LargeGold.swift */; };
 		A49DC9F62659C8DD009B121D /* MediumRock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9F52659C8DD009B121D /* MediumRock.swift */; };
 		A49DC9FE2659D2E2009B121D /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9FD2659D2E2009B121D /* Bucket.swift */; };
-		A49DCA022659EC6A009B121D /* BearImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA012659EC6A009B121D /* BearImages.atlas */; };
 		A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DCA052659FF44009B121D /* SKSceneExtension.swift */; };
-		A49DCA1A265A1D96009B121D /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA19265A1D96009B121D /* FireParticle.sks */; };
-		A49DCA1D265A1DD7009B121D /* SmokeParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */; };
 		A4BE8EF3265AC64800B3020B /* GameCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */; };
 		A4BE8EF6265AC6F100B3020B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EF5265AC6F000B3020B /* HomeViewController.swift */; };
 		A4BE8EFA265AE16100B3020B /* OnlineGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BE8EF9265AE16100B3020B /* OnlineGameScene.swift */; };
@@ -71,6 +71,9 @@
 		A40DAB31265CCDA4000CE9BE /* level8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level8.sks; sourceTree = "<group>"; };
 		A40DAB34265CCDAC000CE9BE /* level9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level9.sks; sourceTree = "<group>"; };
 		A40DAB37265CCDB6000CE9BE /* level10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level10.sks; sourceTree = "<group>"; };
+		A4138639265DC41600EDA30C /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
+		A45BA25A265EC92F00EFB92D /* BitMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMask.swift; sourceTree = "<group>"; };
+		A47550AC265E1D7300FE29B3 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
 		A475D1FF2655946D002AE450 /* GoldMiner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoldMiner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A475D2022655946D002AE450 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A475D2082655946D002AE450 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -102,10 +105,7 @@
 		A49DC9F22659C7B8009B121D /* LargeGold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeGold.swift; sourceTree = "<group>"; };
 		A49DC9F52659C8DD009B121D /* MediumRock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumRock.swift; sourceTree = "<group>"; };
 		A49DC9FD2659D2E2009B121D /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
-		A49DCA012659EC6A009B121D /* BearImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = BearImages.atlas; path = GoldMiner/Resouces/BearImages.atlas; sourceTree = SOURCE_ROOT; };
 		A49DCA052659FF44009B121D /* SKSceneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSceneExtension.swift; sourceTree = "<group>"; };
-		A49DCA19265A1D96009B121D /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
-		A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeParticle.sks; sourceTree = "<group>"; };
 		A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterHelper.swift; sourceTree = "<group>"; };
 		A4BE8EF5265AC6F000B3020B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A4BE8EF9265AE16100B3020B /* OnlineGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineGameScene.swift; sourceTree = "<group>"; };
@@ -180,6 +180,7 @@
 				A475D21926559C9B002AE450 /* BitMaskExtension.swift */,
 				A49DC9EA26598834009B121D /* DimensionExtension.swift */,
 				A49DCA052659FF44009B121D /* SKSceneExtension.swift */,
+				A47550AC265E1D7300FE29B3 /* NotificationExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -192,6 +193,7 @@
 				A475D26226571BB0002AE450 /* GameSession.swift */,
 				A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */,
 				A4BE8F02265AEF0700B3020B /* GameMessage.swift */,
+				A45BA25A265EC92F00EFB92D /* BitMask.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,9 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				A475D20F26559470002AE450 /* Assets.xcassets */,
-				A49DCA012659EC6A009B121D /* BearImages.atlas */,
-				A49DCA19265A1D96009B121D /* FireParticle.sks */,
 				A40DAB19265CB59A000CE9BE /* level1.sks */,
+				A4138639265DC41600EDA30C /* FireParticle.sks */,
 				A40DAB1F265CC848000CE9BE /* level2.sks */,
 				A40DAB22265CCD60000CE9BE /* level3.sks */,
 				A40DAB25265CCD74000CE9BE /* level4.sks */,
@@ -293,7 +294,6 @@
 				A40DAB31265CCDA4000CE9BE /* level8.sks */,
 				A40DAB34265CCDAC000CE9BE /* level9.sks */,
 				A40DAB37265CCDB6000CE9BE /* level10.sks */,
-				A49DCA1C265A1DD7009B121D /* SmokeParticle.sks */,
 			);
 			path = Resouces;
 			sourceTree = "<group>";
@@ -357,19 +357,17 @@
 			files = (
 				A40DAB2C265CCD91000CE9BE /* level6.sks in Resources */,
 				A40DAB29265CCD81000CE9BE /* level5.sks in Resources */,
+				A413863A265DC41600EDA30C /* FireParticle.sks in Resources */,
 				A49DC9E7265986BA009B121D /* Launch Screen.storyboard in Resources */,
 				A40DAB26265CCD74000CE9BE /* level4.sks in Resources */,
 				A40DAB38265CCDB6000CE9BE /* level10.sks in Resources */,
 				A40DAB32265CCDA4000CE9BE /* level8.sks in Resources */,
 				A40DAB2F265CCD9B000CE9BE /* level7.sks in Resources */,
 				A40DAB20265CC848000CE9BE /* level2.sks in Resources */,
-				A49DCA1A265A1D96009B121D /* FireParticle.sks in Resources */,
 				A40DAB35265CCDAC000CE9BE /* level9.sks in Resources */,
-				A49DCA1D265A1DD7009B121D /* SmokeParticle.sks in Resources */,
 				A40DAB23265CCD60000CE9BE /* level3.sks in Resources */,
 				A475D21026559470002AE450 /* Assets.xcassets in Resources */,
 				A40DAB1A265CB59A000CE9BE /* level1.sks in Resources */,
-				A49DCA022659EC6A009B121D /* BearImages.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,8 +405,10 @@
 				A475D23F2655EEF1002AE450 /* Mouse.swift in Sources */,
 				A4BE8EF3265AC64800B3020B /* GameCenterHelper.swift in Sources */,
 				A475D2332655C4F3002AE450 /* SmallGold.swift in Sources */,
+				A45BA25B265EC92F00EFB92D /* BitMask.swift in Sources */,
 				A475D2032655946D002AE450 /* AppDelegate.swift in Sources */,
 				A49DC9F02659C787009B121D /* MediumGold.swift in Sources */,
+				A47550AD265E1D7300FE29B3 /* NotificationExtension.swift in Sources */,
 				A475D26026571B09002AE450 /* UIConfig.swift in Sources */,
 				A475D269265722DF002AE450 /* LoseScene.swift in Sources */,
 				A475D2302655C0F6002AE450 /* Tuning.swift in Sources */,
@@ -543,7 +543,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -564,7 +564,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

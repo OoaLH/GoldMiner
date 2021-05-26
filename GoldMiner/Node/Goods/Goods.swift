@@ -18,7 +18,7 @@ class Goods: SKSpriteNode {
         self.price = Int.random(in: 10...500)
         self.type = type
         let texture = type.texture
-        super.init(texture: texture, color: .clear, size: CGSize(width: 100.width, height: 100.width))
+        super.init(texture: texture, color: .clear, size: CGSize(width: 100, height: 100))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,9 +45,9 @@ class Goods: SKSpriteNode {
     }
     
     private func increasePower() {
-        Tuning.fastSpeed = 160.height
-        Tuning.mediumSpeed = 115.height
-        Tuning.slowSpeed = 90.height
+        Tuning.fastSpeed = 160
+        Tuning.mediumSpeed = 115
+        Tuning.slowSpeed = 90
     }
     
     // TODO: buy goods

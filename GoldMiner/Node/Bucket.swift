@@ -13,14 +13,14 @@ class Bucket: SKSpriteNode {
     init() {
         let texture = SKTexture(imageNamed: "bucket")
         let textSize = texture.size()
-        let size = CGSize(width: textSize.width.height / 3, height: textSize.height.height / 3)
+        let size = CGSize(width: textSize.width / 3, height: textSize.height / 3)
         super.init(texture: texture, color: .clear, size: size)
         
         configurePhysics()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     func configurePhysics() {
@@ -42,7 +42,7 @@ class Bucket: SKSpriteNode {
             fireParticles.position = CGPoint(x: 0, y: 0)
             addChild(fireParticles)
         }
-        let action = SKAction.scale(by: 100, duration: 1)
+        let action = SKAction.scale(by: 300, duration: 1)
         wave.run(action) {
             self.removeFromParent()
         }

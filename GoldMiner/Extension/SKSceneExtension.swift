@@ -8,12 +8,12 @@
 import SpriteKit
 
 extension SKScene {
-    func alertPopup(text: String) {
+    func alertPopup(text: String, at pos: CGPoint = CGPoint(x: UIConfig.defaultWidth / 2, y: UIConfig.defaultHeight / 2)) {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .center
         node.text = text
-        node.position = CGPoint(x: 400.width, y: 186.height)
-        node.fontName = "PingFangTC-Semibold"
+        node.position = pos
+        node.fontName = "Chalkduster"
         node.fontSize = 20
         node.fontColor = .red
         addChild(node)

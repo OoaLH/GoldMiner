@@ -32,6 +32,24 @@ extension CGFloat: Dimension {
     }
 }
 
+extension Float: Dimension {
+    var height: CGFloat {
+        return CGFloat(self) * UIConfig.realHeight / UIConfig.defaultHeight
+    }
+    
+    var width: CGFloat {
+        return CGFloat(self) * UIConfig.realWidth / UIConfig.defaultWidth
+    }
+    
+    var realHeight: CGFloat {
+        return CGFloat(self) * UIConfig.defaultHeight / UIConfig.realHeight
+    }
+    
+    var realWidth: CGFloat {
+        return CGFloat(self) * UIConfig.defaultWidth / UIConfig.realWidth
+    }
+}
+
 extension Double: Dimension {
     var height: CGFloat {
         return CGFloat(self) * UIConfig.realHeight / UIConfig.defaultHeight

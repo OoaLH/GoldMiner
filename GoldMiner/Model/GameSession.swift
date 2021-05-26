@@ -7,10 +7,17 @@
 
 import Foundation
 
+enum GameMode {
+    case local
+    case online
+}
+
 class GameSession {
     static let shared = GameSession()
     
     private init() {}
+    
+    var mode: GameMode = .local
     
     var numberOfBomb: Int = 0
     
@@ -36,7 +43,8 @@ class GameSession {
         recoverTuning()
     }
     
-    func newSession() {
+    func newSession(mode: GameMode = .local) {
+        self.mode = mode
         numberOfBomb = 0
         money = 0
         player1Score = 0

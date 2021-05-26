@@ -1,16 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "projectile.png",
+      "filename" : "B85D9FE6-42D6-4658-B9D9-99D65E5ED975 3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "projectile@2x.png",
+      "filename" : "B85D9FE6-42D6-4658-B9D9-99D65E5ED975 3@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "B85D9FE6-42D6-4658-B9D9-99D65E5ED975 3@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

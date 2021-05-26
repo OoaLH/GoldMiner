@@ -17,7 +17,7 @@ extension UInt32 {
     }
     
     var isPlayer: Bool {
-        return self == 0b11
+        return self == 0b101
     }
     
     var isWave: Bool {

@@ -11,8 +11,15 @@ enum MessageType: Int {
     case bombed = 0
     case shot
     case bought
+    
     case goods
+    case goodsReply
+    
     case money
+    
+    case smallGold
+    case smallGoldReply
+    case smallGoldFinish
 }
 
 struct Message {

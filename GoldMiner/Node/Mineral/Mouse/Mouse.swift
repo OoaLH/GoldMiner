@@ -8,7 +8,7 @@
 import SpriteKit
 
 class Mouse: Mineral {
-    var walkRange: CGFloat
+    var walkRange: CGFloat = 0
     
     var walkFrames: [SKTexture] = []
     
@@ -17,26 +17,43 @@ class Mouse: Mineral {
     }
     
     init() {
-        self.walkRange = CGFloat.random(in: 50...100).width
+        walkRange = CGFloat.random(in: 50...100)
         
-        let bearAnimatedAtlas = SKTextureAtlas(named: "BearImages")
-        let numImages = bearAnimatedAtlas.textureNames.count
+        let atlas = SKTextureAtlas(named: "mouse")
+        let numImages = atlas.textureNames.count
         for i in 1...numImages {
-            let bearTextureName = "bear\(i)"
-            walkFrames.append(bearAnimatedAtlas.textureNamed(bearTextureName))
+            let textureName = "mouse\(i)"
+            walkFrames.append(atlas.textureNamed(textureName))
         }
         
-        super.init(texture: walkFrames[0], color: .clear, size: CGSize(width: 30, height: 20))
-        self.price = Tuning.mousePrice
+        super.init(texture: walkFrames[0], color: .clear, size: CGSize(width: 31.4, height: 16.8))
+        price = Tuning.mousePrice
+        walkAround()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.walkRange = CGFloat.random(in: 50...100).width
         super.init(coder: aDecoder)
-        self.price = Tuning.mousePrice
+        price = Tuning.mousePrice
+        walkRange = CGFloat(self.userData?["range"] as? Float ?? 100)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(startWalk(_:)), name: .startWalk, object: nil)
+    }
+    
+    @objc func startWalk(_ notification: Notification) {
+        moveAround()
     }
     
     func walkAround() {
+        moveAround()
+        
+        let frames = SKAction.animate(with: walkFrames,
+                                      timePerFrame: 0.1,
+                                      resize: false,
+                                      restore: true)
+        run(SKAction.repeatForever(frames), withKey:"walking")
+    }
+    
+    func moveAround() {
         let duration = TimeInterval(self.walkRange / Tuning.mouseWalkSpeed)
         let mirror = SKAction.run {
             self.xScale = -self.xScale
@@ -46,12 +63,6 @@ class Mouse: Mineral {
         let rightAction = SKAction.moveBy(x: self.walkRange, y: 0, duration: duration)
         let action = SKAction.sequence([leftAction, mirror, waitAction, rightAction, mirror, waitAction])
         run(SKAction.repeatForever(action))
-        
-        let frames = SKAction.animate(with: walkFrames,
-                                      timePerFrame: 0.1,
-                                      resize: false,
-                                      restore: true)
-        run(SKAction.repeatForever(frames), withKey:"walkingInPlaceBear")
     }
     
     override func back(vector: CGVector, duration: TimeInterval) {

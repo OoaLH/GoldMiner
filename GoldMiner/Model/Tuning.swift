@@ -8,27 +8,27 @@
 import UIKit
 
 struct Tuning {
-    static let movePauseDuration: Double = 0.2
+    static let movePauseDuration: Double = 0.1
     static let gameDuration: Int = 60
 
-    static let hookDefaultSpeed: CGFloat = 300.0.height
+    static let hookDefaultSpeed: CGFloat = 300.0
     static let hookSwingSpeed: CGFloat = 60.0
-    static let hookShortestLength: CGFloat = 30.0.height
-    static let hookLongestLength: CGFloat = 500.height
+    static let hookShortestLength: CGFloat = 40.0
+    static let hookLongestLength: CGFloat = 500
     static let maxHookAngle: CGFloat = -.pi * 7 / 8
     static let minHookAngle: CGFloat = -.pi / 8
 
-    static var fastSpeed: CGFloat = 100.height
-    static var mediumSpeed: CGFloat = 55.height
-    static var slowSpeed: CGFloat = 30.height
+    static var fastSpeed: CGFloat = 100
+    static var mediumSpeed: CGFloat = 55
+    static var slowSpeed: CGFloat = 30
 
     static let smallGoldPrice: Int = 50
-    static let mediumGoldPrice: Int = 250
-    static let largeGoldPrice: Int = 500
+    static let mediumGoldPrice: Int = 100
+    static let largeGoldPrice: Int = 250
 
     static var diamondPrice: Int = 600
 
-    static let mouseWalkSpeed: CGFloat = 20.width
+    static let mouseWalkSpeed: CGFloat = 50
     static let mousePauseDuration: Double = 0.5
     static let mousePrice: Int = 2
 

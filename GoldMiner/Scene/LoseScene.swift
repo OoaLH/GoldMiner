@@ -28,13 +28,13 @@ class LoseScene: SKScene {
     lazy var loseLabel: SKLabelNode = {
         let node = SKLabelNode()
         node.text = "you lose"
-        node.position = CGPoint(x: 400.width, y: 100.height)
+        node.position = CGPoint(x: 400, y: 100)
         return node
     }()
     
     lazy var returnButton: SKSpriteNode = {
         let node = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
-        node.position = CGPoint(x: 680.width, y: 350.height)
+        node.position = CGPoint(x: 680, y: 350)
         return node
     }()
 }
