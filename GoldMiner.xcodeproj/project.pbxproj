@@ -130,9 +130,9 @@
 		A475D1F62655946D002AE450 = {
 			isa = PBXGroup;
 			children = (
+				A475D24D2656C14A002AE450 /* Frameworks */,
 				A475D2012655946D002AE450 /* GoldMiner */,
 				A475D2002655946D002AE450 /* Products */,
-				A475D24D2656C14A002AE450 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,11 +164,11 @@
 		A475D2382655EDEC002AE450 /* Node */ = {
 			isa = PBXGroup;
 			children = (
-				A475D2512656EEE9002AE450 /* Goods */,
-				A475D2412655EFC7002AE450 /* Mineral */,
-				A475D2222655B2E1002AE450 /* Hook.swift */,
-				A475D2252655B422002AE450 /* Player.swift */,
 				A49DC9FD2659D2E2009B121D /* Bucket.swift */,
+				A475D25C2656F949002AE450 /* Goods.swift */,
+				A475D2222655B2E1002AE450 /* Hook.swift */,
+				A475D2412655EFC7002AE450 /* Mineral */,
+				A475D2252655B422002AE450 /* Player.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -188,12 +188,13 @@
 		A475D23A2655EE23002AE450 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A475D22F2655C0F6002AE450 /* Tuning.swift */,
-				A475D25F26571B09002AE450 /* UIConfig.swift */,
-				A475D26226571BB0002AE450 /* GameSession.swift */,
+				A45BA25A265EC92F00EFB92D /* BitMask.swift */,
 				A4BE8EF2265AC64800B3020B /* GameCenterHelper.swift */,
 				A4BE8F02265AEF0700B3020B /* GameMessage.swift */,
-				A45BA25A265EC92F00EFB92D /* BitMask.swift */,
+				A475D26226571BB0002AE450 /* GameSession.swift */,
+				A475D2572656EF52002AE450 /* GoodsType.swift */,
+				A475D22F2655C0F6002AE450 /* Tuning.swift */,
+				A475D25F26571B09002AE450 /* UIConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,15 +243,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A475D2512656EEE9002AE450 /* Goods */ = {
-			isa = PBXGroup;
-			children = (
-				A475D2572656EF52002AE450 /* GoodsType.swift */,
-				A475D25C2656F949002AE450 /* Goods.swift */,
-			);
-			path = Goods;
-			sourceTree = "<group>";
-		};
 		A49DC9F92659C998009B121D /* Rock */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,8 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				A475D20F26559470002AE450 /* Assets.xcassets */,
-				A40DAB19265CB59A000CE9BE /* level1.sks */,
 				A4138639265DC41600EDA30C /* FireParticle.sks */,
+				A40DAB19265CB59A000CE9BE /* level1.sks */,
 				A40DAB1F265CC848000CE9BE /* level2.sks */,
 				A40DAB22265CCD60000CE9BE /* level3.sks */,
 				A40DAB25265CCD74000CE9BE /* level4.sks */,

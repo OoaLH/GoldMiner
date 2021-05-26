@@ -17,7 +17,6 @@ class GameViewController: UIViewController {
         GameSession.shared.newSession()
         
         let skView = SKView(frame: view.frame.inset(by: UIConfig.safeAreaInsets))
-        skView.ignoresSiblingOrder = true
         skView.isMultipleTouchEnabled = true
         view = skView
         guard let scene = GameScene(fileNamed: "level1") else { return }

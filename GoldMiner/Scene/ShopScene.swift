@@ -14,10 +14,18 @@ class ShopScene: SKScene {
     }
     
     func configureViews() {
-        backgroundColor = .white
+        initBackground()
         initGoods()
         initLabels()
         initButtons()
+    }
+    
+    func initBackground() {
+        let node = SKSpriteNode(imageNamed: "shop")
+        node.position = CGPoint(x: 400, y: 196)
+        node.size = CGSize(width: 800, height: 400)
+        node.zPosition = -1
+        addChild(node)
     }
     
     func initGoods() {
@@ -99,8 +107,9 @@ class ShopScene: SKScene {
     }
     
     lazy var nextLevelButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
-        node.position = CGPoint(x: 680, y: 350)
+        let node = SKSpriteNode(imageNamed: "exit")
+        node.size = CGSize(width: 40, height: 40)
+        node.position = CGPoint(x: 680, y: 360)
         return node
     }()
     

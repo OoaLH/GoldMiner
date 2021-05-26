@@ -21,7 +21,7 @@ class Hook: SKSpriteNode {
         
         let texture = SKTexture(imageNamed: "hook")
         super.init(texture: texture, color: .clear, size: CGSize(width: 19.8, height: 18.8))
-        
+        zPosition = 1
         configurePhysics()
     }
     

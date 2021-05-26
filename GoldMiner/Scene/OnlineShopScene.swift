@@ -24,7 +24,7 @@ class OnlineShopScene: ShopScene {
     
     var role: UInt32
     
-    var goods: [Goods] = []
+    var goods: [Goods?] = []
     
     init(match: GKMatch, size: CGSize, role: UInt32) {
         self.match = match
@@ -79,6 +79,8 @@ class OnlineShopScene: ShopScene {
     
     override func buy(good: Goods) {
         sendBuyData(good: good)
+        let index = Int(good.position.x / 100) - 1
+        goods[index] = nil
         super.buy(good: good)
     }
     
@@ -192,8 +194,10 @@ extension OnlineShopScene: GKMatchDelegate {
     }
     
     func receiveBought(x: Int) {
-        let good = goods[x - 1]
-        super.buy(good: good)
+        if let good = goods[x - 1] {
+            super.buy(good: good)
+            goods[x - 1] = nil
+        }
     }
     
     func receiveGoods(types: String) {

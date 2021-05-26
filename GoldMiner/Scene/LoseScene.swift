@@ -10,7 +10,9 @@ import GameplayKit
 
 class LoseScene: SKScene {
     override func sceneDidLoad() {
+        backgroundColor = .white
         addChild(loseLabel)
+        addChild(scoreLabel)
         addChild(returnButton)
     }
     
@@ -28,13 +30,27 @@ class LoseScene: SKScene {
     lazy var loseLabel: SKLabelNode = {
         let node = SKLabelNode()
         node.text = "you lose"
-        node.position = CGPoint(x: 400, y: 100)
+        node.fontName = "Chalkduster"
+        node.fontSize = 40
+        node.fontColor = .red
+        node.position = CGPoint(x: 400, y: 300)
+        return node
+    }()
+    
+    lazy var scoreLabel: SKLabelNode = {
+        let node = SKLabelNode()
+        node.text = "score: \(GameSession.shared.money)"
+        node.fontName = "Chalkduster"
+        node.fontSize = 40
+        node.fontColor = .red
+        node.position = CGPoint(x: 400, y: 150)
         return node
     }()
     
     lazy var returnButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
-        node.position = CGPoint(x: 680, y: 350)
+        let texture = SKTexture(imageNamed: "exit")
+        let node = SKSpriteNode(texture: texture, color: .clear, size: CGSize(width: 40, height: 40))
+        node.position = CGPoint(x: 680, y: 360)
         return node
     }()
 }

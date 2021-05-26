@@ -50,7 +50,6 @@ class Goods: SKSpriteNode {
         Tuning.slowSpeed = 90
     }
     
-    // TODO: buy goods
     private func increaseLuck() {
         Tuning.randomBagMoneyRate = 1
         Tuning.randomBagBombRate = 2

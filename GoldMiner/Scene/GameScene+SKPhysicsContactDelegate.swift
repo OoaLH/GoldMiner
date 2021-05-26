@@ -57,6 +57,8 @@ extension GameScene: SKPhysicsContactDelegate {
         let vector = CGVector(dx: offset.x, dy: offset.y)
         mineral.hook = hook
         mineral.back(vector: vector, duration: duration)
+        
+        hook.player.drag()
     }
     
     func hookCaughtTNT(hook: Hook, bucket: Bucket) {
@@ -76,5 +78,7 @@ extension GameScene: SKPhysicsContactDelegate {
             alertPopup(text: "+$\(mineral.price)", at: player.position - CGPoint(x: 40, y: 40))
         }
         mineral.removeFromParent()
+        
+        player.stopDrag()
     }
 }

@@ -38,7 +38,7 @@ class GameScene: SKScene {
     }
     
     func configureViews() {
-        backgroundColor = .white
+        initBackground()
         initPlayers()
         initHooks()
         initMinerals()
@@ -53,6 +53,14 @@ class GameScene: SKScene {
     func configurePhysics() {
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
+    }
+    
+    func initBackground() {
+        let node = SKSpriteNode(imageNamed: "background")
+        node.position = CGPoint(x: 400, y: 196)
+        node.size = CGSize(width: 800, height: 400)
+        node.zPosition = -1
+        addChild(node)
     }
     
     func initPlayers() {
@@ -97,6 +105,7 @@ class GameScene: SKScene {
         addChild(player1BombButton)
         addChild(player2BombButton)
         addChild(exitButton)
+        addChild(closeButton)
     }
     
     func initTimer() {
@@ -109,7 +118,7 @@ class GameScene: SKScene {
     }
     
     func initBombs() {
-        var pos = player1.position + CGPoint(x: 20, y: 0)
+        var pos = player1.position + CGPoint(x: 40, y: 0)
         for _ in 0..<GameSession.shared.numberOfBomb {
             addBomb(at: pos)
             pos = pos + CGPoint(x: 20, y: 0)
@@ -287,6 +296,9 @@ class GameScene: SKScene {
                 removeAction(forKey: "timer")
                 exitLevel()
             }
+            else if touchedNode == closeButton {
+                exitToHome()
+            }
         }
     }
     
@@ -325,31 +337,42 @@ class GameScene: SKScene {
     lazy var player1HookButton: SKSpriteNode = {
         let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
         node.position = CGPoint(x: 80, y: 70)
+        node.zPosition = 1
         return node
     }()
     
     lazy var player2HookButton: SKSpriteNode = {
         let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
         node.position = CGPoint(x: 720, y: 70)
+        node.zPosition = 1
         return node
     }()
     
     lazy var player1BombButton: SKSpriteNode = {
         let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
         node.position = CGPoint(x: 80, y: 160)
+        node.zPosition = 1
         return node
     }()
     
     lazy var player2BombButton: SKSpriteNode = {
         let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
         node.position = CGPoint(x: 720, y: 160)
+        node.zPosition = 1
         return node
     }()
     
     lazy var exitButton: SKSpriteNode = {
-        let texture = SKTexture(image: UIImage(systemName: "arrow.right.to.line")!)
+        let texture = SKTexture(imageNamed: "exit")
+        let node = SKSpriteNode(texture: texture, color: .clear, size: CGSize(width: 40, height: 40))
+        node.position = CGPoint(x: 680, y: 360)
+        return node
+    }()
+    
+    lazy var closeButton: SKSpriteNode = {
+        let texture = SKTexture(imageNamed: "close")
         let node = SKSpriteNode(texture: texture, color: .clear, size: CGSize(width: 20, height: 20))
-        node.position = CGPoint(x: 680, y: 350)
+        node.position = CGPoint(x: 15, y: 373)
         return node
     }()
     
@@ -358,7 +381,7 @@ class GameScene: SKScene {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .right
         node.text = "player1: \(player1.score)"
-        node.position = player1.position - CGPoint(x: 20, y: 0)
+        node.position = player1.position - CGPoint(x: 30, y: 0)
         node.fontSize = 12
         node.fontName = "Chalkduster"
         node.fontColor = .brown
@@ -369,7 +392,7 @@ class GameScene: SKScene {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .left
         node.text = "player2: \(player2.score)"
-        node.position = player2.position + CGPoint(x: 20, y: 0)
+        node.position = player2.position + CGPoint(x: 30, y: 0)
         node.fontSize = 12
         node.fontName = "Chalkduster"
         node.fontColor = .brown

@@ -15,7 +15,7 @@ class Player: SKSpriteNode {
     init() {
         let texture = SKTexture(imageNamed: "player")
         super.init(texture: texture, color: .clear, size: texture.size())
-        
+        anchorPoint = CGPoint(x: 0.5, y: 0.4)
         configurePhysics()
     }
     
@@ -35,4 +35,26 @@ class Player: SKSpriteNode {
     func gainScore(price: Int) {
         score += price
     }
+    
+    func drag() {
+        run(SKAction.repeatForever(dragFrames), withKey: "drag")
+    }
+    
+    func stopDrag() {
+        removeAction(forKey: "drag")
+    }
+    
+    lazy var dragFrames: SKAction = {
+        var frames = [SKTexture]()
+        let atlas = SKTextureAtlas(named: "player")
+        let numImages = atlas.textureNames.count
+        for i in 1...numImages {
+            let textureName = "player\(i)"
+            frames.append(atlas.textureNamed(textureName))
+        }
+        return SKAction.animate(with: frames,
+                                timePerFrame: 0.1,
+                                resize: false,
+                                restore: true)
+    }()
 }
