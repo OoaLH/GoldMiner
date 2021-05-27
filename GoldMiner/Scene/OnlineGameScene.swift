@@ -54,7 +54,7 @@ class OnlineGameScene: GameScene {
     var otherPlayer: Player!
     
     override func configureViews() {
-        backgroundColor = .white
+        initBackground()
         isUserInteractionEnabled = false
         initPlayers()
         initHooks()
@@ -174,6 +174,7 @@ class OnlineGameScene: GameScene {
         loadingLabel.removeFromParent()
         NotificationCenter.default.post(name: .startWalk, object: nil)
         isUserInteractionEnabled = true
+        initTimer()
     }
     
     lazy var loadingLabel: SKLabelNode = {

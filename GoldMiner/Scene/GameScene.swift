@@ -250,19 +250,21 @@ class GameScene: SKScene {
     }
     
     func consumeBomb() {
-        GameSession.shared.numberOfBomb -= 1
-        let node = bombs.last
-        node?.removeFromParent()
-        bombs.removeLast()
+        if GameSession.shared.numberOfBomb > 0 {
+            GameSession.shared.numberOfBomb -= 1
+            let node = bombs.last
+            node?.removeFromParent()
+            bombs.removeLast()
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
         stretchRope(rope: rope1, to: hook1)
         stretchRope(rope: rope2, to: hook2)
-        if hook1.outsideOfScreen() && hook1.canCatch {
+        if hook1.outsideOfScreen() && hook1.isShooting {
             hook1.back()
         }
-        if hook2.outsideOfScreen() && hook2.canCatch {
+        if hook2.outsideOfScreen() && hook2.isShooting {
             hook2.back()
         }
     }

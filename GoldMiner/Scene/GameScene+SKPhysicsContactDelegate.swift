@@ -30,7 +30,7 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         else if firstBody.categoryBitMask.isHook && secondBody.categoryBitMask.isPlayer {
             if let hook = firstBody.node as? Hook, let player = secondBody.node as? Player, let mineral = hook.mineral, hook == player.hook {
-                mineralArrived(mineral: mineral, at: player)
+                hookArrived(mineral: mineral, at: player)
             }
         }
         else if firstBody.categoryBitMask.isMineral && secondBody.categoryBitMask.isWave {
@@ -44,7 +44,7 @@ extension GameScene: SKPhysicsContactDelegate {
     }
     
     func canCatch(hook: Hook, mineral: Mineral) -> Bool {
-        return mineral.hook == nil && hook.mineral == nil && hook.canCatch
+        return mineral.hook == nil && hook.mineral == nil && hook.isShooting
     }
     
     @objc func hookCaughtMineral(hook: Hook, mineral: Mineral) {
@@ -55,6 +55,7 @@ extension GameScene: SKPhysicsContactDelegate {
         hook.back(for: duration)
         
         let vector = CGVector(dx: offset.x, dy: offset.y)
+        mineral.delegate = self
         mineral.hook = hook
         mineral.back(vector: vector, duration: duration)
         
@@ -66,19 +67,31 @@ extension GameScene: SKPhysicsContactDelegate {
         bucket.explode()
     }
     
-    @objc func mineralArrived(mineral: Mineral, at player: Player) {
+    @objc func hookArrived(mineral: Mineral, at player: Player) {
+        player.hook?.empty()
+        player.hook?.swing()
+        player.stopDrag()
+        mineralArrived(mineral: mineral, at: player)
+    }
+    
+    func mineralArrived(mineral: Mineral, at player: Player) {
         if let bag = mineral as? RandomBag {
             bag.takeEffect()
         }
         player.gainScore(price: mineral.price)
         money += mineral.price
-        player.hook?.empty()
-        player.hook?.swing()
         if mineral.price != 0 {
             alertPopup(text: "+$\(mineral.price)", at: player.position - CGPoint(x: 40, y: 40))
         }
+        if mineral.hook?.isShooting ?? false {
+            player.stopDrag()
+        }
         mineral.removeFromParent()
-        
-        player.stopDrag()
+    }
+}
+
+extension GameScene: MineralDelegate {
+    func arrived(mineral: Mineral, at player: Player) {
+        mineralArrived(mineral: mineral, at: player)
     }
 }

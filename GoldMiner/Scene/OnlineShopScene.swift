@@ -26,6 +26,38 @@ class OnlineShopScene: ShopScene {
     
     var goods: [Goods?] = []
     
+    var moneyReceived: Bool = false {
+        didSet {
+            if bombsReceived && goodsReceived && moneyReceived {
+                canStart = true
+            }
+        }
+    }
+    
+    var bombsReceived: Bool = false {
+        didSet {
+            if bombsReceived && goodsReceived && moneyReceived {
+                canStart = true
+            }
+        }
+    }
+    
+    var goodsReceived: Bool = false {
+        didSet {
+            if bombsReceived && goodsReceived && moneyReceived {
+                canStart = true
+            }
+        }
+    }
+    
+    var canStart: Bool = false {
+        didSet {
+            if canStart {
+                start()
+            }
+        }
+    }
+    
     init(match: GKMatch, size: CGSize, role: UInt32) {
         self.match = match
         self.role = role
@@ -33,6 +65,9 @@ class OnlineShopScene: ShopScene {
         super.init(size: size)
         if role == Role.player1 {
             sendMoneyData()
+            sendBombsData()
+            bombsReceived = true
+            moneyReceived = true
         }
         match.delegate = self
     }
@@ -42,7 +77,7 @@ class OnlineShopScene: ShopScene {
     }
     
     override func configureViews() {
-        backgroundColor = .white
+        initBackground()
         isUserInteractionEnabled = false
         if role == Role.player1 {
             initGoods()
@@ -86,7 +121,7 @@ class OnlineShopScene: ShopScene {
     
     override func goToNextLevel() {
         let reveal = SKTransition.crossFade(withDuration: 1)
-        let level = GameSession.shared.level > 10 ? GameSession.shared.level % 7 : GameSession.shared.level
+        let level = GameSession.shared.level > 10 ? (GameSession.shared.level % 7 + 4) : GameSession.shared.level
         guard let scene = OnlineGameScene(fileNamed: "level\(level)") else {
             return
         }
@@ -98,6 +133,12 @@ class OnlineShopScene: ShopScene {
     
     func sendMoneyData() {
         var message = Message(type: .money, x: Float(GameSession.shared.player1Score), y: Float(GameSession.shared.player2Score))
+        let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
+        sendData(data: data)
+    }
+    
+    func sendBombsData() {
+        var message = Message(type: .bombs, x: Float(GameSession.shared.numberOfBomb), y: 0)
         let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
         sendData(data: data)
     }
@@ -142,6 +183,12 @@ class OnlineShopScene: ShopScene {
         run(SKAction.repeatForever(action), withKey: "timer")
     }
     
+    func start() {
+        loadingLabel.removeFromParent()
+        initTimer()
+        isUserInteractionEnabled = true
+    }
+    
     lazy var timeLabel: SKLabelNode = {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .left
@@ -177,9 +224,11 @@ extension OnlineShopScene: GKMatchDelegate {
         case .goods:
             receiveGoods(types: String(Int(message.x)))
         case .goodsReply:
-            start()
+            receiveGoodsReply()
         case .money:
             receiveMoneyData(score1: Int(message.x), score2: Int(message.y))
+        case .bombs:
+            receiveBombsData(num: Int(message.x))
         default:
             break
         }
@@ -209,13 +258,11 @@ extension OnlineShopScene: GKMatchDelegate {
             x += 100
         }
         sendGoodsReply()
-        start()
+        goodsReceived = true
     }
     
-    func start() {
-        loadingLabel.removeFromParent()
-        initTimer()
-        isUserInteractionEnabled = true
+    func receiveGoodsReply() {
+        goodsReceived = true
     }
     
     func receiveMoneyData(score1: Int, score2: Int) {
@@ -229,5 +276,11 @@ extension OnlineShopScene: GKMatchDelegate {
         }
         
         moneyLabel.text = "money: \(GameSession.shared.money)"
+        moneyReceived = true
+    }
+    
+    func receiveBombsData(num: Int) {
+        GameSession.shared.numberOfBomb = num
+        bombsReceived = true
     }
 }

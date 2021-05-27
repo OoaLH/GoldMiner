@@ -17,6 +17,8 @@ enum MessageType: Int {
     
     case money
     
+    case bombs
+    
     case smallGold
     case smallGoldReply
     case smallGoldFinish

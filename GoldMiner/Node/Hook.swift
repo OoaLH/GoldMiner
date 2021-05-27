@@ -14,7 +14,7 @@ class Hook: SKSpriteNode {
     
     var canShoot: Bool = true
     
-    var canCatch: Bool = false
+    var isShooting: Bool = false
     
     init(player: Player) {
         self.player = player
@@ -50,9 +50,11 @@ class Hook: SKSpriteNode {
     
     func shoot() {
         canShoot = false
-        canCatch = true
+        isShooting = true
         
         removeAllActions()
+        
+        empty()
         
         let offset = position - player.position
         let direction = offset.normalized
@@ -61,7 +63,7 @@ class Hook: SKSpriteNode {
         let realDest = ropeRange + position
         let shootAction = SKAction.move(to: realDest, duration: TimeInterval(length / Tuning.hookDefaultSpeed))
         let toggleCatch = SKAction.run {
-            self.canCatch = false
+            self.isShooting = false
         }
         let backAction = SKAction.move(to: position, duration: TimeInterval(length / Tuning.hookDefaultSpeed))
         run(SKAction.sequence([shootAction, toggleCatch, backAction, swingAction]))
@@ -72,7 +74,7 @@ class Hook: SKSpriteNode {
     }
     
     func back(for duration: TimeInterval) {
-        canCatch = false
+        isShooting = false
         
         removeAllActions()
         
@@ -81,8 +83,9 @@ class Hook: SKSpriteNode {
     }
     
     func backAfterBomb() {
+        player.stopDrag()
         empty()
-        canCatch = false
+        isShooting = false
         
         removeAllActions()
         

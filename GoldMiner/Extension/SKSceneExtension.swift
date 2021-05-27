@@ -25,6 +25,8 @@ extension SKScene {
     }
     
     func exitToHome() {
-        view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        }
     }
 }

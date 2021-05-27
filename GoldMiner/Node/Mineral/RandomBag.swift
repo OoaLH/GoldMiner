@@ -85,7 +85,7 @@ class RandomBag: Mineral {
         GameSession.shared.numberOfBomb += 1
         
         if let scene = scene as? GameScene {
-            let pos = (scene.bombs.last?.position ?? scene.player1.position) + CGPoint(x: 40, y: 0)
+            let pos = (scene.bombs.last?.position ?? (scene.player1.position + CGPoint(x: 20, y: 0))) + CGPoint(x: 20, y: 0)
             scene.addBomb(at: pos)
             
         }

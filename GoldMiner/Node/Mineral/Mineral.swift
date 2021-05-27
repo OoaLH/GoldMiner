@@ -7,6 +7,10 @@
 
 import SpriteKit
 
+protocol MineralDelegate: class {
+    func arrived(mineral: Mineral, at player: Player)
+}
+
 class Mineral: SKSpriteNode {
     var price: Int
     
@@ -17,6 +21,8 @@ class Mineral: SKSpriteNode {
     var exploding: Bool = false
     
     weak var hook: Hook?
+    
+    weak var delegate: MineralDelegate?
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         price = Tuning.smallGoldPrice
@@ -42,7 +48,10 @@ class Mineral: SKSpriteNode {
     
     func back(vector: CGVector, duration: TimeInterval) {
         let action = SKAction.move(by: vector, duration: duration)
-        run(action)
+        run(action) { [unowned self] in
+            guard let hook = hook else { return }
+            delegate?.arrived(mineral: self, at: hook.player)
+        }
     }
     
     func getBombed() {

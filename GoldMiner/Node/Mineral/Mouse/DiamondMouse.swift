@@ -35,6 +35,11 @@ class DiamondMouse: Mineral {
         super.init(coder: aDecoder)
         price = Tuning.mousePrice + Tuning.diamondPrice
         walkRange = CGFloat(self.userData?["range"] as? Float ?? 150)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(startWalk(_:)), name: .startWalk, object: nil)
+    }
+    
+    @objc func startWalk(_ notification: Notification) {
         moveAround()
     }
     

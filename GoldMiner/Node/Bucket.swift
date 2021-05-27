@@ -52,6 +52,7 @@ class Bucket: SKSpriteNode {
         let node = SKShapeNode(circleOfRadius: 1)
         node.position = CGPoint(x: 0, y: 0)
         node.fillColor = .clear
+        node.strokeColor = .clear
         node.physicsBody = SKPhysicsBody(circleOfRadius: 1)
         node.physicsBody?.categoryBitMask = PhysicsCategory.wave.rawValue
         node.physicsBody?.contactTestBitMask = PhysicsCategory.mineral.rawValue

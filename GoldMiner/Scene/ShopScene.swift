@@ -73,11 +73,12 @@ class ShopScene: SKScene {
         good.priceLabel?.removeFromParent()
         GameSession.shared.money -= good.price
         moneyLabel.text = "money: \(GameSession.shared.money)"
+        alertPopup(text: "-$\(good.price)")
     }
     
     func goToNextLevel() {
         let reveal = SKTransition.crossFade(withDuration: 1)
-        let level = GameSession.shared.level > 10 ? GameSession.shared.level % 7 : GameSession.shared.level
+        let level = GameSession.shared.level > 10 ? (GameSession.shared.level % 7 + 4) : GameSession.shared.level
         guard let scene = GameScene(fileNamed: "level\(level)") else {
             return
         }
@@ -94,7 +95,6 @@ class ShopScene: SKScene {
             if let good = touchedNode as? Goods {
                 if good.price <= GameSession.shared.money {
                     buy(good: good)
-                    alertPopup(text: "-$\(good.price)")
                 }
                 else {
                     alertPopup(text: "not enough money")
