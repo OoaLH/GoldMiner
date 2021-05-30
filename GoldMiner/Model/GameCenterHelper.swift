@@ -16,17 +16,17 @@ struct Role {
 final class GameCenterHelper: NSObject {
     static let helper = GameCenterHelper()
     
-    private override init() {
-        super.init()
-        
-        GKLocalPlayer.local.register(self)
-    }
+//    private override init() {
+//        super.init()
+//
+//        GKLocalPlayer.local.register(self)
+//    }
+    
+    private override init() {}
     
     weak var viewController: UIViewController?
     
     var currentMatch: GKMatch?
-    
-    var role: UInt32 = Role.player2
     
     func presentMatchmaker() {
         guard GKLocalPlayer.local.isAuthenticated else {
@@ -46,7 +46,47 @@ final class GameCenterHelper: NSObject {
         let vc = GKMatchmakerViewController(matchRequest: request)!
         vc.isHosted = false
         vc.matchmakerDelegate = self
+        vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)
+    }
+    
+    func authenticate() {
+        if !GKLocalPlayer.local.isAuthenticated {
+            GKLocalPlayer.local.authenticateHandler = { [unowned self] viewController, error in
+                if let viewController = viewController {
+                    self.viewController?.present(viewController, animated: true, completion: nil)
+                    return
+                }
+                if let error = error {
+                    self.viewController?.showAlert(title: "Error Occured", message: error.localizedDescription)
+                    return
+                }
+            }
+        }
+    }
+    
+    func presentLeaderBoard() {
+        guard GKLocalPlayer.local.isAuthenticated else {
+            return
+        }
+        
+        let vc = GKGameCenterViewController(
+            leaderboardID: "BestScore",
+            playerScope: .global,
+            timeScope: .allTime)
+        vc.gameCenterDelegate = self
+        viewController?.present(vc, animated: true, completion: nil)
+    }
+    
+    func submitScore(score: Int) {
+        guard GKLocalPlayer.local.isAuthenticated else {
+            return
+        }
+        
+        GKLeaderboard.submitScore(score, context: 0, player: GKLocalPlayer.local,
+                                  leaderboardIDs: ["BestScore"]) { error in
+            print(error.debugDescription)
+        }
     }
 }
 
@@ -57,7 +97,7 @@ extension GameCenterHelper: GKMatchmakerViewControllerDelegate {
     
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFailWithError error: Error) {
         viewController.dismiss(animated: true)
-        print("Matchmaker vc did fail with error: \(error.localizedDescription).")
+        self.viewController?.showAlert(title: "Match Maker Failed", message: error.localizedDescription)
     }
     
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
@@ -68,13 +108,18 @@ extension GameCenterHelper: GKMatchmakerViewControllerDelegate {
     }
 }
 
-extension GameCenterHelper: GKLocalPlayerListener {
-    func player(_ player: GKPlayer, didRequestMatchWithOtherPlayers playersToInvite: [GKPlayer]) {
-        print(1)
-    }
-    
-    func player(_ player: GKPlayer, didAccept invite: GKInvite) {
-        print(2)
+extension GameCenterHelper: GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 }
 
+//extension GameCenterHelper: GKLocalPlayerListener {
+//    func player(_ player: GKPlayer, didRequestMatchWithOtherPlayers playersToInvite: [GKPlayer]) {
+//        print(1)
+//    }
+//
+//    func player(_ player: GKPlayer, didAccept invite: GKInvite) {
+//        print(2)
+//    }
+//}

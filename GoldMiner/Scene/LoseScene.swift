@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import GameKit
 
 class LoseScene: SKScene {
     override func sceneDidLoad() {
@@ -14,6 +15,14 @@ class LoseScene: SKScene {
         addChild(loseLabel)
         addChild(scoreLabel)
         addChild(returnButton)
+        
+        if GKLocalPlayer.local.isAuthenticated {
+            GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
+            alertPopup(text: "score submitted", at: CGPoint(x: 400, y: 100))
+        }
+        else {
+            alertPopup(text: "login to game center to submit your score", at: CGPoint(x: 400, y: 100))
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -33,7 +42,7 @@ class LoseScene: SKScene {
         node.fontName = "Chalkduster"
         node.fontSize = 40
         node.fontColor = .red
-        node.position = CGPoint(x: 400, y: 300)
+        node.position = CGPoint(x: 400, y: 250)
         return node
     }()
     
@@ -43,7 +52,7 @@ class LoseScene: SKScene {
         node.fontName = "Chalkduster"
         node.fontSize = 40
         node.fontColor = .red
-        node.position = CGPoint(x: 400, y: 150)
+        node.position = CGPoint(x: 400, y: 200)
         return node
     }()
     

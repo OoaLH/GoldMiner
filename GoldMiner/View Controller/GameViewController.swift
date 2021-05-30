@@ -19,7 +19,7 @@ class GameViewController: UIViewController {
         let skView = SKView(frame: view.frame.inset(by: UIConfig.safeAreaInsets))
         skView.isMultipleTouchEnabled = true
         view = skView
-        guard let scene = GameScene(fileNamed: "level1") else { return }
+        guard let scene = GameScene(fileNamed: "level3") else { return }
         scene.scaleMode = .aspectFit
         skView.presentScene(scene)
     }

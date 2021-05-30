@@ -15,7 +15,7 @@ class SmallGold: Mineral {
     init() {
         let goldTexture = SKTexture(imageNamed: "small_gold")
         let textSize = goldTexture.size()
-        let size = CGSize(width: textSize.width / 5, height: textSize.height / 5)
+        let size = CGSize(width: textSize.width / 2, height: textSize.height / 2)
         super.init(texture: goldTexture, color: .clear, size: size)
         
         price = Tuning.smallGoldPrice
