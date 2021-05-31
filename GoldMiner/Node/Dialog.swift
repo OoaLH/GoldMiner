@@ -9,6 +9,7 @@ import SpriteKit
 
 class Dialog: SKSpriteNode {
     var text: String
+    
     init(text: String = "Are you sure to end the game? You will lose your progress.") {
         self.text = text
         
@@ -34,6 +35,7 @@ class Dialog: SKSpriteNode {
         node.preferredMaxLayoutWidth = 250
         node.position = CGPoint(x: -40, y: 50)
         node.numberOfLines = 0
+        node.zPosition = zPosition + 1
         return node
     }()
     
@@ -44,6 +46,7 @@ class Dialog: SKSpriteNode {
         node.fontSize = 16
         node.fontColor = .red
         node.position = CGPoint(x: -30, y: -20)
+        node.zPosition = zPosition + 1
         return node
     }()
     
@@ -54,6 +57,7 @@ class Dialog: SKSpriteNode {
         node.fontSize = 16
         node.fontColor = .black
         node.position = CGPoint(x: 30, y: -20)
+        node.zPosition = zPosition + 1
         return node
     }()
 }

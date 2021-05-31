@@ -24,6 +24,15 @@ extension SKScene {
         }
     }
     
+    func exitToHomeWithDisconnection() {
+        DispatchQueue.main.async {
+            if let vc = self.view?.window?.rootViewController as? HomeViewController {
+                vc.disconnected = true
+                vc.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
     func exitToHome() {
         DispatchQueue.main.async {
             self.view?.window?.rootViewController?.dismiss(animated: true, completion: nil)

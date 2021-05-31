@@ -31,7 +31,7 @@ class OnlineGameScene: GameScene {
         didSet {
             guard let teamMate = teamMate else {
                 match?.disconnect()
-                exitToHome()
+                exitToHomeWithDisconnection()
                 return
             }
             let name = GKLocalPlayer.local.displayName
@@ -116,6 +116,11 @@ class OnlineGameScene: GameScene {
         view?.presentScene(newScene, transition: reveal)
     }
     
+    override func lose() {
+        match?.disconnect()
+        super.lose()
+    }
+    
     override func hookCaughtMineral(hook: Hook, mineral: Mineral) {
         if let mineral = mineral as? RandomBag {
             mineral.getOnlineModeContent()
@@ -154,12 +159,20 @@ class OnlineGameScene: GameScene {
             else if touchedNode == dialog.okButton {
                 GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
                 match?.disconnect()
-                exitToHome()
+                exitToHomeWithDisconnection()
             }
             else if touchedNode == dialog.cancelButton {
                 dialog.isHidden = true
             }
         }
+    }
+    
+    func checkTimeOut() {
+        let wait = SKAction.wait(forDuration: Tuning.timeOutDuration)
+        let exit = SKAction.run { [unowned self] in
+            exitToHomeWithDisconnection()
+        }
+        run(SKAction.sequence([wait, exit]), withKey: "timeout")
     }
     
     func sendSmallGoldData(x: CGFloat, y: CGFloat) {
@@ -203,6 +216,7 @@ class OnlineGameScene: GameScene {
     }
     
     func start() {
+        removeAction(forKey: "timeout")
         loadingLabel.removeFromParent()
         NotificationCenter.default.post(name: .startWalk, object: nil)
         isUserInteractionEnabled = true
@@ -265,12 +279,12 @@ extension OnlineGameScene: GKMatchDelegate {
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
         match.disconnect()
-        exitToHome()
+        exitToHomeWithDisconnection()
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
         match.disconnect()
-        exitToHome()
+        exitToHomeWithDisconnection()
     }
     
     func receiveSmallGold(x: CGFloat, y: CGFloat) {

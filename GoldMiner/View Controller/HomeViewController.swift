@@ -10,6 +10,7 @@ import GameKit
 import SnapKit
 
 class HomeViewController: UIViewController {
+    var disconnected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +22,18 @@ class HomeViewController: UIViewController {
         GameCenterHelper.helper.authenticate()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if disconnected {
+            showAlert(title: "Match Ended", message: "Disconnected from the host.")
+            disconnected = true
+        }
+    }
+    
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .landscape
     }

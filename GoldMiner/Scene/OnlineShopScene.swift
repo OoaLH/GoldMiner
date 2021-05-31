@@ -110,6 +110,7 @@ class OnlineShopScene: ShopScene {
         super.initLabels()
         addChild(timeLabel)
         addChild(loadingLabel)
+        checkTimeOut()
     }
     
     override func buy(good: Goods) {
@@ -174,6 +175,16 @@ class OnlineShopScene: ShopScene {
         }
     }
     
+    func checkTimeOut() {
+        let wait = SKAction.wait(forDuration: Tuning.timeOutDuration)
+        run(wait) { [unowned self] in
+            if !canStart {
+                match.disconnect()
+                exitToHomeWithDisconnection()
+            }
+        }
+    }
+    
     func initTimer() {
         let second = SKAction.wait(forDuration: 1)
         let countDown = SKAction.run {
@@ -235,11 +246,11 @@ extension OnlineShopScene: GKMatchDelegate {
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
-        exitToHome()
+        exitToHomeWithDisconnection()
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
-        exitToHome()
+        exitToHomeWithDisconnection()
     }
     
     func receiveBought(x: Int) {
