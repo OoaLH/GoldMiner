@@ -59,7 +59,7 @@ class GameScene: SKScene {
         let node = SKSpriteNode(imageNamed: "background")
         node.position = CGPoint(x: 400, y: 196)
         node.size = CGSize(width: 800, height: 400)
-        node.zPosition = -1
+        node.zPosition = UIConfig.backgroundZPosition
         addChild(node)
     }
     
@@ -294,12 +294,30 @@ class GameScene: SKScene {
                     hook2.backAfterBomb()
                 }
             }
-            else if touchedNode == exitButton {
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            
+            if touchedNode == exitButton {
                 removeAction(forKey: "timer")
                 exitLevel()
             }
-            else if touchedNode == closeButton {
+            else if touchedNode == closeButton && !isPaused {
+                isPaused = true
+                addChild(dialog)
+                dialog.position = CGPoint(x: 400, y: 196)
+            }
+            else if touchedNode == dialog.okButton {
+                GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
                 exitToHome()
+            }
+            else if touchedNode == dialog.cancelButton {
+                dialog.removeFromParent()
+                isPaused = false
             }
         }
     }
@@ -337,30 +355,34 @@ class GameScene: SKScene {
     
     // MARK: Button
     lazy var player1HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        let node = SKSpriteNode(imageNamed: "hook_button")
+        node.alpha = 0.4
         node.position = CGPoint(x: 80, y: 70)
-        node.zPosition = 1
+        node.zPosition = UIConfig.buttonZPosition
         return node
     }()
     
     lazy var player2HookButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        let node = SKSpriteNode(imageNamed: "hook_button")
+        node.alpha = 0.4
         node.position = CGPoint(x: 720, y: 70)
-        node.zPosition = 1
+        node.zPosition = UIConfig.buttonZPosition
         return node
     }()
     
     lazy var player1BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        let node = SKSpriteNode(imageNamed: "bomb_button")
+        node.alpha = 0.4
         node.position = CGPoint(x: 80, y: 160)
-        node.zPosition = 1
+        node.zPosition = UIConfig.buttonZPosition
         return node
     }()
     
     lazy var player2BombButton: SKSpriteNode = {
-        let node = SKSpriteNode(color: UIConfig.joyButtonColor, size: CGSize(width: 70, height: 70))
+        let node = SKSpriteNode(imageNamed: "bomb_button")
+        node.alpha = 0.4
         node.position = CGPoint(x: 720, y: 160)
-        node.zPosition = 1
+        node.zPosition = UIConfig.buttonZPosition
         return node
     }()
     
@@ -444,4 +466,6 @@ class GameScene: SKScene {
         node.fontColor = .brown
         return node
     }()
+    
+    lazy var dialog = Dialog()
 }

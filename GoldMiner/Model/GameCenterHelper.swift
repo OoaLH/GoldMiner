@@ -28,6 +28,21 @@ final class GameCenterHelper: NSObject {
     
     var currentMatch: GKMatch?
     
+    func authenticate() {
+        if !GKLocalPlayer.local.isAuthenticated {
+            GKLocalPlayer.local.authenticateHandler = { [unowned self] viewController, error in
+                if let viewController = viewController {
+                    self.viewController?.present(viewController, animated: true, completion: nil)
+                    return
+                }
+                if let error = error {
+                    self.viewController?.showAlert(title: "Error Occured", message: error.localizedDescription)
+                    return
+                }
+            }
+        }
+    }
+    
     func presentMatchmaker() {
         guard GKLocalPlayer.local.isAuthenticated else {
             return
@@ -48,21 +63,6 @@ final class GameCenterHelper: NSObject {
         vc.matchmakerDelegate = self
         vc.modalPresentationStyle = .fullScreen
         viewController?.present(vc, animated: true)
-    }
-    
-    func authenticate() {
-        if !GKLocalPlayer.local.isAuthenticated {
-            GKLocalPlayer.local.authenticateHandler = { [unowned self] viewController, error in
-                if let viewController = viewController {
-                    self.viewController?.present(viewController, animated: true, completion: nil)
-                    return
-                }
-                if let error = error {
-                    self.viewController?.showAlert(title: "Error Occured", message: error.localizedDescription)
-                    return
-                }
-            }
-        }
     }
     
     func presentLeaderBoard() {

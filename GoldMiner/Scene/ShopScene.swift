@@ -24,7 +24,7 @@ class ShopScene: SKScene {
         let node = SKSpriteNode(imageNamed: "shop")
         node.position = CGPoint(x: 400, y: 196)
         node.size = CGSize(width: 800, height: 400)
-        node.zPosition = -1
+        node.zPosition = UIConfig.backgroundZPosition
         addChild(node)
     }
     

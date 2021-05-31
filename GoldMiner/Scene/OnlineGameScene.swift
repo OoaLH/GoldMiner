@@ -30,15 +30,20 @@ class OnlineGameScene: GameScene {
     var teamMate: GKPlayer? {
         didSet {
             guard let teamMate = teamMate else {
+                match?.disconnect()
                 exitToHome()
                 return
             }
             let name = GKLocalPlayer.local.displayName
             if teamMate.displayName < name {
                 role = Role.player2
+                player1NameLabel.text = teamMate.displayName
+                player2NameLabel.text = name
             }
             else {
                 role = Role.player1
+                player1NameLabel.text = name
+                player2NameLabel.text = teamMate.displayName
             }
         }
     }
@@ -64,7 +69,14 @@ class OnlineGameScene: GameScene {
     
     override func initLabels() {
         super.initLabels()
+        
         addChild(loadingLabel)
+        addChild(player1NameLabel)
+        addChild(player2NameLabel)
+        
+        dialog.isHidden = true
+        dialog.position = CGPoint(x: 400, y: 196)
+        addChild(dialog)
     }
     
     override func initButtons() {
@@ -75,6 +87,7 @@ class OnlineGameScene: GameScene {
         shootButton = role == Role.player1 ? player1HookButton : player2HookButton
         addChild(bombButton)
         addChild(shootButton)
+        addChild(closeButton)
     }
     
     override func initMinerals() {
@@ -130,6 +143,25 @@ class OnlineGameScene: GameScene {
         }
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            
+            if touchedNode == closeButton {
+                dialog.isHidden = false
+            }
+            else if touchedNode == dialog.okButton {
+                GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
+                match?.disconnect()
+                exitToHome()
+            }
+            else if touchedNode == dialog.cancelButton {
+                dialog.isHidden = true
+            }
+        }
+    }
+    
     func sendSmallGoldData(x: CGFloat, y: CGFloat) {
         var message = Message(type: .smallGold, x: Float(x), y: Float(y))
         let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
@@ -177,6 +209,26 @@ class OnlineGameScene: GameScene {
         initTimer()
     }
     
+    lazy var player1NameLabel: SKLabelNode = {
+        let node = SKLabelNode()
+        node.horizontalAlignmentMode = .right
+        node.fontSize = 12
+        node.fontName = "Chalkduster"
+        node.fontColor = .brown
+        node.position = scoreLabel1.position - CGPoint(x: 0, y: 20)
+        return node
+    }()
+    
+    lazy var player2NameLabel: SKLabelNode = {
+        let node = SKLabelNode()
+        node.horizontalAlignmentMode = .left
+        node.fontSize = 12
+        node.fontName = "Chalkduster"
+        node.fontColor = .brown
+        node.position = scoreLabel2.position - CGPoint(x: 0, y: 20)
+        return node
+    }()
+    
     lazy var loadingLabel: SKLabelNode = {
         let node = SKLabelNode()
         node.horizontalAlignmentMode = .center
@@ -212,10 +264,12 @@ extension OnlineGameScene: GKMatchDelegate {
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
+        match.disconnect()
         exitToHome()
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
+        match.disconnect()
         exitToHome()
     }
     

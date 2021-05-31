@@ -10,7 +10,7 @@ import SnapKit
 
 class InstructionViewController: UIViewController {
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         view.addSubview(instructionView)
         instructionView.snp.makeConstraints { make in
@@ -19,13 +19,14 @@ class InstructionViewController: UIViewController {
             make.top.equalToSuperview().offset(50.width)
         }
         
-        view.addSubview(closeButton)
-        closeButton.snp.makeConstraints { make in
-            make.width.height.equalTo(20.height)
-            make.left.top.equalToSuperview().offset(10.height)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            view.addSubview(closeButton)
+            closeButton.snp.makeConstraints { make in
+                make.width.height.equalTo(20.height)
+                make.left.top.equalToSuperview().offset(20.height)
+            }
+            closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         }
-        
-        closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
     }
     
     @objc func close() {
