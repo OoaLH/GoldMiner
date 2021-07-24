@@ -74,28 +74,10 @@ class HomeViewController: UIViewController {
         spinView.startAnimating()
         view.isUserInteractionEnabled = false
         
-        if GKLocalPlayer.local.isAuthenticated {
+        GameCenterHelper.helper.authenticate { [unowned self] in
             spinView.stopAnimating()
             view.isUserInteractionEnabled = true
-            
             GameCenterHelper.helper.presentMatchmaker()
-        }
-        else {
-            GKLocalPlayer.local.authenticateHandler = { [unowned self] viewController, error in
-                spinView.stopAnimating()
-                view.isUserInteractionEnabled = true
-                
-                if let viewController = viewController {
-                    present(viewController, animated: true, completion: nil)
-                    return
-                }
-                if let error = error {
-                    showAlert(title: "Error Occured", message: error.localizedDescription)
-                    return
-                }
-                
-                GameCenterHelper.helper.presentMatchmaker()
-            }
         }
     }
     
@@ -109,28 +91,11 @@ class HomeViewController: UIViewController {
         spinView.startAnimating()
         view.isUserInteractionEnabled = false
         
-        if GKLocalPlayer.local.isAuthenticated {
+        GameCenterHelper.helper.authenticate { [unowned self] in
             spinView.stopAnimating()
             view.isUserInteractionEnabled = true
             
             GameCenterHelper.helper.presentLeaderBoard()
-        }
-        else {
-            GKLocalPlayer.local.authenticateHandler = { [unowned self] viewController, error in
-                spinView.stopAnimating()
-                view.isUserInteractionEnabled = true
-                
-                if let viewController = viewController {
-                    self.present(viewController, animated: true, completion: nil)
-                    return
-                }
-                if let error = error {
-                    showAlert(title: "Error Occured", message: error.localizedDescription)
-                    return
-                }
-                
-                GameCenterHelper.helper.presentLeaderBoard()
-            }
         }
     }
     

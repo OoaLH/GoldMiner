@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-protocol MineralDelegate: class {
+protocol MineralDelegate: AnyObject {
     func arrived(mineral: Mineral, at player: Player)
 }
 

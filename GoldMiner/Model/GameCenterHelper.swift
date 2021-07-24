@@ -16,35 +16,50 @@ struct Role {
 final class GameCenterHelper: NSObject {
     static let helper = GameCenterHelper()
     
-//    private override init() {
-//        super.init()
-//
-//        GKLocalPlayer.local.register(self)
-//    }
-    
-    private override init() {}
+    private override init() {
+        super.init()
+
+        GKLocalPlayer.local.register(self)
+    }
     
     weak var viewController: UIViewController?
     
     var currentMatch: GKMatch?
     
-    func authenticate() {
+    func authenticate(_ completionHandler: (() -> Void)? = nil) {
         if !GKLocalPlayer.local.isAuthenticated {
-            GKLocalPlayer.local.authenticateHandler = { [unowned self] viewController, error in
-                if let viewController = viewController {
-                    self.viewController?.present(viewController, animated: true, completion: nil)
+            GKLocalPlayer.local.authenticateHandler = { [unowned self] authVC, error in
+                if let authVC = authVC {
+                    self.viewController?.present(authVC, animated: true, completion: nil)
                     return
                 }
                 if let error = error {
-                    self.viewController?.showAlert(title: "Error Occured", message: error.localizedDescription)
+                    self.viewController?.showAlert(title: "Authentication Failed", message: error.localizedDescription)
                     return
                 }
+                completionHandler?()
             }
         }
+        completionHandler?()
     }
     
     func presentMatchmaker() {
         guard GKLocalPlayer.local.isAuthenticated else {
+            let alert = UIAlertController(title: "Authentication Failed", message: "Enable Game Center in settings. Run the app again and sign in.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(ok)
+            let settings = UIAlertAction(title: "Settings", style: .default) { _ in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
+                }
+            }
+            alert.addAction(settings)
+            alert.preferredAction = settings
+            viewController?.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -55,7 +70,7 @@ final class GameCenterHelper: NSObject {
         request.playerAttributes = Role.either
         request.inviteMessage = "Would you like to play Gold Miner together?"
         request.recipientResponseHandler = { player, response in
-            print(3)
+            print("recipientResponseHandler")
         }
         
         let vc = GKMatchmakerViewController(matchRequest: request)!
@@ -114,12 +129,19 @@ extension GameCenterHelper: GKGameCenterControllerDelegate {
     }
 }
 
-//extension GameCenterHelper: GKLocalPlayerListener {
-//    func player(_ player: GKPlayer, didRequestMatchWithOtherPlayers playersToInvite: [GKPlayer]) {
-//        print(1)
-//    }
-//
-//    func player(_ player: GKPlayer, didAccept invite: GKInvite) {
-//        print(2)
-//    }
-//}
+extension GameCenterHelper: GKLocalPlayerListener {
+    func player(_ player: GKPlayer, didRequestMatchWithOtherPlayers playersToInvite: [GKPlayer]) {
+        print("didRequestMatchWithOtherPlayers")
+    }
+
+    func player(_ player: GKPlayer, didAccept invite: GKInvite) {
+        let matchMakerVC = GKMatchmakerViewController(invite: invite)
+        matchMakerVC?.matchmakerDelegate = self
+        viewController?.present(matchMakerVC!, animated: true, completion: nil)
+        print("didAccept")
+    }
+    
+    func player(_ player: GKPlayer, didRequestMatchWithRecipients recipientPlayers: [GKPlayer]) {
+        print("didRequestMatchWithRecipients")
+    }
+}

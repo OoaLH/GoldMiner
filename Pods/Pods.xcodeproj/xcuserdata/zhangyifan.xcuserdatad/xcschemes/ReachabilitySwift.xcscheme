@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A4343E9F0EC85CF74B4589CDB19AA851"
-               BuildableName = "Pods-GoldMiner.framework"
-               BlueprintName = "Pods-GoldMiner"
+               BlueprintIdentifier = "0B00B2C167CD783351BD1D00BD5AD1F8"
+               BuildableName = "ReachabilitySwift.framework"
+               BlueprintName = "ReachabilitySwift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
