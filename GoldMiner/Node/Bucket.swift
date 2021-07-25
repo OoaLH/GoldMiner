@@ -42,10 +42,11 @@ class Bucket: SKSpriteNode {
             fireParticles.position = CGPoint(x: 0, y: 0)
             addChild(fireParticles)
         }
-        let action = SKAction.scale(by: 300, duration: 1)
+        let action = SKAction.scale(by: 500, duration: 1)
         wave.run(action) {
             self.removeFromParent()
         }
+//        run(SKAction.playSoundFileNamed("bomb.caf", waitForCompletion: false))
     }
     
     lazy var wave: SKShapeNode = {

@@ -68,5 +68,6 @@ class Mineral: SKSpriteNode {
         run(burn) {
             self.removeFromParent()
         }
+//        run(SKAction.playSoundFileNamed("bomb.caf", waitForCompletion: false))
     }
 }

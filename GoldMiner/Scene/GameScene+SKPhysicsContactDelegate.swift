@@ -87,6 +87,8 @@ extension GameScene: SKPhysicsContactDelegate {
             player.stopDrag()
         }
         mineral.removeFromParent()
+        
+//        player.run(SKAction.playSoundFileNamed("gotcha.caf", waitForCompletion: false))
     }
 }
 

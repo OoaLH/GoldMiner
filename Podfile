@@ -7,6 +7,5 @@ target 'GoldMiner' do
 
   # Pods for GoldMiner
   pod 'SnapKit'
-  pod 'ReachabilitySwift'
 
 end

@@ -122,7 +122,7 @@ class OnlineShopScene: ShopScene {
     
     override func goToNextLevel() {
         let reveal = SKTransition.crossFade(withDuration: 1)
-        let level = GameSession.shared.level > 10 ? (GameSession.shared.level % 7 + 4) : GameSession.shared.level
+        let level = GameSession.shared.level > 20 ? (GameSession.shared.level % 17 + 4) : GameSession.shared.level
         guard let scene = OnlineGameScene(fileNamed: "level\(level)") else {
             return
         }

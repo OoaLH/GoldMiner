@@ -7,6 +7,7 @@
 
 import UIKit
 import GameKit
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         registerForPushNotifications()
+        
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
         
         return true
     }

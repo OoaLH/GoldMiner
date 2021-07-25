@@ -18,6 +18,8 @@ class HomeViewController: UIViewController {
         configureViews()
         configureEvents()
         
+        NetworkMonitor.shared.start()
+        
         GameCenterHelper.helper.viewController = self
         GameCenterHelper.helper.authenticate()
     }
@@ -39,7 +41,10 @@ class HomeViewController: UIViewController {
     }
     
     func configureViews() {
-        view.backgroundColor = .white
+        view.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -70,14 +75,34 @@ class HomeViewController: UIViewController {
         aboutButton.addTarget(self, action: #selector(about), for: .touchUpInside)
     }
     
+    func checkIfUsingCellular(_ completionHandler: (() -> Void)? = nil) {
+        if NetworkMonitor.shared.usingCellular {
+            let alert = UIAlertController(title: "You are using cellular data", message: nil, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Continue", style: .default) { _ in
+                completionHandler?()
+            }
+            alert.addAction(ok)
+            let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alert.addAction(cancel)
+            alert.preferredAction = ok
+            present(alert, animated: true, completion: nil)
+        } else if NetworkMonitor.shared.reachable {
+            completionHandler?()
+        } else {
+            showAlert(title: "Can't connect to Internet", message: "Please check your network settings. Your Internet connection will affect online games, uploading scores to Game Center, and access to leaderboard.")
+        }
+    }
+    
     @objc func onlineGaming() {
-        spinView.startAnimating()
-        view.isUserInteractionEnabled = false
-        
-        GameCenterHelper.helper.authenticate { [unowned self] in
-            spinView.stopAnimating()
-            view.isUserInteractionEnabled = true
-            GameCenterHelper.helper.presentMatchmaker()
+        checkIfUsingCellular { [unowned self] in
+            spinView.startAnimating()
+            view.isUserInteractionEnabled = false
+            
+            GameCenterHelper.helper.authenticate {
+                spinView.stopAnimating()
+                view.isUserInteractionEnabled = true
+                GameCenterHelper.helper.presentMatchmaker()
+            }
         }
     }
     
@@ -106,6 +131,13 @@ class HomeViewController: UIViewController {
     @objc func about() {
         UIApplication.shared.open(URL(string: "https://github.com/OoaLH")!, options: [:], completionHandler: nil)
     }
+    
+    lazy var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "home")
+        view.contentMode = .scaleAspectFill
+        return view
+    }()
     
     lazy var onlineButton: UIButton = {
         let view = UIButton()

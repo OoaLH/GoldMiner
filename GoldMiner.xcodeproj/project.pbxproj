@@ -20,6 +20,20 @@
 		A40DAB38265CCDB6000CE9BE /* level10.sks in Resources */ = {isa = PBXBuildFile; fileRef = A40DAB37265CCDB6000CE9BE /* level10.sks */; };
 		A413863A265DC41600EDA30C /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A4138639265DC41600EDA30C /* FireParticle.sks */; };
 		A4166B8B266203F90098129B /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4166B8A266203F90098129B /* InstructionViewController.swift */; };
+		A43DDB5E26ACDB9F005AE6F3 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43DDB5D26ACDB9F005AE6F3 /* NetworkMonitor.swift */; };
+		A43DDB6026ACF6F8005AE6F3 /* level11.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB5F26ACF6F8005AE6F3 /* level11.sks */; };
+		A43DDB6226ACF865005AE6F3 /* level12.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6126ACF865005AE6F3 /* level12.sks */; };
+		A43DDB6426ACFB77005AE6F3 /* level13.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6326ACFB77005AE6F3 /* level13.sks */; };
+		A43DDB6626ACFC2F005AE6F3 /* level14.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6526ACFC2F005AE6F3 /* level14.sks */; };
+		A43DDB6826ACFC9C005AE6F3 /* level15.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6726ACFC9C005AE6F3 /* level15.sks */; };
+		A43DDB6A26ACFD4B005AE6F3 /* level16.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6926ACFD4B005AE6F3 /* level16.sks */; };
+		A43DDB6C26ACFF68005AE6F3 /* level17.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6B26ACFF68005AE6F3 /* level17.sks */; };
+		A43DDB6E26ACFFE9005AE6F3 /* level18.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6D26ACFFE9005AE6F3 /* level18.sks */; };
+		A43DDB7026AD0387005AE6F3 /* level19.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB6F26AD0387005AE6F3 /* level19.sks */; };
+		A43DDB7226AD055A005AE6F3 /* level20.sks in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB7126AD055A005AE6F3 /* level20.sks */; };
+		A43DDB7426AD084B005AE6F3 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43DDB7326AD084B005AE6F3 /* MusicPlayer.swift */; };
+		A43DDB7726AD1591005AE6F3 /* gotcha.caf in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB7526AD1591005AE6F3 /* gotcha.caf */; };
+		A43DDB7826AD1591005AE6F3 /* bomb.caf in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB7626AD1591005AE6F3 /* bomb.caf */; };
 		A45BA25B265EC92F00EFB92D /* BitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45BA25A265EC92F00EFB92D /* BitMask.swift */; };
 		A45EBEB32664560D001C5A99 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBEB22664560D001C5A99 /* Dialog.swift */; };
 		A47550AD265E1D7300FE29B3 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47550AC265E1D7300FE29B3 /* NotificationExtension.swift */; };
@@ -80,6 +94,20 @@
 		A40DAB37265CCDB6000CE9BE /* level10.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level10.sks; sourceTree = "<group>"; };
 		A4138639265DC41600EDA30C /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
 		A4166B8A266203F90098129B /* InstructionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
+		A43DDB5D26ACDB9F005AE6F3 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		A43DDB5F26ACF6F8005AE6F3 /* level11.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level11.sks; sourceTree = "<group>"; };
+		A43DDB6126ACF865005AE6F3 /* level12.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level12.sks; sourceTree = "<group>"; };
+		A43DDB6326ACFB77005AE6F3 /* level13.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level13.sks; sourceTree = "<group>"; };
+		A43DDB6526ACFC2F005AE6F3 /* level14.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level14.sks; sourceTree = "<group>"; };
+		A43DDB6726ACFC9C005AE6F3 /* level15.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level15.sks; sourceTree = "<group>"; };
+		A43DDB6926ACFD4B005AE6F3 /* level16.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level16.sks; sourceTree = "<group>"; };
+		A43DDB6B26ACFF68005AE6F3 /* level17.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level17.sks; sourceTree = "<group>"; };
+		A43DDB6D26ACFFE9005AE6F3 /* level18.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level18.sks; sourceTree = "<group>"; };
+		A43DDB6F26AD0387005AE6F3 /* level19.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level19.sks; sourceTree = "<group>"; };
+		A43DDB7126AD055A005AE6F3 /* level20.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = level20.sks; sourceTree = "<group>"; };
+		A43DDB7326AD084B005AE6F3 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		A43DDB7526AD1591005AE6F3 /* gotcha.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gotcha.caf; sourceTree = "<group>"; };
+		A43DDB7626AD1591005AE6F3 /* bomb.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bomb.caf; sourceTree = "<group>"; };
 		A45BA25A265EC92F00EFB92D /* BitMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMask.swift; sourceTree = "<group>"; };
 		A45EBEB22664560D001C5A99 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		A47550AC265E1D7300FE29B3 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
@@ -218,6 +246,8 @@
 				A475D2572656EF52002AE450 /* GoodsType.swift */,
 				A475D22F2655C0F6002AE450 /* Tuning.swift */,
 				A475D25F26571B09002AE450 /* UIConfig.swift */,
+				A43DDB5D26ACDB9F005AE6F3 /* NetworkMonitor.swift */,
+				A43DDB7326AD084B005AE6F3 /* MusicPlayer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +330,8 @@
 			isa = PBXGroup;
 			children = (
 				A475D20F26559470002AE450 /* Assets.xcassets */,
+				A43DDB7626AD1591005AE6F3 /* bomb.caf */,
+				A43DDB7526AD1591005AE6F3 /* gotcha.caf */,
 				A4138639265DC41600EDA30C /* FireParticle.sks */,
 				A40DAB19265CB59A000CE9BE /* level1.sks */,
 				A40DAB1F265CC848000CE9BE /* level2.sks */,
@@ -311,6 +343,16 @@
 				A40DAB31265CCDA4000CE9BE /* level8.sks */,
 				A40DAB34265CCDAC000CE9BE /* level9.sks */,
 				A40DAB37265CCDB6000CE9BE /* level10.sks */,
+				A43DDB5F26ACF6F8005AE6F3 /* level11.sks */,
+				A43DDB6126ACF865005AE6F3 /* level12.sks */,
+				A43DDB6326ACFB77005AE6F3 /* level13.sks */,
+				A43DDB6526ACFC2F005AE6F3 /* level14.sks */,
+				A43DDB6726ACFC9C005AE6F3 /* level15.sks */,
+				A43DDB6926ACFD4B005AE6F3 /* level16.sks */,
+				A43DDB6B26ACFF68005AE6F3 /* level17.sks */,
+				A43DDB6D26ACFFE9005AE6F3 /* level18.sks */,
+				A43DDB6F26AD0387005AE6F3 /* level19.sks */,
+				A43DDB7126AD055A005AE6F3 /* level20.sks */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -376,11 +418,23 @@
 			files = (
 				A40DAB2C265CCD91000CE9BE /* level6.sks in Resources */,
 				A40DAB29265CCD81000CE9BE /* level5.sks in Resources */,
+				A43DDB6C26ACFF68005AE6F3 /* level17.sks in Resources */,
+				A43DDB7826AD1591005AE6F3 /* bomb.caf in Resources */,
 				A413863A265DC41600EDA30C /* FireParticle.sks in Resources */,
 				A49DC9E7265986BA009B121D /* Launch Screen.storyboard in Resources */,
 				A40DAB26265CCD74000CE9BE /* level4.sks in Resources */,
+				A43DDB7026AD0387005AE6F3 /* level19.sks in Resources */,
 				A40DAB38265CCDB6000CE9BE /* level10.sks in Resources */,
+				A43DDB7726AD1591005AE6F3 /* gotcha.caf in Resources */,
+				A43DDB6626ACFC2F005AE6F3 /* level14.sks in Resources */,
+				A43DDB6426ACFB77005AE6F3 /* level13.sks in Resources */,
+				A43DDB6026ACF6F8005AE6F3 /* level11.sks in Resources */,
+				A43DDB6226ACF865005AE6F3 /* level12.sks in Resources */,
+				A43DDB7226AD055A005AE6F3 /* level20.sks in Resources */,
+				A43DDB6826ACFC9C005AE6F3 /* level15.sks in Resources */,
 				A40DAB32265CCDA4000CE9BE /* level8.sks in Resources */,
+				A43DDB6E26ACFFE9005AE6F3 /* level18.sks in Resources */,
+				A43DDB6A26ACFD4B005AE6F3 /* level16.sks in Resources */,
 				A40DAB2F265CCD9B000CE9BE /* level7.sks in Resources */,
 				A40DAB20265CC848000CE9BE /* level2.sks in Resources */,
 				A40DAB35265CCDAC000CE9BE /* level9.sks in Resources */,
@@ -453,9 +507,11 @@
 				A475D2092655946D002AE450 /* GameScene.swift in Sources */,
 				A49DC9EB26598834009B121D /* DimensionExtension.swift in Sources */,
 				A475D21A26559C9B002AE450 /* BitMaskExtension.swift in Sources */,
+				A43DDB7426AD084B005AE6F3 /* MusicPlayer.swift in Sources */,
 				A475D21E2655A0A7002AE450 /* CGPointExtension.swift in Sources */,
 				A475D20B2655946D002AE450 /* GameViewController.swift in Sources */,
 				A4AC22402662F48E006B55BC /* UIViewControllerExtension.swift in Sources */,
+				A43DDB5E26ACDB9F005AE6F3 /* NetworkMonitor.swift in Sources */,
 				A475D2262655B422002AE450 /* Player.swift in Sources */,
 				A475D2432655F00F002AE450 /* RandomBag.swift in Sources */,
 				A4BE8F03265AEF0700B3020B /* GameMessage.swift in Sources */,

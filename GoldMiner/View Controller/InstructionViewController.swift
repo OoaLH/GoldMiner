@@ -36,7 +36,7 @@ class InstructionViewController: UIViewController {
     lazy var instructionView: UITextView = {
         let view = UITextView()
         view.isEditable = false
-        view.text = "1. Login to Game Center to play online or submit your score.\n\n2. Or just play locally with your friend.\n\n3. Press lower button to draw the claw and press upper button to use dynamite.\n\n4. Enjoy"
+        view.text = "1. Login to Game Center to play online or submit your score.\n\n2. Or just play locally with your friend.\n\n3. Press lower button to draw the claw and press upper button to use dynamite.\n\n4. Enjoy\n"
         view.font = UIFont(name: "Chalkduster", size: 24)
         return view
     }()
