@@ -10,7 +10,6 @@ import GameKit
 import SnapKit
 
 class HomeViewController: UIViewController {
-    var disconnected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +21,6 @@ class HomeViewController: UIViewController {
         
         GameCenterHelper.helper.viewController = self
         GameCenterHelper.helper.authenticate()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if disconnected {
-            showAlert(title: "Match Ended", message: "Disconnected from the host.")
-            disconnected = true
-        }
     }
     
     override var shouldAutorotate: Bool {
@@ -90,6 +81,12 @@ class HomeViewController: UIViewController {
             completionHandler?()
         } else {
             showAlert(title: "Can't connect to Internet", message: "Please check your network settings. Your Internet connection will affect online games, uploading scores to Game Center, and access to leaderboard.")
+        }
+    }
+    
+    func dismissWithError(error: Error?) {
+        dismiss(animated: true) { [unowned self] in
+            showAlert(title: "Disconnected from game", message: error?.localizedDescription)
         }
     }
     

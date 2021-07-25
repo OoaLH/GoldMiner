@@ -31,7 +31,7 @@ class OnlineGameScene: GameScene {
         didSet {
             guard let teamMate = teamMate else {
                 match?.disconnect()
-                exitToHomeWithDisconnection()
+                exitToHomeWithDisconnection(with: ConnectionError.teammateNotFound)
                 return
             }
             let name = GKLocalPlayer.local.displayName
@@ -77,6 +77,8 @@ class OnlineGameScene: GameScene {
         dialog.isHidden = true
         dialog.position = CGPoint(x: 400, y: 196)
         addChild(dialog)
+        
+        checkTimeOut()
     }
     
     override func initButtons() {
@@ -159,7 +161,7 @@ class OnlineGameScene: GameScene {
             else if touchedNode == dialog.okButton {
                 GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
                 match?.disconnect()
-                exitToHomeWithDisconnection()
+                exitToHomeWithDisconnection(with: ConnectionError.selfExited)
             }
             else if touchedNode == dialog.cancelButton {
                 dialog.isHidden = true
@@ -170,7 +172,7 @@ class OnlineGameScene: GameScene {
     func checkTimeOut() {
         let wait = SKAction.wait(forDuration: Tuning.timeOutDuration)
         let exit = SKAction.run { [unowned self] in
-            exitToHomeWithDisconnection()
+            exitToHomeWithDisconnection(with: ConnectionError.timeout)
         }
         run(SKAction.sequence([wait, exit]), withKey: "timeout")
     }
@@ -278,13 +280,15 @@ extension OnlineGameScene: GKMatchDelegate {
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
-        match.disconnect()
-        exitToHomeWithDisconnection()
+        if state == .disconnected {
+            match.disconnect()
+            exitToHomeWithDisconnection(with: ConnectionError.teammateDisconnected)
+        }
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
         match.disconnect()
-        exitToHomeWithDisconnection()
+        exitToHomeWithDisconnection(with: error)
     }
     
     func receiveSmallGold(x: CGFloat, y: CGFloat) {

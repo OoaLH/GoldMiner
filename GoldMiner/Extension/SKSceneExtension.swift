@@ -24,11 +24,10 @@ extension SKScene {
         }
     }
     
-    func exitToHomeWithDisconnection() {
+    func exitToHomeWithDisconnection(with error: Error?) {
         DispatchQueue.main.async {
             if let vc = self.view?.window?.rootViewController as? HomeViewController {
-                vc.disconnected = true
-                vc.dismiss(animated: true, completion: nil)
+                vc.dismissWithError(error: error)
             }
         }
     }

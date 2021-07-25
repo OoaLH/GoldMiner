@@ -22,10 +22,10 @@ class NetworkMonitor {
             switch path.status {
             case .satisfied:
                 shared.usingCellular = shared.wifi.currentPath.status == .unsatisfied
-                shared.reachable = shared.wifi.currentPath.status == .satisfied
+                shared.reachable = true
             default:
                 shared.usingCellular = false
-                shared.reachable = false
+                shared.reachable = shared.wifi.currentPath.status == .satisfied
             }
         }
         return monitor
@@ -37,13 +37,13 @@ class NetworkMonitor {
             switch path.status {
             case .satisfied:
                 shared.usingCellular = false
-                shared.reachable = shared.cellular.currentPath.status == .satisfied
+                shared.reachable = true
             case .unsatisfied:
                 shared.usingCellular = shared.cellular.currentPath.status == .satisfied
-                shared.reachable = false
+                shared.reachable = shared.cellular.currentPath.status == .satisfied
             default:
                 shared.usingCellular = false
-                shared.reachable = false
+                shared.reachable = shared.cellular.currentPath.status == .satisfied
             }
         }
         return monitor

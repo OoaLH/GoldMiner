@@ -180,7 +180,7 @@ class OnlineShopScene: ShopScene {
         run(wait) { [unowned self] in
             if !canStart {
                 match.disconnect()
-                exitToHomeWithDisconnection()
+                exitToHomeWithDisconnection(with: ConnectionError.timeout)
             }
         }
     }
@@ -246,11 +246,13 @@ extension OnlineShopScene: GKMatchDelegate {
     }
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
-        exitToHomeWithDisconnection()
+        if state == .disconnected {
+            exitToHomeWithDisconnection(with: ConnectionError.teammateDisconnected)
+        }
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
-        exitToHomeWithDisconnection()
+        exitToHomeWithDisconnection(with: error)
     }
     
     func receiveBought(x: Int) {

@@ -34,6 +34,8 @@
 		A43DDB7426AD084B005AE6F3 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43DDB7326AD084B005AE6F3 /* MusicPlayer.swift */; };
 		A43DDB7726AD1591005AE6F3 /* gotcha.caf in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB7526AD1591005AE6F3 /* gotcha.caf */; };
 		A43DDB7826AD1591005AE6F3 /* bomb.caf in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB7626AD1591005AE6F3 /* bomb.caf */; };
+		A43DDB7A26AD34F5005AE6F3 /* ConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43DDB7926AD34F5005AE6F3 /* ConnectionError.swift */; };
+		A43DDB7C26AD383A005AE6F3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A43DDB7B26AD383A005AE6F3 /* Localizable.strings */; };
 		A45BA25B265EC92F00EFB92D /* BitMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45BA25A265EC92F00EFB92D /* BitMask.swift */; };
 		A45EBEB32664560D001C5A99 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A45EBEB22664560D001C5A99 /* Dialog.swift */; };
 		A47550AD265E1D7300FE29B3 /* NotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47550AC265E1D7300FE29B3 /* NotificationExtension.swift */; };
@@ -108,6 +110,8 @@
 		A43DDB7326AD084B005AE6F3 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		A43DDB7526AD1591005AE6F3 /* gotcha.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gotcha.caf; sourceTree = "<group>"; };
 		A43DDB7626AD1591005AE6F3 /* bomb.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bomb.caf; sourceTree = "<group>"; };
+		A43DDB7926AD34F5005AE6F3 /* ConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionError.swift; sourceTree = "<group>"; };
+		A43DDB7B26AD383A005AE6F3 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A45BA25A265EC92F00EFB92D /* BitMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitMask.swift; sourceTree = "<group>"; };
 		A45EBEB22664560D001C5A99 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		A47550AC265E1D7300FE29B3 /* NotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 				A49DCA18265A1D64009B121D /* Resources */,
 				A475D23C2655EE3F002AE450 /* Scene */,
 				A475D23B2655EE30002AE450 /* View Controller */,
+				A43DDB7B26AD383A005AE6F3 /* Localizable.strings */,
 			);
 			path = GoldMiner;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				A475D25F26571B09002AE450 /* UIConfig.swift */,
 				A43DDB5D26ACDB9F005AE6F3 /* NetworkMonitor.swift */,
 				A43DDB7326AD084B005AE6F3 /* MusicPlayer.swift */,
+				A43DDB7926AD34F5005AE6F3 /* ConnectionError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -425,6 +431,7 @@
 				A40DAB26265CCD74000CE9BE /* level4.sks in Resources */,
 				A43DDB7026AD0387005AE6F3 /* level19.sks in Resources */,
 				A40DAB38265CCDB6000CE9BE /* level10.sks in Resources */,
+				A43DDB7C26AD383A005AE6F3 /* Localizable.strings in Resources */,
 				A43DDB7726AD1591005AE6F3 /* gotcha.caf in Resources */,
 				A43DDB6626ACFC2F005AE6F3 /* level14.sks in Resources */,
 				A43DDB6426ACFB77005AE6F3 /* level13.sks in Resources */,
@@ -505,6 +512,7 @@
 				A475D22D2655B5DF002AE450 /* Mineral.swift in Sources */,
 				A4166B8B266203F90098129B /* InstructionViewController.swift in Sources */,
 				A475D2092655946D002AE450 /* GameScene.swift in Sources */,
+				A43DDB7A26AD34F5005AE6F3 /* ConnectionError.swift in Sources */,
 				A49DC9EB26598834009B121D /* DimensionExtension.swift in Sources */,
 				A475D21A26559C9B002AE450 /* BitMaskExtension.swift in Sources */,
 				A43DDB7426AD084B005AE6F3 /* MusicPlayer.swift in Sources */,
@@ -664,7 +672,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -686,7 +694,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
