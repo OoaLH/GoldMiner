@@ -13,12 +13,12 @@ struct Role {
     static let either: UInt32 = 0xFFFFFFFF
 }
 
-final class GameCenterHelper: NSObject {
-    static let helper = GameCenterHelper()
+final class GameCenterManager: NSObject {
+    static let shared = GameCenterManager()
     
     private override init() {
         super.init()
-
+        
         GKLocalPlayer.local.register(self)
     }
     
@@ -80,23 +80,12 @@ final class GameCenterHelper: NSObject {
         viewController?.present(vc, animated: true)
     }
     
-    func presentLeaderBoard() {
+    func submitScore() {
         guard GKLocalPlayer.local.isAuthenticated else {
             return
         }
         
-        let vc = GKGameCenterViewController(
-            leaderboardID: "BestScore",
-            playerScope: .global,
-            timeScope: .allTime)
-        vc.gameCenterDelegate = self
-        viewController?.present(vc, animated: true, completion: nil)
-    }
-    
-    func submitScore(score: Int) {
-        guard GKLocalPlayer.local.isAuthenticated else {
-            return
-        }
+        let score = GameSession.shared.player1Score + GameSession.shared.player2Score
         
         GKLeaderboard.submitScore(score, context: 0, player: GKLocalPlayer.local,
                                   leaderboardIDs: ["BestScore"]) { error in
@@ -105,31 +94,32 @@ final class GameCenterHelper: NSObject {
     }
 }
 
-extension GameCenterHelper: GKMatchmakerViewControllerDelegate {
+extension GameCenterManager: GKMatchmakerViewControllerDelegate {
     func matchmakerViewControllerWasCancelled(_ viewController: GKMatchmakerViewController) {
         viewController.dismiss(animated: true)
     }
     
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFailWithError error: Error) {
         viewController.dismiss(animated: true)
-        self.viewController?.showAlert(title: "Match Maker Failed", message: error.localizedDescription)
+        self.viewController?.showAlert(title: "Match maker failed", message: error.localizedDescription)
     }
     
     func matchmakerViewController(_ viewController: GKMatchmakerViewController, didFind match: GKMatch) {
         currentMatch = match
         viewController.dismiss(animated: true, completion: nil)
         let vc = OnlineGameViewController(match: match)
+        vc.modalPresentationStyle = .fullScreen
         self.viewController?.present(vc, animated: true, completion: nil)
     }
 }
 
-extension GameCenterHelper: GKGameCenterControllerDelegate {
+extension GameCenterManager: GKGameCenterControllerDelegate {
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
     }
 }
 
-extension GameCenterHelper: GKLocalPlayerListener {
+extension GameCenterManager: GKLocalPlayerListener {
     func player(_ player: GKPlayer, didRequestMatchWithOtherPlayers playersToInvite: [GKPlayer]) {
         print("didRequestMatchWithOtherPlayers")
     }
@@ -140,8 +130,6 @@ extension GameCenterHelper: GKLocalPlayerListener {
         viewController?.present(matchMakerVC!, animated: true, completion: nil)
         print("didAccept")
     }
-    
-    
     
     func player(_ player: GKPlayer, didRequestMatchWithRecipients recipientPlayers: [GKPlayer]) {
         print("didRequestMatchWithRecipients")

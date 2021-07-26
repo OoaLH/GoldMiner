@@ -28,8 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        if GameCenterManager.shared.currentMatch != nil {
+            pushNotifications(title: "You are in an online match", body: "Don't let your teammate wait. Return to continue.")
+        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -46,8 +47,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func registerForPushNotifications() {
       UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
-          print("Permission granted: \(granted)")
+          print("Notification permission granted: \(granted)")
         }
+    }
+    
+    func pushNotifications(title: String, body: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: nil)
+        
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
 

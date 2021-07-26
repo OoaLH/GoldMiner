@@ -17,7 +17,7 @@ class LoseScene: SKScene {
         addChild(returnButton)
         
         if GKLocalPlayer.local.isAuthenticated {
-            GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
+            GameCenterManager.shared.submitScore()
             alertPopup(text: "score submitted", at: CGPoint(x: 400, y: 100))
         }
         else {

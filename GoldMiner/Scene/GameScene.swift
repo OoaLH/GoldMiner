@@ -312,7 +312,7 @@ class GameScene: SKScene {
                 dialog.position = CGPoint(x: 400, y: 196)
             }
             else if touchedNode == dialog.okButton {
-                GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
+                GameCenterManager.shared.submitScore()
                 exitToHome()
             }
             else if touchedNode == dialog.cancelButton {

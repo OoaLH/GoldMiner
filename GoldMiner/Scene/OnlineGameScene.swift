@@ -31,7 +31,7 @@ class OnlineGameScene: GameScene {
         didSet {
             guard let teamMate = teamMate else {
                 match?.disconnect()
-                exitToHomeWithDisconnection(with: ConnectionError.teammateNotFound)
+                exitToHome(with: ConnectionError.teammateNotFound)
                 return
             }
             let name = GKLocalPlayer.local.displayName
@@ -159,9 +159,9 @@ class OnlineGameScene: GameScene {
                 dialog.isHidden = false
             }
             else if touchedNode == dialog.okButton {
-                GameCenterHelper.helper.submitScore(score: GameSession.shared.player1Score + GameSession.shared.player2Score)
+                GameCenterManager.shared.submitScore()
                 match?.disconnect()
-                exitToHomeWithDisconnection(with: ConnectionError.selfExited)
+                exitToHome(with: ConnectionError.selfExited)
             }
             else if touchedNode == dialog.cancelButton {
                 dialog.isHidden = true
@@ -172,7 +172,7 @@ class OnlineGameScene: GameScene {
     func checkTimeOut() {
         let wait = SKAction.wait(forDuration: Tuning.timeOutDuration)
         let exit = SKAction.run { [unowned self] in
-            exitToHomeWithDisconnection(with: ConnectionError.timeout)
+            exitToHome(with: ConnectionError.timeout)
         }
         run(SKAction.sequence([wait, exit]), withKey: "timeout")
     }
@@ -282,13 +282,13 @@ extension OnlineGameScene: GKMatchDelegate {
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
         if state == .disconnected {
             match.disconnect()
-            exitToHomeWithDisconnection(with: ConnectionError.teammateDisconnected)
+            exitToHome(with: ConnectionError.teammateDisconnected)
         }
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
         match.disconnect()
-        exitToHomeWithDisconnection(with: error)
+        exitToHome(with: error as? ConnectionError)
     }
     
     func receiveSmallGold(x: CGFloat, y: CGFloat) {

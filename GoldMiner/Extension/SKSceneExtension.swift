@@ -24,7 +24,7 @@ extension SKScene {
         }
     }
     
-    func exitToHomeWithDisconnection(with error: Error?) {
+    func exitToHome(with error: ConnectionError?) {
         DispatchQueue.main.async {
             if let vc = self.view?.window?.rootViewController as? HomeViewController {
                 vc.dismissWithError(error: error)

@@ -9,7 +9,7 @@ import UIKit
 
 struct Tuning {
     static let movePauseDuration: Double = 0.1
-    static let gameDuration: Int = 40
+    static let gameDuration: Int = 30
     static let timeOutDuration: Double = 30
 
     static let hookDefaultSpeed: CGFloat = 300.0

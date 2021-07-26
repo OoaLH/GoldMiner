@@ -7,7 +7,9 @@
 
 import UIKit
 import GameKit
+import StoreKit
 import SnapKit
+import Lottie
 
 class HomeViewController: UIViewController {
     
@@ -19,8 +21,24 @@ class HomeViewController: UIViewController {
         
         NetworkMonitor.shared.start()
         
-        GameCenterHelper.helper.viewController = self
-        GameCenterHelper.helper.authenticate()
+        GameCenterManager.shared.viewController = self
+        GameCenterManager.shared.authenticate()
+        
+        GKAccessPoint.shared.location = .bottomLeading
+        
+        PurchaseManager.shared.restorePurchases()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        GKAccessPoint.shared.isActive = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        GKAccessPoint.shared.isActive = false
     }
     
     override var shouldAutorotate: Bool {
@@ -39,12 +57,9 @@ class HomeViewController: UIViewController {
         
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 10.height
         stackView.addArrangedSubview(onlineButton)
         stackView.addArrangedSubview(localButton)
-        stackView.addArrangedSubview(leaderBoardButton)
-        stackView.addArrangedSubview(instructionButton)
-        stackView.addArrangedSubview(aboutButton)
         view.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(40.width)
@@ -56,14 +71,53 @@ class HomeViewController: UIViewController {
         spinView.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
+        
+        view.addSubview(shopButton)
+        shopButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-40.width)
+            make.top.equalToSuperview().offset(40.width)
+            make.width.height.equalTo(40.width)
+        }
+        
+        shopButton.addSubview(shopAnimationView)
+        shopAnimationView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        shopAnimationView.play()
+        
+        view.addSubview(settingButton)
+        settingButton.snp.makeConstraints { make in
+            make.right.equalTo(shopButton.snp.left).offset(-10)
+            make.top.equalToSuperview().offset(40.width)
+            make.width.height.equalTo(40.width)
+        }
+        
+        settingButton.addSubview(settingAnimationView)
+        settingAnimationView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        settingAnimationView.play()
+        
+        view.addSubview(instructionButton)
+        instructionButton.snp.makeConstraints { make in
+            make.right.equalTo(settingButton.snp.left).offset(-10)
+            make.top.equalToSuperview().offset(40.width)
+            make.width.height.equalTo(40.width)
+        }
+        
+        instructionButton.addSubview(instructionAnimationView)
+        instructionAnimationView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        instructionAnimationView.play()
     }
     
     func configureEvents() {
         onlineButton.addTarget(self, action: #selector(onlineGaming), for: .touchUpInside)
         localButton.addTarget(self, action: #selector(localGaming), for: .touchUpInside)
-        leaderBoardButton.addTarget(self, action: #selector(leaderBoard), for: .touchUpInside)
         instructionButton.addTarget(self, action: #selector(instruction), for: .touchUpInside)
-        aboutButton.addTarget(self, action: #selector(about), for: .touchUpInside)
+        shopButton.addTarget(self, action: #selector(shop), for: .touchUpInside)
+        settingButton.addTarget(self, action: #selector(setting), for: .touchUpInside)
     }
     
     func checkIfUsingCellular(_ completionHandler: (() -> Void)? = nil) {
@@ -84,7 +138,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func dismissWithError(error: Error?) {
+    func dismissWithError(error: ConnectionError?) {
         dismiss(animated: true) { [unowned self] in
             showAlert(title: "Disconnected from game", message: error?.localizedDescription)
         }
@@ -95,10 +149,10 @@ class HomeViewController: UIViewController {
             spinView.startAnimating()
             view.isUserInteractionEnabled = false
             
-            GameCenterHelper.helper.authenticate {
+            GameCenterManager.shared.authenticate {
                 spinView.stopAnimating()
                 view.isUserInteractionEnabled = true
-                GameCenterHelper.helper.presentMatchmaker()
+                GameCenterManager.shared.presentMatchmaker()
             }
         }
     }
@@ -109,25 +163,52 @@ class HomeViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     
-    @objc func leaderBoard() {
-        spinView.startAnimating()
-        view.isUserInteractionEnabled = false
-        
-        GameCenterHelper.helper.authenticate { [unowned self] in
-            spinView.stopAnimating()
-            view.isUserInteractionEnabled = true
-            
-            GameCenterHelper.helper.presentLeaderBoard()
-        }
-    }
-    
     @objc func instruction() {
-        present(InstructionViewController(), animated: true, completion: nil)
+        let vc = InstructionViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
-    @objc func about() {
-        UIApplication.shared.open(URL(string: "https://github.com/OoaLH")!, options: [:], completionHandler: nil)
+    @objc func shop() {
+        present(ShopViewController(), animated: true, completion: nil)
     }
+    
+    @objc func setting() {
+        print(2)
+    }
+    
+    lazy var instructionButton = UIButton()
+    
+    lazy var settingButton = UIButton()
+    
+    lazy var shopButton = UIButton()
+    
+    lazy var instructionAnimationView: AnimationView = {
+        let view = AnimationView(name: "question")
+        view.loopMode = .loop
+        view.backgroundBehavior = .pauseAndRestore
+        view.contentMode = .scaleAspectFit
+        view.isUserInteractionEnabled = false
+        return view
+    }()
+    
+    lazy var settingAnimationView: AnimationView = {
+        let view = AnimationView(name: "gear")
+        view.loopMode = .loop
+        view.backgroundBehavior = .pauseAndRestore
+        view.contentMode = .scaleAspectFit
+        view.isUserInteractionEnabled = false
+        return view
+    }()
+    
+    lazy var shopAnimationView: AnimationView = {
+        let view = AnimationView(name: "shop")
+        view.loopMode = .loop
+        view.backgroundBehavior = .pauseAndRestore
+        view.contentMode = .scaleAspectFit
+        view.isUserInteractionEnabled = false
+        return view
+    }()
     
     lazy var backgroundView: UIImageView = {
         let view = UIImageView()
@@ -143,6 +224,7 @@ class HomeViewController: UIViewController {
         view.titleLabel?.font = UIFont(name: "Chalkduster", size: 20)
         view.backgroundColor = .brown
         view.layer.cornerRadius = 10
+        view.contentEdgeInsets = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
         return view
     }()
     
@@ -153,36 +235,7 @@ class HomeViewController: UIViewController {
         view.titleLabel?.font = UIFont(name: "Chalkduster", size: 20)
         view.backgroundColor = .brown
         view.layer.cornerRadius = 10
-        return view
-    }()
-    
-    lazy var leaderBoardButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("leaderboard", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = UIFont(name: "Chalkduster", size: 20)
-        view.backgroundColor = .brown
-        view.layer.cornerRadius = 10
-        return view
-    }()
-    
-    lazy var instructionButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("instruction", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = UIFont(name: "Chalkduster", size: 20)
-        view.backgroundColor = .brown
-        view.layer.cornerRadius = 10
-        return view
-    }()
-    
-    lazy var aboutButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("about", for: .normal)
-        view.setTitleColor(.white, for: .normal)
-        view.titleLabel?.font = UIFont(name: "Chalkduster", size: 20)
-        view.backgroundColor = .brown
-        view.layer.cornerRadius = 10
+        view.contentEdgeInsets = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
         return view
     }()
     

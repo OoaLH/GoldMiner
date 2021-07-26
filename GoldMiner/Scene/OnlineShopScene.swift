@@ -130,6 +130,8 @@ class OnlineShopScene: ShopScene {
         scene.size = size
         scene.scaleMode = .aspectFit
         view?.presentScene(scene, transition: reveal)
+        
+        GameCenterManager.shared.submitScore()
     }
     
     func sendMoneyData() {
@@ -180,7 +182,7 @@ class OnlineShopScene: ShopScene {
         run(wait) { [unowned self] in
             if !canStart {
                 match.disconnect()
-                exitToHomeWithDisconnection(with: ConnectionError.timeout)
+                exitToHome(with: ConnectionError.timeout)
             }
         }
     }
@@ -247,12 +249,12 @@ extension OnlineShopScene: GKMatchDelegate {
     
     func match(_ match: GKMatch, player: GKPlayer, didChange state: GKPlayerConnectionState) {
         if state == .disconnected {
-            exitToHomeWithDisconnection(with: ConnectionError.teammateDisconnected)
+            exitToHome(with: ConnectionError.teammateDisconnected)
         }
     }
     
     func match(_ match: GKMatch, didFailWithError error: Error?) {
-        exitToHomeWithDisconnection(with: error)
+        exitToHome(with: error as? ConnectionError)
     }
     
     func receiveBought(x: Int) {
