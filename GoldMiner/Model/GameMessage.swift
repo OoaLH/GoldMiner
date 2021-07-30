@@ -22,6 +22,9 @@ enum MessageType: Int {
     case smallGold
     case smallGoldReply
     case smallGoldFinish
+    
+    case skin
+    case skinReply
 }
 
 struct Message {

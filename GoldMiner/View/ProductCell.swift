@@ -17,9 +17,13 @@ class ProductCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        layer.borderWidth = 1
+        layer.borderColor = UIColor.systemFill.cgColor
+        layer.cornerRadius = 10
+        
         contentView.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalToSuperview().inset(10)
         }
     }
     
@@ -27,5 +31,19 @@ class ProductCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var imageView = UIImageView()
+    func select() {
+        layer.borderColor = UIColor.systemYellow.cgColor
+        layer.borderWidth = 2
+    }
+    
+    func deselect() {
+        layer.borderColor = UIColor.systemFill.cgColor
+        layer.borderWidth = 1
+    }
+    
+    lazy var imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        return view
+    }()
 }

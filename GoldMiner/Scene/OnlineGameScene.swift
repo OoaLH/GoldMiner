@@ -22,6 +22,7 @@ class OnlineGameScene: GameScene {
     
     var role: UInt32 = Role.player1 {
         didSet {
+            initPlayerSkins()
             initButtons()
             initMinerals()
         }
@@ -58,6 +59,29 @@ class OnlineGameScene: GameScene {
     
     var otherPlayer: Player!
     
+    var goldReceived: Bool = false {
+        didSet {
+            readyToStart = goldReceived && skinReceived
+        }
+    }
+    var skinReceived: Bool = false {
+        didSet {
+            readyToStart = goldReceived && skinReceived
+        }
+    }
+    var readyToStart: Bool = false {
+        didSet {
+            if readyToStart {
+                start()
+            }
+        }
+    }
+    
+    let skin: SkinType = {
+        let skin = UserDefaults.standard.string(forKey: "Online") ?? "pig"
+        return SkinType(rawValue: skin) ?? .pig
+    }()
+    
     override func configureViews() {
         initBackground()
         isUserInteractionEnabled = false
@@ -82,8 +106,6 @@ class OnlineGameScene: GameScene {
     }
     
     override func initButtons() {
-        player = role == Role.player1 ? player1 : player2
-        otherPlayer = role == Role.player1 ? player2 : player1
         hook = role == Role.player1 ? hook1 : hook2
         bombButton = role == Role.player1 ? player1BombButton : player2BombButton
         shootButton = role == Role.player1 ? player1HookButton : player2HookButton
@@ -169,12 +191,44 @@ class OnlineGameScene: GameScene {
         }
     }
     
+    func initPlayerSkins() {
+        player = role == Role.player1 ? player1 : player2
+        otherPlayer = role == Role.player1 ? player2 : player1
+        setSelfSkin()
+        sendSkinData()
+    }
+    
+    func setSelfSkin() {
+        player.setSkin(skinType: skin)
+    }
+    
+    func setOtherSkin(skinIndex: Int) {
+        let skin = SkinType.allCases[skinIndex]
+        GameSession.shared.otherSkin = skin
+        
+        otherPlayer.setSkin(skinType: skin)
+        
+        sendSkinReply()
+    }
+    
     func checkTimeOut() {
         let wait = SKAction.wait(forDuration: Tuning.timeOutDuration)
         let exit = SKAction.run { [unowned self] in
             exitToHome(with: ConnectionError.timeout)
         }
         run(SKAction.sequence([wait, exit]), withKey: "timeout")
+    }
+    
+    func sendSkinData() {
+        var message = Message(type: .skin, x: Float(skin.index), y: 0)
+        let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
+        sendData(data: data)
+    }
+    
+    func sendSkinReply() {
+        var message = Message(type: .skinReply, x: 0, y: 0)
+        let data = NSData(bytes: &message, length: MemoryLayout<Message>.stride)
+        sendData(data: data)
     }
     
     func sendSmallGoldData(x: CGFloat, y: CGFloat) {
@@ -271,9 +325,13 @@ extension OnlineGameScene: GKMatchDelegate {
         case .smallGold:
             receiveSmallGold(x: CGFloat(message.x), y: CGFloat(message.y))
         case .smallGoldReply:
-            start()
+            goldReceived = true
         case .smallGoldFinish:
             receiveSmallGoldFinish()
+        case .skin:
+            setOtherSkin(skinIndex: Int(message.x))
+        case .skinReply:
+            skinReceived = true
         default:
             break
         }
@@ -297,7 +355,7 @@ extension OnlineGameScene: GKMatchDelegate {
     
     func receiveSmallGoldFinish() {
         sendSmallGoldReply()
-        start()
+        goldReceived = true
     }
     
     func receiveShot(x: CGFloat, y: CGFloat) {

@@ -10,4 +10,9 @@ import UIKit
 struct SkinProduct {
     var image: UIImage
     var name: String
+    
+    init(name: String) {
+        self.name = name
+        self.image = UIImage(named: name)!
+    }
 }

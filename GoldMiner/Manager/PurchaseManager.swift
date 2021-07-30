@@ -44,6 +44,7 @@ class PurchaseManager: NSObject {
     
     private let productIdentifiers: Set<String> = Set(ProductType.all.map({$0.rawValue}))
     private var productsRequest: SKProductsRequest?
+    private var products: [SKProduct]?
     
     private override init() {
         super.init()
@@ -58,9 +59,13 @@ class PurchaseManager: NSObject {
         productsRequest?.start()
     }
     
-    public func buyProduct(_ product: SKProduct) {
+    public func buyProduct() {
         guard canMakePayments() else {
             delegate?.purchaseManager(didFailWithError: PurchaseError.cannotMakePayments)
+            return
+        }
+        guard let product = products?.first else {
+            delegate?.purchaseManager(didFailWithError: PurchaseError.noProductsAvailable)
             return
         }
         print("Buying \(product.productIdentifier)...")
@@ -102,7 +107,7 @@ class PurchaseManager: NSObject {
         request.httpMethod = "POST"
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = httpBody
-        
+        print(requestData)
         URLSession.shared.dataTask(with: request)  { (data, response, error) in
             if let error = error {
                 print(error)
@@ -112,6 +117,7 @@ class PurchaseManager: NSObject {
             DispatchQueue.main.async {
                 if let data = data, let jsonData = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
                     let subscriptionResponse = ReceiptResponse(data: jsonData)
+                    print(jsonData)
                     completionHandler(subscriptionResponse.productType)
                 } else {
                     print("data invalid")
@@ -132,6 +138,7 @@ extension PurchaseManager: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         print("Loaded list of products...")
         let products = response.products
+        self.products = products
         delegate?.purchaseManager(didFinishProductRequestWith: products, isSuccess: true)
         productsRequest = nil
         
@@ -143,6 +150,7 @@ extension PurchaseManager: SKProductsRequestDelegate {
     func request(_ request: SKRequest, didFailWithError error: Error) {
         if request is SKReceiptRefreshRequest {
             purchasedProduct = nil
+            print("No receipt.")
             return
         }
         print("Failed to load list of products.")
@@ -153,6 +161,7 @@ extension PurchaseManager: SKProductsRequestDelegate {
     
     func requestDidFinish(_ request: SKRequest) {
         if request is SKReceiptRefreshRequest {
+            print("Get refreshed receipt.")
             updatePurchaseStatus()
         }
     }

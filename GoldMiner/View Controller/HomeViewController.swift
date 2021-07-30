@@ -174,7 +174,7 @@ class HomeViewController: UIViewController {
     }
     
     @objc func setting() {
-        print(2)
+        present(SettingViewController(), animated: true)
     }
     
     lazy var instructionButton = UIButton()

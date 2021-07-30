@@ -34,6 +34,7 @@ class InstructionViewController: UIViewController {
     lazy var instructionView: UITextView = {
         let view = UITextView()
         view.isEditable = false
+        view.backgroundColor = .systemBackground
         let text = "How to play:\n\n1. Login to Game Center to play online or submit your score.\n\n2. Or just play locally with your friend.\n\n3. Press lower button to draw the claw and press upper button to use dynamite.\n\n4. Enjoy\n\nQ&A:\n\nQ: Failed to login to Game Center?\nA: Go to Settings > Game Center, and enable Game Center.\n\nQ: Can't receive invitation?\nA: Go to Settings > Notifications > Games, and enable the notification. If you are inviting a friend, make sure your friend has enabled the Game Center notification.\n\nQ: Don't have any friends to invite?\nA: Leave the second player slot empty and press start. You will be paired to another player automatically.\n\nQ: Any other questions?\nA: Feel free to contact zhangyifansugar@gmail.com.\n\nGithub here."
         view.font = UIFont(name: "Chalkduster", size: 20)
         view.addHyperLinksToText(originalText: text, hyperLinks: ["zhangyifansugar@gmail.com": "mailto:zhangyifansugar@gmail.com", "here": "https://github.com/OoaLH"])

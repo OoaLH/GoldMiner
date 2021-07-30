@@ -27,6 +27,8 @@ class GameSession {
     
     var player2Score: Int = 0
     
+    var otherSkin: SkinType?
+    
     var level: Int = 1
     
     var goal: Int = 650//+545 +815 +1085 + 1355 +1625 +1895 +2165 +2435 +2705
@@ -49,6 +51,7 @@ class GameSession {
         money = 0
         player1Score = 0
         player2Score = 0
+        otherSkin = nil
         level = 1
         goal = 650
         goalIncrement = 650

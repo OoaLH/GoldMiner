@@ -32,6 +32,16 @@ class GameScene: SKScene {
     
     var bombs: [Goods] = []
     
+    var player1Skin: SkinType = {
+        let skin = UserDefaults.standard.string(forKey: "Player 1") ?? "pig"
+        return SkinType(rawValue: skin) ?? .pig
+    }()
+    
+    var player2Skin: SkinType = {
+        let skin = UserDefaults.standard.string(forKey: "Player 2") ?? "pig"
+        return SkinType(rawValue: skin) ?? .pig
+    }()
+    
     override func sceneDidLoad() {
         configureViews()
         configurePhysics()
@@ -328,13 +338,13 @@ class GameScene: SKScene {
     lazy var hook2 = Hook(player: player2)
     
     lazy var player1: Player = {
-        let node = Player()
+        let node = Player(skinType: player1Skin)
         node.score = GameSession.shared.player1Score
         return node
     }()
     
     lazy var player2: Player = {
-        let node = Player()
+        let node = Player(skinType: player2Skin)
         node.score = GameSession.shared.player2Score
         return node
     }()
