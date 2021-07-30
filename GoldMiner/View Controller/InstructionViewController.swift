@@ -21,7 +21,7 @@ class InstructionViewController: UIViewController {
         
         view.addSubview(closeButton)
         closeButton.snp.makeConstraints { make in
-            make.width.height.equalTo(20.height)
+            make.width.height.equalTo(40.height)
             make.left.top.equalToSuperview().offset(20.height)
         }
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)

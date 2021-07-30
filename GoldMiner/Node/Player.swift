@@ -48,7 +48,7 @@ class Player: SKSpriteNode {
         size = texture.size()
         
         if skinType != .pig {
-            
+            size = CGSize(width: size.width * 0.75, height: size.height * 0.75)
         }
         
         dragFrames = SKAction.animate(with: generateFrames(),

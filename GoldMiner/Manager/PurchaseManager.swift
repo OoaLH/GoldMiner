@@ -209,18 +209,19 @@ extension PurchaseManager: SKPaymentTransactionObserver {
         if let transactionError = transaction.error as NSError?, transactionError.code != SKError.paymentCancelled.rawValue {
             delegate?.purchaseManager(didFailWithError: transactionError)
         } else {
-            delegate?.purchaseManager(didFailWithError: PurchaseError.noSubscriptionPurchased)
+            delegate?.purchaseManager(didFailWithError: PurchaseError.noProductPurchased)
         }
         
         SKPaymentQueue.default().finishTransaction(transaction)
     }
     
     private func completeSubscribe(transaction: SKPaymentTransaction, productType: ProductType) {
-        #if DEBUG
-            purchasedProduct = productType
-        #else
-            updatePurchaseStatus()
-        #endif
+//        #if DEBUG
+//            purchasedProduct = productType
+//        #else
+//            updatePurchaseStatus()
+//        #endif
+        purchasedProduct = productType
         delegate?.purchaseManager(didSucceedWith: transaction, productType: productType)
         SKPaymentQueue.default().finishTransaction(transaction)
     }

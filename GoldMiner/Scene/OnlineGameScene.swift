@@ -195,7 +195,12 @@ class OnlineGameScene: GameScene {
         player = role == Role.player1 ? player1 : player2
         otherPlayer = role == Role.player1 ? player2 : player1
         setSelfSkin()
-        sendSkinData()
+        if let otherSkin = GameSession.shared.otherSkin {
+            otherPlayer.setSkin(skinType: otherSkin)
+            skinReceived = true
+        } else {
+            sendSkinData()
+        }
     }
     
     func setSelfSkin() {

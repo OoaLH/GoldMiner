@@ -10,6 +10,7 @@ import UIKit
 class SettingView: UIView {
     var userDefaultKey: String
     var selectedSkin: String
+    var promotionText: String = ""
     
     let models: [SkinType]
     
@@ -21,6 +22,7 @@ class SettingView: UIView {
             models = SkinType.allCases
         } else {
             models = [.pig]
+            promotionText = " - Buy Character's Pack to unlock more characters!"
         }
         
         super.init(frame: .zero)
@@ -54,7 +56,7 @@ class SettingView: UIView {
     
     lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.text = userDefaultKey
+        view.text = userDefaultKey + promotionText
         view.font = UIFont(name: "Chalkduster", size: 14)
         view.textAlignment = .left
         return view

@@ -127,7 +127,9 @@ extension GameCenterManager: GKLocalPlayerListener {
     func player(_ player: GKPlayer, didAccept invite: GKInvite) {
         let matchMakerVC = GKMatchmakerViewController(invite: invite)
         matchMakerVC?.matchmakerDelegate = self
-        viewController?.present(matchMakerVC!, animated: true, completion: nil)
+        matchMakerVC?.modalPresentationStyle = .fullScreen
+        viewController?.dismiss(animated: false)
+        viewController?.present(matchMakerVC!, animated: true)
         print("didAccept")
     }
     

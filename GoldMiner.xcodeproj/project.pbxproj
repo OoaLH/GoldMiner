@@ -80,7 +80,6 @@
 		A49DC9F62659C8DD009B121D /* MediumRock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9F52659C8DD009B121D /* MediumRock.swift */; };
 		A49DC9FE2659D2E2009B121D /* Bucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DC9FD2659D2E2009B121D /* Bucket.swift */; };
 		A49DCA062659FF44009B121D /* SKSceneExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49DCA052659FF44009B121D /* SKSceneExtension.swift */; };
-		A4A759BF26B279B00064505F /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = A4A759BE26B279B00064505F /* Configuration.storekit */; };
 		A4A759D026B372D30064505F /* SkinType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A759CF26B372D30064505F /* SkinType.swift */; };
 		A4A759D226B3740A0064505F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4A759D126B3740A0064505F /* SettingView.swift */; };
 		A4AC22402662F48E006B55BC /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4AC223F2662F48E006B55BC /* UIViewControllerExtension.swift */; };
@@ -172,7 +171,6 @@
 		A49DC9F52659C8DD009B121D /* MediumRock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumRock.swift; sourceTree = "<group>"; };
 		A49DC9FD2659D2E2009B121D /* Bucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bucket.swift; sourceTree = "<group>"; };
 		A49DCA052659FF44009B121D /* SKSceneExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKSceneExtension.swift; sourceTree = "<group>"; };
-		A4A759BE26B279B00064505F /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		A4A759CF26B372D30064505F /* SkinType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinType.swift; sourceTree = "<group>"; };
 		A4A759D126B3740A0064505F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		A4AC223F2662F48E006B55BC /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 				A475D23C2655EE3F002AE450 /* Scene */,
 				A43DDB9926AE8101005AE6F3 /* View */,
 				A475D23B2655EE30002AE450 /* View Controller */,
-				A4A759BE26B279B00064505F /* Configuration.storekit */,
 			);
 			path = GoldMiner;
 			sourceTree = "<group>";
@@ -529,7 +526,6 @@
 				A43DDB6A26ACFD4B005AE6F3 /* level16.sks in Resources */,
 				A40DAB2F265CCD9B000CE9BE /* level7.sks in Resources */,
 				A40DAB20265CC848000CE9BE /* level2.sks in Resources */,
-				A4A759BF26B279B00064505F /* Configuration.storekit in Resources */,
 				A40DAB35265CCDAC000CE9BE /* level9.sks in Resources */,
 				A40DAB23265CCD60000CE9BE /* level3.sks in Resources */,
 				A475D21026559470002AE450 /* Assets.xcassets in Resources */,
@@ -768,7 +764,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -790,7 +786,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GoldMiner/GoldMiner.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 34;
 				DEVELOPMENT_TEAM = 2VBCC3QCHE;
 				INFOPLIST_FILE = GoldMiner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

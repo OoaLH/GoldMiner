@@ -5,14 +5,16 @@
 //  Created by Yifan Zhang on 2021-07-25.
 //
 
-enum PurchaseError: Error {
-    case noSubscriptionPurchased
+import Foundation
+
+enum PurchaseError: LocalizedError {
+    case noProductPurchased
     case noProductsAvailable
     case cannotMakePayments
     
-    var localizedDescription: String {
+    var errorDescription: String {
         switch self {
-        case .noSubscriptionPurchased:
+        case .noProductPurchased:
             return "No subscription purchased"
         case .noProductsAvailable:
             return "No products available"
