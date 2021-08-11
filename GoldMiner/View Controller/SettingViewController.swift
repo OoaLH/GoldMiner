@@ -77,6 +77,8 @@ class SettingViewController: UIViewController {
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(local2View.snp.bottom)
         }
+        
+        view.bringSubviewToFront(closeButton)
     }
     
     func configureEvents() {

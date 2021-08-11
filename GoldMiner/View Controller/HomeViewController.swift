@@ -170,11 +170,15 @@ class HomeViewController: UIViewController {
     }
     
     @objc func shop() {
-        present(ShopViewController(), animated: true, completion: nil)
+        let vc = ShopViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
     @objc func setting() {
-        present(SettingViewController(), animated: true)
+        let vc = SettingViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true, completion: nil)
     }
     
     lazy var instructionButton = UIButton()

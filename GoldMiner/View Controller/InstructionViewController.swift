@@ -27,6 +27,14 @@ class InstructionViewController: UIViewController {
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
     }
     
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
+    
     @objc func close() {
         dismiss(animated: true, completion: nil)
     }

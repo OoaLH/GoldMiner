@@ -98,8 +98,13 @@ class PurchaseManager: NSObject {
     }
     
     private func sendReceiptToAppStore(receipt: String, _ completionHandler: @escaping (ProductType?) -> Void) {
-        var request = URLRequest(url: URL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!)
-        //        https://buy.itunes.apple.com/verifyReceipt
+        var url: URL
+        #if DEBUG
+            url = URL(string: "https://sandbox.itunes.apple.com/verifyReceipt")!
+        #else
+            url = URL(string: "https://buy.itunes.apple.com/verifyReceipt")!
+        #endif
+        var request = URLRequest(url: url)
         let requestData: [String: Any] = ["receipt-data": receipt,
                                           "password": "0e69caf6f9df443f82b61b4abeccbfcb",
                                           "exclude-old-transactions": false]

@@ -78,6 +78,7 @@ class ShopViewController: UIViewController {
             make.width.height.equalTo(40.height)
             make.left.top.equalToSuperview().offset(20.height)
         }
+        view.bringSubviewToFront(closeButton)
     }
     
     func configureEvents() {
