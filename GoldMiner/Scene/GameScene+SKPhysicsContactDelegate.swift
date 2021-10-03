@@ -71,6 +71,7 @@ extension GameScene: SKPhysicsContactDelegate {
         player.hook?.empty()
         player.hook?.swing()
         player.stopDrag()
+        // if hook arrives, mineral will also arrive.
         mineralArrived(mineral: mineral, at: player)
     }
     
@@ -83,6 +84,7 @@ extension GameScene: SKPhysicsContactDelegate {
         if mineral.price != 0 {
             alertPopup(text: "+$\(mineral.price)", at: player.position - CGPoint(x: 40, y: 40))
         }
+        // due to internet issue, hook may never arrive, player should still stop dragging.
         if mineral.hook?.isShooting ?? false {
             player.stopDrag()
         }
@@ -94,6 +96,7 @@ extension GameScene: SKPhysicsContactDelegate {
 
 extension GameScene: MineralDelegate {
     func arrived(mineral: Mineral, at player: Player) {
+        // due to internet issue, hook may never arrive, thus mineral still needs to arrive.
         mineralArrived(mineral: mineral, at: player)
     }
 }

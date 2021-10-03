@@ -61,12 +61,12 @@ class OnlineGameScene: GameScene {
     
     var goldReceived: Bool = false {
         didSet {
-            readyToStart = goldReceived && skinReceived
+            checkIfCanStart()
         }
     }
     var skinReceived: Bool = false {
         didSet {
-            readyToStart = goldReceived && skinReceived
+            checkIfCanStart()
         }
     }
     var readyToStart: Bool = false {
@@ -201,6 +201,10 @@ class OnlineGameScene: GameScene {
         } else {
             sendSkinData()
         }
+    }
+    
+    func checkIfCanStart() {
+        readyToStart = goldReceived && skinReceived
     }
     
     func setSelfSkin() {

@@ -28,25 +28,19 @@ class OnlineShopScene: ShopScene {
     
     var moneyReceived: Bool = false {
         didSet {
-            if bombsReceived && goodsReceived && moneyReceived {
-                canStart = true
-            }
+            checkIfCanStart()
         }
     }
     
     var bombsReceived: Bool = false {
         didSet {
-            if bombsReceived && goodsReceived && moneyReceived {
-                canStart = true
-            }
+            checkIfCanStart()
         }
     }
     
     var goodsReceived: Bool = false {
         didSet {
-            if bombsReceived && goodsReceived && moneyReceived {
-                canStart = true
-            }
+            checkIfCanStart()
         }
     }
     
@@ -132,6 +126,12 @@ class OnlineShopScene: ShopScene {
         view?.presentScene(scene, transition: reveal)
         
         GameCenterManager.shared.submitScore()
+    }
+    
+    func checkIfCanStart() {
+        if bombsReceived && goodsReceived && moneyReceived {
+            canStart = true
+        }
     }
     
     func sendMoneyData() {

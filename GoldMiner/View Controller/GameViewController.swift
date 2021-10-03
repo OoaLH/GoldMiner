@@ -22,7 +22,6 @@ class GameViewController: UIViewController {
         guard let scene = GameScene(fileNamed: "level1") else { return }
         scene.scaleMode = .aspectFit
         skView.presentScene(scene)
-        
     }
 
     override var shouldAutorotate: Bool {

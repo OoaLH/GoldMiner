@@ -57,6 +57,7 @@ class GameScene: SKScene {
         initTimer()
         initBombs()
         
+        // tell mice to start moving around.
         NotificationCenter.default.post(name: .startWalk, object: nil)
     }
     
@@ -67,7 +68,9 @@ class GameScene: SKScene {
     
     func initBackground() {
         let node = SKSpriteNode(imageNamed: "background")
+        // middle of the screen.
         node.position = CGPoint(x: 400, y: 196)
+        // avoid white edges.
         node.size = CGSize(width: 800, height: 400)
         node.zPosition = UIConfig.backgroundZPosition
         addChild(node)
@@ -92,6 +95,7 @@ class GameScene: SKScene {
     }
     
     func initMinerals() {
+        // small gold is added randomly.
         let rand = Int.random(in: 3...7)
         for _ in 0..<rand {
             let x = CGFloat.random(in: 40...760)
@@ -146,6 +150,7 @@ class GameScene: SKScene {
         addChild(gold)
     }
     
+    // minerals other than small golds and buckets are added using spritekit scene currently.
     func addMediumGold(at pos: CGPoint) {
         let gold = MediumGold()
         gold.position = pos
@@ -219,6 +224,8 @@ class GameScene: SKScene {
     }
     
     func stretchRope(rope: SKSpriteNode, to hook: Hook) {
+        // ropes are placed at players at the beginning.
+        // stretch them to connect hooks.
         let pos = hook.position
         let offset = pos - rope.position
         let length = offset.length
@@ -254,6 +261,8 @@ class GameScene: SKScene {
     }
     
     func canUseBomb(hook: Hook) -> Bool {
+        // check if players have bomb and the hook is sent out.
+        // whether the hook has caught mineral is checked outside this function.
         let offset = hook.position - hook.player.position
         let length = offset.length
         return GameSession.shared.numberOfBomb > 0 && length > Tuning.hookShortestLength
@@ -268,6 +277,7 @@ class GameScene: SKScene {
         }
     }
     
+    // MARK: SpriteScene
     override func update(_ currentTime: TimeInterval) {
         stretchRope(rope: rope1, to: hook1)
         stretchRope(rope: rope2, to: hook2)
